@@ -19,9 +19,14 @@ document.getElementById('btn-male').addEventListener('click', (event) => {
     document.getElementById('main-card').style.padding = '20% 0px 20% 0px';
     document.getElementById('main-card').appendChild(tempElement);
     document.getElementById('current-field').focus();
+    document.addEventListener("keyup", event => {
+        if (event.keyCode == 13) {
+            console.log('You pressed enter.');
+        }
+    })
 });
 
-document.getElementById('btn-fe male').addEventListener('click', (event) => {
+document.getElementById('btn-fe male').addEventListener('click', event => {
     document.getElementById('the-output').value += '\r\n\r\n';
     document.getElementById('the-output').value += ' בת';
 });
