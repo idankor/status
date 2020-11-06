@@ -1,42 +1,45 @@
 let theGender = undefined;
+let currentStep = 1;
+
+// {{SET STEP FUNCTION}}
 
 function setStep(stepNumber) {
   $(".step").css("display", "none");
-  $("#step-2").css("display", "flex");
+  $(`#step-${stepNumber}`).css("display", "flex");
   $("input").first().focus();
 }
 
-$(document).keydown(function (e) {
-  if (e.keyCode == 39) {
-    $("#btn-male").focus();
-  }
-  if (e.keyCode == 37) {
-    $("#btn-female").focus();
-  }
-});
-
-//
-// STEP 1 - GENDER
-//
-
-document.getElementById("btn-male").addEventListener("click", (event) => {
-  document.getElementById("the-output").value += " בן";
-  theGender = "male";
-});
-
-document.getElementById("btn-female").addEventListener("click", (event) => {
-  document.getElementById("the-output").value += " בת";
-  theGender = "female";
-});
-
-// STEP 1 - GENDER
-
-// STEP 2 - AGE
-
-function waitForEnter() {
-  document.addEventListener("keyup", (event) => {
-    if (event.keyCode == 13) {
-      console.log("You pressed enter.");
+if (currentStep == 1) {
+  $(document).keydown(function (e) {
+    if (e.keyCode == 39) {
+      $("#btn-male").focus();
+    }
+    if (e.keyCode == 37) {
+      $("#btn-female").focus();
     }
   });
 }
+// *** STEP 1 -- GENDER ***
+
+$("#btn-male").click(function () {
+  $("#the-output").append("בן ");
+  theGender = "male";
+  currentStep = 2;
+});
+
+$("#btn-female").click(function () {
+  $("#the-output").append("בת ");
+  theGender = "female";
+  currentStep = 2;
+});
+
+// *** STEP 2 -- AGE ***
+
+$("#input-age").keyup(function (e) {
+  if (e.keyCode == 13 && $("#input-age").val() > 0) {
+    $("#the-output").append($("#input-age").val() + ", ");
+    $("#btn-next-2").click();
+    currentStep == 3;
+    setStep(3);
+  }
+});
