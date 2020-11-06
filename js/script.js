@@ -6,8 +6,9 @@ let currentStep = 1;
 function setStep(stepNumber) {
   $(".step").css("display", "none");
   $(`#step-${stepNumber}`).css("display", "flex");
-  $("input").first().focus();
 }
+
+// *** STEP 1 -- GENDER ***
 
 if (currentStep == 1) {
   $(document).keydown(function (e) {
@@ -19,12 +20,15 @@ if (currentStep == 1) {
     }
   });
 }
-// *** STEP 1 -- GENDER ***
 
-$("#btn-male").click(function () {
-  $("#the-output").append("בן ");
-  theGender = "male";
-  currentStep = 2;
+$("#btn-male").keyup(function (e) {
+  if (e.keyCode == 13) {
+    $("#the-output").append("בן ");
+    theGender = "male";
+    setStep(2);
+    currentStep = 2;
+    $("input").first().focus();
+  }
 });
 
 $("#btn-female").click(function () {
@@ -41,5 +45,21 @@ $("#input-age").keyup(function (e) {
     $("#btn-next-2").click();
     currentStep == 3;
     setStep(3);
+    $("#step-3").find("#input-sibiling-number").focus();
+  }
+});
+
+// *** STEP 3 -- SIBILINGS ***
+
+$("#input-sibiling-number").keyup(function (e) {
+  if (
+    e.keyCode == 13 &&
+    $("#input-sibiling-number").val() > 0 &&
+    theGender == "male"
+  ) {
+    $("#the-output").append("לו ");
+    $("#the-output").append($("#input-sibiling-number").val() + " אחאים,");
+    $("#btn-next-2").click();
+    $("#step-3").find("#input-sibiling-position").focus();
   }
 });

@@ -67,7 +67,7 @@ h1 {
 
 .card-sub-row-item {
   display: flex;
-  margin: 10px;
+  margin: 0px;
   border: 1px solid black;
   justify-content: center;
   align-items: center;
