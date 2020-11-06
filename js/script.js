@@ -1,17 +1,30 @@
 let theGender = undefined;
 
+function setStep(stepNumber) {
+  $(".step").css("display", "none");
+  $("#step-2").css("display", "flex");
+  $("input").first().focus();
+}
+
+$(document).keydown(function (e) {
+  if (e.keyCode == 39) {
+    $("#btn-male").focus();
+  }
+  if (e.keyCode == 37) {
+    $("#btn-female").focus();
+  }
+});
+
 //
 // STEP 1 - GENDER
 //
 
 document.getElementById("btn-male").addEventListener("click", (event) => {
-  document.getElementById("the-output").value += "\r\n\r\n";
   document.getElementById("the-output").value += " בן";
   theGender = "male";
 });
 
 document.getElementById("btn-female").addEventListener("click", (event) => {
-  document.getElementById("the-output").value += "\r\n\r\n";
   document.getElementById("the-output").value += " בת";
   theGender = "female";
 });

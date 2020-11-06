@@ -1,82 +1,93 @@
 <html lang="en" dir="rtl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/style.css" />
-    <title>Document</title>
-  </head>
 
-  <body>
-    <div class="main-container">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/style.css" />
+  <title>Auto-Status</title>
+</head>
 
-      <!--STEP-1---GENDER-->
+<body>
+  <div class="main-container">
 
-          <div class="main-card" id="step-1">
-            <!-- MAIN CARD-->
-              <div class="card-row">
-                <button class="btn-lg" id="btn-male">
-                  <i class="fas fa-male fa-3x"></i>
-                </button>
-                <button class="btn-lg" id="btn-female">
-                  <i class="fas fa-female fa-3x"></i>
-                </button>
-              </div>
-            </div>
+    <!--STEP-1---GENDER-->
 
-      <!--STEP-2---AGE-->
+    <div class="main-card step" id="step-1">
 
-        <div class="main-card" id="step-2">
-
-          <div class="card-row">
-            <h1>גיל</h1>
-          </div>
-
-          <div class="card-row">
-           <input type="text" class="input-sm">
-          </div>
-
-        </div>
-
-      <!--STEP-3---SIBILINGS-->
-
-        <div class="main-card" id="step-3">
-
-          <div class="card-row">
-            <h1>אחאים</h1>
-          </div>
-
-          <div class="card-row">
-           <input type="text" class="input-sm">
-          </div>
-
-          <div class="spacer"></div>
-
-          <div class="card-row">
-            <h1>מיקום</h1>
-          </div>
-
-          <div class="card-row">
-           <input type="text" class="input-sm">
-          </div>
-
-        </div>
-
-        
-      <!-- OUTPUT BOX-->
-        
-        <div class="output-box">
-
-          <textarea id="the-output" name="story" class="make-big">
-<פרטים אישיים></textarea
-          >
-        </div>
+      <div class="card-row">
+        <button class="btn-lg" id="btn-male" onclick="setStep(2)">
+          <i class="fas fa-male fa-3x"></i>
+        </button>
+        <button class="btn-lg" id="btn-female" onclick="setStep(2)">
+          <i class="fas fa-female fa-3x"></i>
+        </button>
       </div>
     </div>
 
-    <script src="js/script.js"></script>
-    <script
-      src="https://kit.fontawesome.com/84a7daad9c.js"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+    <!--STEP-2---AGE-->
+
+    <div class="main-card step" id="step-2">
+      <div class="card-row">
+        <div class="card-sub-row">
+          <div class="card-sub-row-item">
+            <h1>גיל</h1>
+          </div>
+          <div class="card-sub-row-item">
+
+            <input type="text" class="input-sm">
+          </div>
+
+        </div>
+
+
+
+      </div>
+
+
+    </div>
+
+    <!--STEP-3---SIBILINGS-->
+
+    <div class="main-card step" id="step-3">
+
+      <div class="card-row">
+        <h1>אחאים</h1>
+      </div>
+
+      <div class="card-row">
+        <input type="text" class="input-sm">
+      </div>
+
+      <div class="spacer"></div>
+
+      <div class="card-row">
+        <h1>מיקום</h1>
+      </div>
+
+      <div class="card-row">
+        <input type="text" class="input-sm">
+      </div>
+
+    </div>
+
+    <!-- OUTPUT BOX-->
+
+    <div class="output-box">
+
+      <textarea id="the-output" name="story" class="make-big">
+        <פרטים אישיים>
+
+      </textarea>
+    </div>
+  </div>
+
+
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src="js/scripts.js"></script>
+  <script src="js/script.js"></script>
+  <script src="https://kit.fontawesome.com/84a7daad9c.js" crossorigin="anonymous"></script>
+</body>
+
 </html>
