@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/jquery-ui.css">
   <title>Auto-Status</title>
 </head>
 
@@ -18,7 +19,7 @@
         <button class="btn-lg" id="btn-male"">
           <i class=" fas fa-male fa-3x"></i>
         </button>
-        <button class="btn-lg" id="btn-female" onclick="setStep(2)">
+        <button class="btn-lg" id="btn-female">
           <i class="fas fa-female fa-3x"></i>
         </button>
       </div>
@@ -32,15 +33,15 @@
 
         <div class="card-sub-row">
 
-          <div class="card-sub-row-item">
+          <div class="card-sub-item">
             <h1>גיל</h1>
           </div>
 
-          <div class="card-sub-row-item">
+          <div class="card-sub-item">
             <input type="number" class="input-sm" id="input-age" required>
           </div>
 
-          <div class="card-sub-row-item">
+          <div class="card-sub-item">
             <button class="btn-next" id="btn-next-2">הבא</button>
           </div>
 
@@ -50,7 +51,7 @@
 
     </div>
 
-    <!--STEP-3---SIBILINGS-->
+    <!--STEP-3---MARITAL-STATUS-->
 
     <div class="main-card step" id="step-3">
 
@@ -58,27 +59,48 @@
 
         <div class="card-sub-row">
 
-          <div class="card-sub-row-item">
+          <div class="card-sub-item">
+            <h1>מצב משפחתי</h1>
+          </div>
+
+          <div class="card-sub-item">
+            <input type="text" name="" id="input-marital-status">
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!--STEP-4---SIBILINGS-->
+
+    <div class="main-card step" id="step-4">
+
+      <div class="card-row">
+
+        <div class="card-sub-row">
+
+          <div class="card-sub-item">
             <h1>אחאים</h1>
           </div>
 
-          <div class="card-sub-row-item">
+          <div class="card-sub-item">
             <input type="text" class="input-sm" id="input-sibiling-number">
           </div>
 
           <div class="spacer"></div>
 
-          <div class="card-sub-row-item">
+          <div class="card-sub-item">
             <h1>מיקום</h1>
           </div>
 
-          <div class="card-sub-row-item">
+          <div class="card-sub-item">
             <input type="text" class="input-sm" id="input-sibiling-position">
           </div>
 
           <div class="spacer"></div>
 
-          <div class="card-sub-row-item">
+          <div class="card-sub-item">
             <button class="btn-next" id="btn-next-2">הבא</button>
           </div>
 
@@ -105,9 +127,10 @@
   </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-  <script src="js/scripts.js"></script>
   <script src="js/script.js"></script>
   <script src="https://kit.fontawesome.com/84a7daad9c.js" crossorigin="anonymous"></script>
+  <script src="js/external/jquery/jquery.js"></script>
+  <script src="js/jquery-ui.js"></script>
 </body>
 
 </html>

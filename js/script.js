@@ -31,10 +31,14 @@ $("#btn-male").keyup(function (e) {
   }
 });
 
-$("#btn-female").click(function () {
-  $("#the-output").append("בת ");
-  theGender = "female";
-  currentStep = 2;
+$("#btn-female").keyup(function (e) {
+  if (e.keyCode == 13) {
+    $("#the-output").append("בת ");
+    theGender = "female";
+    setStep(2);
+    currentStep = 2;
+    $("input").first().focus();
+  }
 });
 
 // *** STEP 2 -- AGE ***
@@ -45,11 +49,62 @@ $("#input-age").keyup(function (e) {
     $("#btn-next-2").click();
     currentStep == 3;
     setStep(3);
-    $("#step-3").find("#input-sibiling-number").focus();
+    $("#step-3").find("#input-marital-status").focus();
   }
 });
 
-// *** STEP 3 -- SIBILINGS ***
+// *** STEP 3 -- MARITAL STATUS ***
+
+$(document).ready(function() {
+  var maritalStatusMale = [
+    "רווק",
+    "נשוי",
+    "פרוד",
+    "אלמן",
+    "an option"
+  ];
+
+  $('#input-marital-status').autocomplete({
+    source:maritalStatusMale,
+    autoFocus:true
+  });
+
+});
+
+$( function() {
+  var availableTags = [
+    "ActionScript",
+    "AppleScript",
+    "Asp",
+    "BASIC",
+    "C",
+    "C++",
+    "Clojure",
+    "COBOL",
+    "ColdFusion",
+    "Erlang",
+    "Fortran",
+    "Groovy",
+    "Haskell",
+    "Java",
+    "JavaScript",
+    "Lisp",
+    "Perl",
+    "PHP",
+    "Python",
+    "Ruby",
+    "Scala",
+    "Scheme"
+  ];
+  $( "#input-marital-status" ).autocomplete({
+    source: availableTags,
+    autoFocus:true
+
+  });
+} );
+
+
+// *** STEP 4 -- SIBILINGS ***
 
 $("#input-sibiling-number").keyup(function (e) {
   if (

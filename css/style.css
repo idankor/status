@@ -65,7 +65,7 @@ h1 {
   border: 1px solid black;
 }
 
-.card-sub-row-item {
+.card-sub-item {
   display: flex;
   margin: 0px;
   border: 1px solid black;
@@ -230,5 +230,9 @@ input[type="number"] {
 }
 
 #step-3 {
+  display: none;
+}
+
+#step-4 {
   display: none;
 }
