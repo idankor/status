@@ -255,14 +255,13 @@ input[type="number"] {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
+  background-color: #909399;
 }
 
+/* Toggle switch size */
 .switch,
 .slider {
-  font-size: 4px;
+  font-size: 2px;
 }
 
 .slider:before {
@@ -272,9 +271,8 @@ input[type="number"] {
   width: 26em;
   left: 4em;
   top: 50%;
-  transform: translate(0%, -50%);
+  transform: translateY(-50%);
   background-color: white;
-  -webkit-transition: 0.4s;
   transition: 0.4s;
 }
 
@@ -283,9 +281,8 @@ input:checked + .slider {
 }
 
 input:checked + .slider:before {
-  -webkit-transform: translateX(26em);
-  -ms-transform: translateX(26em);
-  transform: translate(26em, -50%);
+  transform: translateY(-50%);
+  right: 4em;
 }
 
 /* Rounded sliders */
