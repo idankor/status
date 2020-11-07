@@ -210,6 +210,10 @@ textarea {
   height: 5%;
 }
 
+#input-marital-status {
+  text-align: center;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   /* display: none; <- Crashes Chrome on hover */
