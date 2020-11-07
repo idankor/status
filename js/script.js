@@ -208,14 +208,15 @@ $("#input-sibiling-number").focus(function () {
   //
   $("#input-sibiling-number").keyup(function (e) {
     if (e.keyCode == 13 && $(this).is(":focus")) {
-      $("#step-4").find("#input-sibiling-position").focus();
+      if ($(this).val() == "1") {
+        $("#the-output").append("בן יחיד.");
+      }
     }
   });
 
-  $("#input-sibiling-position").keyup(function (e) {
-    if (e.keyCode == 13 && $(this).is(":focus")) {
-      $("the-output").append(`ה${$(this).val()}` + " מבין");
-      $("the-output").append();
-    }
-  });
+  if ($("#input-sibiling-position").val() > "1") {
+    $("#the-output").append(`ה${$(this).val()}` + " מבין ");
+    let tempInt = parseInt($("#input-sibiling-number").val());
+    $("#the-output").append(maleNumbers[tempInt] + " אחאים.");
+  }
 });
