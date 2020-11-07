@@ -36,6 +36,7 @@ if (currentStep == 1) {
 
 $("#btn-male").keyup(function (e) {
   if (e.keyCode == 13) {
+    $("#the-output").append("<פרטים אישיים>" + "\r\n\r\n");
     $("#the-output").append("בן ");
     theGender = "male";
     setStep(2);
@@ -46,6 +47,7 @@ $("#btn-male").keyup(function (e) {
 
 $("#btn-female").keyup(function (e) {
   if (e.keyCode == 13) {
+    $("#the-output").append("<פרטים אישיים>" + "\r\n\r\n");
     $("#the-output").append("בת ");
     theGender = "female";
     setStep(2);
@@ -56,18 +58,55 @@ $("#btn-female").keyup(function (e) {
 
 // *** STEP 2 -- AGE ***
 
-$("#input-age").keyup(function (e) {
-  if (e.keyCode == 13 && $("#input-age").val() > 0) {
-    $("#the-output").append($("#input-age").val() + ", ");
-    currentStep == 3;
-    setStep(3);
-    $("#step-3").find("#input-marital-status").focus();
-  }
+$("#input-age").focus(function () {
+  $(this).keyup(function (e) {
+    if (e.keyCode == 13 && $(this).val() > 0) {
+      $("#the-output").append($(this).val() + ", ");
+      currentStep == 3;
+      setStep(3);
+      $("#step-3").find("#switch-religion").focus();
+    }
+  });
 });
 
-// *** STEP 2 -- RELIGION ***
+// *** STEP 3 -- RELIGION ***
 
-// *** STEP 3 -- MARITAL STATUS ***
+$("#switch-religion").focus(function () {
+  $(this).change(function () {
+    $("#input-religion").prop("disabled", false);
+    $("#input-religion").focus();
+  });
+});
+
+$("#input-religion").focus(function () {
+  if (theGender == "male") {
+    $(document).ready(function () {
+      const religionArray = ["חרדי"];
+      $("#input-religion").autocomplete({
+        source: religionArray,
+        minLength: 0,
+        autoFocus: true,
+      });
+    });
+  }
+  if (theGender == "female") {
+    $(document).ready(function () {
+      const religionArray = ["חרדית"];
+      $("#input-religion").autocomplete({
+        source: religionArray,
+        minLength: 0,
+        autoFocus: true,
+      });
+    });
+  }
+  $(this).keyup(function (e) {
+    if (e.keyCode == 13) {
+      $("#the-output").append($(this).val() + ", ");
+    }
+  });
+});
+
+// *** STEP 4 -- MARITAL STATUS ***
 
 $("#input-marital-status").focus(function () {
   // MALE
