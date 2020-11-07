@@ -44,31 +44,54 @@ $("#btn-female").keyup(function (e) {
 // *** STEP 2 -- AGE ***
 
 $("#input-age").keyup(function (e) {
+
   if (e.keyCode == 13 && $("#input-age").val() > 0) {
     $("#the-output").append($("#input-age").val() + ", ");
     $("#btn-next-2").click();
     currentStep == 3;
     setStep(3);
     $("#step-3").find("#input-marital-status").focus();
+
+    // MALE
+
+    if (theGender == 'male') {
+      $(document).ready(function() {
+        var maritalStatusOptions= [
+          "רווק",
+          "נשוי",
+          "פרוד",
+          "אלמן",
+        ];
+        $('#input-marital-status').autocomplete({
+          source: maritalStatusOptions,
+          minLength: 0
+        });
+      });
+    }
+
+    // FEMALE
+
+    if (theGender == 'female') {
+      $(document).ready(function() {
+        var maritalStatusOptions = [
+          "רווקה",
+          "נשואה",
+          "פרודה",
+          "אלמנה",
+        ];
+        $('#input-marital-status').autocomplete({
+          source: maritalStatusOptions,
+          minLength: 0
+        });
+      });
+    }
   }
 });
 
 // *** STEP 3 -- MARITAL STATUS ***
 
-$(document).ready(function() {
-  var maritalStatusMale = [
-    "רווק",
-    "נשוי",
-    "פרוד",
-    "אלמן",
-  ];
 
-  $('#input-marital-status').autocomplete({
-    source: maritalStatusMale,
-    minLength: 0
-  });
 
-});
 
 // *** STEP 4 -- SIBILINGS ***
 
