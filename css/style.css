@@ -112,17 +112,19 @@ h1 {
 }
 
 .btn-lg:hover {
-  background-color: #d9ecff;
+  background-color: #409eff;
 
-  color: #f56c6c;
+  color: #fff;
   cursor: pointer;
+  border: none;
 }
 
 .btn-lg:focus {
-  background-color: #d9ecff;
+  background-color: #409eff;
 
-  color: #f56c6c;
+  color: #fff;
   cursor: pointer;
+  border: none;
 }
 
 .btn-lg:active {

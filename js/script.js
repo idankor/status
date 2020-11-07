@@ -44,47 +44,36 @@ $("#btn-female").keyup(function (e) {
 // *** STEP 2 -- AGE ***
 
 $("#input-age").keyup(function (e) {
-
   if (e.keyCode == 13 && $("#input-age").val() > 0) {
-
     $("#the-output").append($("#input-age").val() + ", ");
-    $("#btn-next-2").click();
     currentStep == 3;
     setStep(3);
     $("#step-3").find("#input-marital-status").focus();
 
     // MALE
 
-    if (theGender == 'male') {
-      $(document).ready(function() {
-        var maritalStatusOptions= [
-          "רווק",
-          "נשוי",
-          "פרוד",
-          "אלמן",
-        ];
-        $('#input-marital-status').autocomplete({
+    if (theGender == "male") {
+      $(document).ready(function () {
+        var maritalStatusOptions = ["רווק", "נשוי", "פרוד", "אלמן"];
+        maritalStatusOptions.sort();
+        $("#input-marital-status").autocomplete({
           source: maritalStatusOptions,
           minLength: 0,
-          autoFocus: true
+          autoFocus: true,
         });
       });
     }
 
     // FEMALE
 
-    if (theGender == 'female') {
-      $(document).ready(function() {
-        var maritalStatusOptions = [
-          "רווקה",
-          "נשואה",
-          "פרודה",
-          "אלמנה",
-        ];
-        $('#input-marital-status').autocomplete({
+    if (theGender == "female") {
+      $(document).ready(function () {
+        var maritalStatusOptions = ["רווקה", "נשואה", "פרודה", "אלמנה"];
+        maritalStatusOptions.sort();
+        $("#input-marital-status").autocomplete({
           source: maritalStatusOptions,
           minLength: 0,
-          autoFocus: true
+          autoFocus: true,
         });
       });
     }
@@ -95,32 +84,67 @@ $("#input-age").keyup(function (e) {
 
 $("#input-marital-status").keyup(function (e) {
   if (e.keyCode == 13 && $(this).val() != undefined) {
-           $("#the-output").append($(this).val());
-     $("#step-3").find("#input-children-number").focus();
- }
+    $("#the-output").append($(this).val());
+    $("#step-3").find("#input-children-number").focus();
+  }
 });
 
-$(document).ready(function() {
+$(document).ready(function () {
+  var agesArray = [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "11",
+    "12",
+  ];
 
-  const agesArray = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+  $("#input-children-number").autocomplete({
+    source: agesArray,
+    minLength: 0,
+    autoFocus: true,
+  });
+});
 
 $("#input-children-number").keyup(function (e) {
-    if (e.keyCode == 13 && $(this).val() === '0') {
-     $('#the-output').append(', ');
-    }
+  if (e.keyCode == 13 && $(this).val() === "0") {
+    $("#the-output").append(", ללא ילדים, ");
+    currentStep = 4;
+    setStep(4);
+    $("#step-4").find("#input-sibiling-number").focus();
+  }
+
+  if (e.keyCode == 13 && $(this).val() > "0") {
+    $("#the-output").append(" + " + $(this).val() + ", ");
+    currentStep = 4;
+    setStep(4);
+    $("#step-4").find("#input-sibiling-number").focus();
+  }
 });
 
 // *** STEP 4 -- SIBILINGS ***
 
+if (theGender == "male") {
+  $(document).ready(function () {
+    var sibilingNumber = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+
+    $("#input-sibiling-number").autocomplete({
+      source: sibilingNumber,
+      minLength: 0,
+      autoFocus: true,
+    });
+  });
+}
+
 $("#input-sibiling-number").keyup(function (e) {
-  if (
-    e.keyCode == 13 &&
-    $("#input-sibiling-number").val() > 0 &&
-    theGender == "male"
-  ) {
-    $("#the-output").append("לו ");
-    $("#the-output").append($("#input-sibiling-number").val() + " אחאים,");
-    $("#btn-next-2").click();
-    $("#step-3").find("#input-sibiling-position").focus();
+  if (e.keyCode == 13 && $(this).is(":focus")) {
+    $("#step-4").find("#input-sibiling-position").focus();
   }
 });
