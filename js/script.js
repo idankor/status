@@ -46,6 +46,7 @@ $("#btn-female").keyup(function (e) {
 $("#input-age").keyup(function (e) {
 
   if (e.keyCode == 13 && $("#input-age").val() > 0) {
+
     $("#the-output").append($("#input-age").val() + ", ");
     $("#btn-next-2").click();
     currentStep == 3;
@@ -64,7 +65,8 @@ $("#input-age").keyup(function (e) {
         ];
         $('#input-marital-status').autocomplete({
           source: maritalStatusOptions,
-          minLength: 0
+          minLength: 0,
+          autoFocus: true
         });
       });
     }
@@ -81,7 +83,8 @@ $("#input-age").keyup(function (e) {
         ];
         $('#input-marital-status').autocomplete({
           source: maritalStatusOptions,
-          minLength: 0
+          minLength: 0,
+          autoFocus: true
         });
       });
     }
@@ -90,8 +93,22 @@ $("#input-age").keyup(function (e) {
 
 // *** STEP 3 -- MARITAL STATUS ***
 
+$("#input-marital-status").keyup(function (e) {
+  if (e.keyCode == 13 && $(this).val() != undefined) {
+           $("#the-output").append($(this).val());
+     $("#step-3").find("#input-children-number").focus();
+ }
+});
 
+$(document).ready(function() {
 
+  const agesArray = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+
+$("#input-children-number").keyup(function (e) {
+    if (e.keyCode == 13 && $(this).val() === '0') {
+     $('#the-output').append(', ');
+    }
+});
 
 // *** STEP 4 -- SIBILINGS ***
 
