@@ -61,48 +61,14 @@ $(document).ready(function() {
     "נשוי",
     "פרוד",
     "אלמן",
-    "an option"
   ];
 
   $('#input-marital-status').autocomplete({
-    source:maritalStatusMale,
-    autoFocus:true
+    source: maritalStatusMale,
+    minLength: 0
   });
 
 });
-
-$( function() {
-  var availableTags = [
-    "ActionScript",
-    "AppleScript",
-    "Asp",
-    "BASIC",
-    "C",
-    "C++",
-    "Clojure",
-    "COBOL",
-    "ColdFusion",
-    "Erlang",
-    "Fortran",
-    "Groovy",
-    "Haskell",
-    "Java",
-    "JavaScript",
-    "Lisp",
-    "Perl",
-    "PHP",
-    "Python",
-    "Ruby",
-    "Scala",
-    "Scheme"
-  ];
-  $( "#input-marital-status" ).autocomplete({
-    source: availableTags,
-    autoFocus:true
-
-  });
-} );
-
 
 // *** STEP 4 -- SIBILINGS ***
 
