@@ -1,5 +1,18 @@
 let theGender = undefined;
 let currentStep = 1;
+let maleNumbers = [
+  undefined,
+  undefined,
+  "שני",
+  "שלושה",
+  "ארבעה",
+  "חמישה",
+  "שישה",
+  "שבעה",
+  "שמונה",
+  "תשעה",
+  "עשרה",
+];
 
 // {{SET STEP FUNCTION}}
 
@@ -49,34 +62,36 @@ $("#input-age").keyup(function (e) {
     currentStep == 3;
     setStep(3);
     $("#step-3").find("#input-marital-status").focus();
+  }
+});
 
-    // MALE
+$("#input-marital-status").focus(function () {
+  // MALE
 
-    if (theGender == "male") {
-      $(document).ready(function () {
-        var maritalStatusOptions = ["רווק", "נשוי", "פרוד", "אלמן"];
-        maritalStatusOptions.sort();
-        $("#input-marital-status").autocomplete({
-          source: maritalStatusOptions,
-          minLength: 0,
-          autoFocus: true,
-        });
+  if (theGender == "male") {
+    $(document).ready(function () {
+      var maritalStatusOptions = ["רווק", "נשוי", "פרוד", "אלמן"];
+      maritalStatusOptions.sort();
+      $("#input-marital-status").autocomplete({
+        source: maritalStatusOptions,
+        minLength: 0,
+        autoFocus: true,
       });
-    }
+    });
+  }
 
-    // FEMALE
+  // FEMALE
 
-    if (theGender == "female") {
-      $(document).ready(function () {
-        var maritalStatusOptions = ["רווקה", "נשואה", "פרודה", "אלמנה"];
-        maritalStatusOptions.sort();
-        $("#input-marital-status").autocomplete({
-          source: maritalStatusOptions,
-          minLength: 0,
-          autoFocus: true,
-        });
+  if (theGender == "female") {
+    $(document).ready(function () {
+      var maritalStatusOptions = ["רווקה", "נשואה", "פרודה", "אלמנה"];
+      maritalStatusOptions.sort();
+      $("#input-marital-status").autocomplete({
+        source: maritalStatusOptions,
+        minLength: 0,
+        autoFocus: true,
       });
-    }
+    });
   }
 });
 
@@ -131,20 +146,76 @@ $("#input-children-number").keyup(function (e) {
 
 // *** STEP 4 -- SIBILINGS ***
 
-if (theGender == "male") {
-  $(document).ready(function () {
-    var sibilingNumber = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+let sibilingNumber = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+let sibilingPositionMale = [
+  "ראשון",
+  "שני",
+  "שלישי",
+  "רביעי",
+  "חמישי",
+  "שישי",
+  "שביעי",
+  "שמיני",
+  "תשיעי",
+  "עשירי",
+];
+let sibilingPositionFemale = [
+  "ראשונה",
+  "שניה",
+  "שלישית",
+  "רביעית",
+  "חמישית",
+  "שישית",
+  "שביעית",
+  "שמינית",
+  "תשיעית",
+  "עשירית",
+];
 
+$("#input-sibiling-number").focus(function () {
+  $(document).ready(function () {
     $("#input-sibiling-number").autocomplete({
       source: sibilingNumber,
       minLength: 0,
       autoFocus: true,
     });
   });
-}
 
-$("#input-sibiling-number").keyup(function (e) {
-  if (e.keyCode == 13 && $(this).is(":focus")) {
-    $("#step-4").find("#input-sibiling-position").focus();
+  //
+  // MALE
+  //
+
+  if (theGender == "male") {
+    $("#input-sibiling-position").autocomplete({
+      source: sibilingPositionMale,
+      minLength: 0,
+      autoFocus: true,
+    });
   }
+
+  //
+  // FEMALE
+  //
+  if (theGender == "female") {
+    $("#input-sibiling-position").autocomplete({
+      source: sibilingPositionFemale,
+      minLength: 0,
+      autoFocus: true,
+    });
+  }
+  //
+  // {{ENTER}}
+  //
+  $("#input-sibiling-number").keyup(function (e) {
+    if (e.keyCode == 13 && $(this).is(":focus")) {
+      $("#step-4").find("#input-sibiling-position").focus();
+    }
+  });
+
+  $("#input-sibiling-position").keyup(function (e) {
+    if (e.keyCode == 13 && $(this).is(":focus")) {
+      $("the-output").append(`ה${$(this).val()}` + " מבין");
+      $("the-output").append();
+    }
+  });
 });
