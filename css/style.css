@@ -216,6 +216,34 @@ textarea {
   text-align: center;
 }
 
+.switch {
+  margin: 0;
+  display: inline-block;
+  position: relative;
+  width: 40px;
+  height: 20px;
+  border: 1px solid #dcdfe6;
+  outline: none;
+  border-radius: 10px;
+  box-sizing: border-box;
+  background: #dcdfe6;
+  cursor: pointer;
+  transition: border-color 0.3s, background-color 0.3s;
+  vertical-align: middle;
+}
+
+.switch:after {
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  border-radius: 100%;
+  transition: all 0.3s;
+  width: 16px;
+  height: 16px;
+  background-color: #fff;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   /* display: none; <- Crashes Chrome on hover */

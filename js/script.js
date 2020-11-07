@@ -65,6 +65,10 @@ $("#input-age").keyup(function (e) {
   }
 });
 
+// *** STEP 2 -- RELIGION ***
+
+// *** STEP 3 -- MARITAL STATUS ***
+
 $("#input-marital-status").focus(function () {
   // MALE
 
@@ -94,8 +98,6 @@ $("#input-marital-status").focus(function () {
     });
   }
 });
-
-// *** STEP 3 -- MARITAL STATUS ***
 
 $("#input-marital-status").keyup(function (e) {
   if (e.keyCode == 13 && $(this).val() != undefined) {
@@ -146,7 +148,7 @@ $("#input-children-number").keyup(function (e) {
 
 // *** STEP 4 -- SIBILINGS ***
 
-let sibilingNumber = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+let sibilingNumber = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 let sibilingPositionMale = [
   "ראשון",
   "שני",
@@ -208,15 +210,21 @@ $("#input-sibiling-number").focus(function () {
   //
   $("#input-sibiling-number").keyup(function (e) {
     if (e.keyCode == 13 && $(this).is(":focus")) {
-      if ($(this).val() == "1") {
+      if ($(this).val() == "0" || $(this).val() == "") {
         $("#the-output").append("בן יחיד.");
+      } else {
+        $("#step-4").find("#input-sibiling-position").focus();
       }
     }
   });
+});
 
-  if ($("#input-sibiling-position").val() > "1") {
-    $("#the-output").append(`ה${$(this).val()}` + " מבין ");
-    let tempInt = parseInt($("#input-sibiling-number").val());
-    $("#the-output").append(maleNumbers[tempInt] + " אחאים.");
-  }
+$("#input-sibiling-position").focus(function () {
+  $("#input-sibiling-position").keyup(function (e) {
+    if (e.keyCode == 13 && $(this).is(":focus")) {
+      $("#the-output").append(`ה${$(this).val()}` + " מבין ");
+      let tempInt = parseInt($("#input-sibiling-number").val());
+      $("#the-output").append(maleNumbers[tempInt] + " אחאים.");
+    }
+  });
 });
