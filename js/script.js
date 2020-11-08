@@ -102,6 +102,9 @@ $("#input-religion").focus(function () {
   $(this).keyup(function (e) {
     if (e.keyCode == 13) {
       $("#the-output").append($(this).val() + ", ");
+      currentStep = 4;
+      setStep(4);
+      $("#step-4").find("#input-marital-status").focus();
     }
   });
 });
@@ -141,7 +144,7 @@ $("#input-marital-status").focus(function () {
 $("#input-marital-status").keyup(function (e) {
   if (e.keyCode == 13 && $(this).val() != undefined) {
     $("#the-output").append($(this).val());
-    $("#step-3").find("#input-children-number").focus();
+    $("#step-4").find("#input-children-number").focus();
   }
 });
 
@@ -172,20 +175,20 @@ $(document).ready(function () {
 $("#input-children-number").keyup(function (e) {
   if (e.keyCode == 13 && $(this).val() === "0") {
     $("#the-output").append(", ללא ילדים, ");
-    currentStep = 4;
-    setStep(4);
-    $("#step-4").find("#input-sibiling-number").focus();
+    currentStep = 5;
+    setStep(5);
+    $("#step-5").find("#input-sibiling-number").focus();
   }
 
   if (e.keyCode == 13 && $(this).val() > "0") {
     $("#the-output").append(" + " + $(this).val() + ", ");
-    currentStep = 4;
-    setStep(4);
-    $("#step-4").find("#input-sibiling-number").focus();
+    currentStep = 5;
+    setStep(5);
+    $("#step-5").find("#input-sibiling-number").focus();
   }
 });
 
-// *** STEP 4 -- SIBILINGS ***
+// *** STEP 5 -- SIBILINGS ***
 
 let sibilingNumber = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 let sibilingPositionMale = [
@@ -252,7 +255,7 @@ $("#input-sibiling-number").focus(function () {
       if ($(this).val() == "0" || $(this).val() == "") {
         $("#the-output").append("בן יחיד.");
       } else {
-        $("#step-4").find("#input-sibiling-position").focus();
+        $("#step-5").find("#input-sibiling-position").focus();
       }
     }
   });
