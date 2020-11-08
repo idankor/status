@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
-    <title>Document</title>
+    <title>Auto-Status</title>
 </head>
 
 <body>
@@ -21,33 +21,63 @@
 
                 <div class="section-middle">
 
-                    <!-- *** CARD ****-->
-                    <div class="card">
-                        <!-- *** CARD ****-->
+                    <!-- *** STEP 1 {{GENDER}} START****-->
+                    <div class="card step" id="step-1">
+                        <!-- *** STEP 1 {{GENDER}} START ****-->
 
-                        <div class="card-row">
-                            <h1>מגדר</h1>
+                        <div class="card-header">
+                            <div class="card-row">
+                                <h1>מגדר</h1>
+                            </div>
                         </div>
 
-                        <div class="card-row button-gender">
+                        <div class="card-body">
+                            <div class="card-row btn-gender">
 
-                            <button class="btn-lg" id="btn-male">
-                                <i class=" fas fa-male fa-3x"></i>
-                            </button>
+                                <button class="btn-lg" id="btn-male">
+                                    <i class=" fas fa-male fa-3x"></i>
+                                </button>
 
-                            <button class="btn-lg" id="btn-female">
-                                <i class="fas fa-female fa-3x"></i>
-                            </button>
+                                <button class="btn-lg" id="btn-female">
+                                    <i class="fas fa-female fa-3x"></i>
+                                </button>
 
+                            </div>
                         </div>
 
-                        <!-- *** CARD ****-->
+                        <!-- *** STEP 1 {{GENDER}} END ****-->
                     </div>
-                    <!-- *** CARD ****-->
+                    <!-- *** STEP 1 {{GENDER}} END ****-->
+
+                    <!-- *** STEP 2 {{AGE}} START****-->
+                    <div class="card" id="step-2">
+                        <!-- *** STEP 2 {{AGE}} START****-->
+
+                        <div class="card-header">
+                            <div class="card-row">
+                                <h1>גיל</h1>
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="card-row">
+
+                                <input type="number" class="input-age" id="input-age" required>
 
 
+                            </div>
+                        </div>
 
-                    <div class="the-output"></div>
+                        <!-- *** STEP 2 {{AGE}} END ****-->
+                    </div>
+                    <!-- *** STEP 2 {{AGE}} END ****-->
+
+
+                    <div class="the-output">
+
+                        <textarea id="the-output" name="the-story" class="make-big"></textarea>
+
+                    </div>
 
                 </div>
 
