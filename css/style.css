@@ -203,8 +203,8 @@ input:disabled {
 }
 
 .input-age {
-  width: 30%;
-  font-size: 45px;
+  width: 20%;
+  font-size: 28px;
   padding: 0.5em 0.2em;
   text-align: center;
 }
@@ -330,6 +330,22 @@ input:checked + .slider:before {
 .stepper {
   font-size: 16px;
   color: #606266;
+}
+
+ol {
+  cursor: pointer;
+  margin-top: 100%;
+  text-align: center;
+}
+
+li {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+li:hover {
+  color: #e6a23c;
+  font-size: 34px;
 }
 
 /* ----- STEPS ----- */

@@ -14,6 +14,20 @@ let maleNumbers = [
   "עשרה",
 ];
 
+for (i = 1; i < 11; i++) {
+  let tempElement = document.createElement("li");
+  tempElement.setAttribute("id", "step-nav-" + i);
+  document.getElementById("step-nav").appendChild(tempElement);
+}
+
+$("li").click(function () {
+  let idString = this.id;
+  idString = idString.replace(/^\D+/g, "");
+  console.log(idString);
+  $(".step").css("display", "none");
+  $(`#step-${idString}`).css("display", "flex");
+});
+
 // {{SET STEP FUNCTION}}
 
 function setStep(stepNumber) {
