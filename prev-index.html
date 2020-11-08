@@ -1,0 +1,180 @@
+<html lang="en" dir="rtl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/jquery-ui.css">
+  <title>Auto-Status</title>
+</head>
+
+<body>
+
+  <div class="mega-container">
+
+    <div class="main-container">
+
+      <div class="main-card step" id="step-1">
+
+
+        <div class="header"></div>
+      </div>
+      <!--STEP-1---GENDER-->
+
+      <div class="main-card step" id="step-1">
+
+        <div class="card-row">
+
+          <div class="card-sub-row">
+            <div class="card-sub-item">
+              <h1>מגדר</h1>
+
+            </div>
+
+            <div class="card-sub-item big-buttons">
+
+              <button class="btn-lg" id="btn-male">
+                <i class=" fas fa-male fa-3x"></i>
+              </button>
+              <button class="btn-lg" id="btn-female">
+                <i class="fas fa-female fa-3x"></i>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!--STEP-2---AGE-->
+
+      <div class="main-card step" id="step-2">
+
+        <div class="card-row">
+          <div class="card-sub-row">
+            <div class="card-sub-item">
+
+              <h1>גיל</h1>
+            </div>
+
+            <div class="card-sub-item">
+              <input type="number" class="input-sm" id="input-age" required>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!--STEP-3---RELIGION-->
+
+      <div class="main-card step" id="step-3">
+
+        <div class="card-row">
+
+          <div class="card-sub-row">
+
+            <div class="card-sub-item">
+              <h1>דת</h1>
+            </div>
+
+            <div class="card-sub-item">
+              <label class="switch">
+                <input type="checkbox" id="switch-religion">
+                <span class="slider round"></span>
+              </label>
+            </div>
+
+            <div class="card-sub-item">
+              <input type="text" class="input-sm" name="" id="input-religion" disabled>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <!--STEP-4---MARITAL-STATUS-->
+
+      <div class="main-card step" id="step-4">
+
+        <div class="card-row">
+
+          <div class="card-sub-row">
+
+            <div class="card-sub-item">
+              <h1>מצב משפחתי</h1>
+            </div>
+
+            <div class="card-sub-item">
+              <input type="text" name="" class="input-basic" id="input-marital-status" lang="he">
+            </div>
+
+            <div class="card-sub-item">
+              <h1>מספר ילדים</h1>
+            </div>
+
+            <div class="card-sub-item">
+              <input type="text" name="" class="input-basic" id="input-children-number" lang="he">
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!--STEP-5---SIBILINGS-->
+
+      <div class="main-card step" id="step-5">
+
+        <div class="card-row">
+
+          <div class="card-sub-row">
+
+            <div class="card-sub-item">
+              <h1>אחאים</h1>
+            </div>
+
+            <div class="card-sub-item">
+              <input type="text" class="input-sm" id="input-sibiling-number">
+            </div>
+
+            <div class="spacer"></div>
+
+            <div class="card-sub-item">
+              <h1>מיקום</h1>
+            </div>
+
+            <div class="card-sub-item">
+              <input type="text" class="input-sm" id="input-sibiling-position">
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+    <!-- OUTPUT BOX-->
+
+    <div class="output-box">
+
+      <textarea id="the-output" name="the-story" class="make-big"></textarea>
+    </div>
+  </div>
+
+
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src="js/script.js"></script>
+  <script src="https://kit.fontawesome.com/84a7daad9c.js" crossorigin="anonymous"></script>
+  <script src="js/external/jquery/jquery.js"></script>
+  <script src="js/jquery-ui.js"></script>
+</body>
+
+</html>

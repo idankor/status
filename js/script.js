@@ -21,7 +21,7 @@ function setStep(stepNumber) {
   $(`#step-${stepNumber}`).css("display", "flex");
 }
 
-// *** STEP 1 -- GENDER ***
+// *** // STEP 1 // GENDER // *** //
 
 if (currentStep == 1) {
   $(document).keydown(function (e) {
@@ -34,26 +34,56 @@ if (currentStep == 1) {
   });
 }
 
-$("#btn-male").keyup(function (e) {
-  if (e.keyCode == 13) {
+// GO FUNCTION
+
+function step1go(gender) {
+  if (gender == "male") {
     $("#the-output").append("<פרטים אישיים>" + "\r\n\r\n");
     $("#the-output").append("בן ");
+  }
+  if (gender == "female") {
+    $("#the-output").append("<פרטים אישיים>" + "\r\n\r\n");
+    $("#the-output").append("בת ");
+  }
+  setStep(2);
+  currentStep = 2;
+  $("input").first().focus();
+}
+
+// --**-- MALE --**--
+
+// {{ENTER}}
+
+$("#btn-male").keyup(function (e) {
+  if (e.keyCode == 13) {
     theGender = "male";
-    setStep(2);
-    currentStep = 2;
-    $("input").first().focus();
+    step1go(theGender);
   }
 });
 
+// {{CLICK}}
+
+$("#btn-male").click(function () {
+  theGender = "male";
+  step1go(theGender);
+});
+
+// --**-- FEMALE --**--
+
+// {{ENTER}}
+
 $("#btn-female").keyup(function (e) {
   if (e.keyCode == 13) {
-    $("#the-output").append("<פרטים אישיים>" + "\r\n\r\n");
-    $("#the-output").append("בת ");
     theGender = "female";
-    setStep(2);
-    currentStep = 2;
-    $("input").first().focus();
+    step1go(theGender);
   }
+});
+
+// {{CLICK}}
+
+$("#btn-female").click(function () {
+  theGender = "female";
+  step1go(theGender);
 });
 
 // *** STEP 2 -- AGE ***
