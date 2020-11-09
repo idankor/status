@@ -184,30 +184,6 @@ $("#input-marital-status").keydown(function (e) {
   }
 });
 
-$(document).ready(function () {
-  var agesArray = [
-    "0",
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    "10",
-    "11",
-    "12",
-  ];
-
-  $("#input-children-number").autocomplete({
-    source: agesArray,
-    minLength: 0,
-    autoFocus: true,
-  });
-});
-
 $("#input-children-number").keyup(function (e) {
   if (e.keyCode == 13 && $(this).val() === "0") {
     $("#the-output").append(", ללא ילדים, ");
@@ -253,20 +229,6 @@ let sibilingPositionFemale = [
 ];
 
 $("#input-sibiling-number").focus(function () {
-  $(document).ready(function () {
-    $("#input-sibiling-number").autocomplete({
-      source: sibilingNumber,
-      minLength: 0,
-      autoFocus: true,
-    });
-  });
-
-  $("#input-sibiling-position").autocomplete({
-    source: sibilingNumber,
-    minLength: 0,
-    autoFocus: true,
-  });
-
   //
   // {{ENTER}}
   //
