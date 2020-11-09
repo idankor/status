@@ -51,69 +51,45 @@ if (currentStep == 1) {
   });
 }
 
-// GO FUNCTION
-
-function step1go(gender) {
-  if (gender == "male") {
-    $("#the-output").append("<פרטים אישיים>" + "\r\n\r\n");
-    $("#the-output").append("בן ");
-  }
-  if (gender == "female") {
-    $("#the-output").append("<פרטים אישיים>" + "\r\n\r\n");
-    $("#the-output").append("בת ");
-  }
-  setStep(2);
-  currentStep = 2;
-  $("input").first().focus();
-}
-
-// *** STEP 1 -- GENDER ***
-
 // MALE
 
-// Enter
-
-$("#btn-male").keyup(function (e) {
-  if (e.keyCode == 13) {
+$("#btn-male").focus(function () {
+  $("#btn-male").click(function () {
     theGender = "male";
-    step1go(theGender);
-  }
-});
-
-// Click
-
-$("#btn-male").click(function () {
-  theGender = "male";
-  step1go(theGender);
+    $("#the-output").append("<פרטים אישיים>" + "\r\n\r\n");
+    $("#the-output").append("בן ");
+    currentStep = 2;
+    setStep(2);
+    $("#step-2").find("#input-age").focus();
+  });
 });
 
 // FEMALE
 
-// Enter
-
-$("#btn-female").keyup(function (e) {
-  if (e.keyCode == 13) {
+$("#btn-female").focus(function () {
+  $("#btn-female").click(function () {
     theGender = "female";
-    step1go(theGender);
-  }
-});
-
-// Click
-
-$("#btn-female").click(function () {
-  theGender = "female";
-  step1go(theGender);
+    $("#the-output").append("<פרטים אישיים>" + "\r\n\r\n");
+    $("#the-output").append("בת ");
+    currentStep = 2;
+    setStep(2);
+    $("#step-2").find("#input-age").focus();
+  });
 });
 
 // *** STEP 2 -- AGE ***
 
 $("#input-age").focus(function () {
-  $(this).keyup(function (e) {
-    if (e.keyCode == 13 && $(this).val() > 0) {
-      $("#the-output").append($(this).val() + ", ");
-      currentStep == 3;
-      setStep(3);
-      $("#step-3").find("#switch-religion").focus();
+  $(this).keydown(function (e) {
+    if (e.keyCode == 13) {
+      if ($("#input-age").val() > 0) {
+        $("#the-output").append($(this).val() + ", ");
+        currentStep == 3;
+        setStep(3);
+        $("#step-3").find("#switch-religion").focus();
+      } else if ($("#input-age").val() == 0) {
+        alert("no!");
+      }
     }
   });
 });
@@ -125,7 +101,7 @@ $("#switch-religion").focus(function () {
     $("#input-religion").prop("disabled", false);
     $("#input-religion").focus();
   });
-  $(this).keyup(function (e) {
+  $(this).keydown(function (e) {
     if (e.keyCode == 13) {
       setStep(4);
       $("#step-4").find("#input-marital-status").focus();
@@ -154,9 +130,11 @@ $("#input-religion").focus(function () {
       });
     });
   }
-  $(this).keyup(function (e) {
+  $("#input-religion").keydown(function (e) {
     if (e.keyCode == 13) {
-      $("#the-output").append($(this).val() + ", ");
+      if ($("#input-religion").val() != "") {
+        $("#the-output").append($("#input-religion").val() + ", ");
+      }
       currentStep = 4;
       setStep(4);
       $("#step-4").find("#input-marital-status").focus();
@@ -199,7 +177,7 @@ $("#input-marital-status").focus(function () {
 
 // מספר ילדים
 
-$("#input-marital-status").keyup(function (e) {
+$("#input-marital-status").keydown(function (e) {
   if (e.keyCode == 13 && $(this).val() != undefined) {
     $("#the-output").append($(this).val());
     $("#step-4").find("#input-children-number").focus();
