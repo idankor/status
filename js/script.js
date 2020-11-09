@@ -14,6 +14,8 @@ let maleNumbers = [
   "עשרה",
 ];
 
+// Create step-nav
+
 for (i = 1; i < 11; i++) {
   let tempElement = document.createElement("li");
   tempElement.setAttribute("id", "step-nav-" + i);
