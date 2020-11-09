@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+
     <title>Auto-Status</title>
 </head>
 
@@ -14,7 +16,7 @@
         <div class="mega-container">
 
             <div class="right-side" id="right-side">
-                <ol id="step-nav">
+                <ol id="step-nav" class="nav-list">
                 </ol>
 
             </div>
@@ -49,9 +51,7 @@
                             </div>
                         </div>
 
-                        <!-- *** STEP 1 {{GENDER}} END ****-->
                     </div>
-                    <!-- *** STEP 1 {{GENDER}} END ****-->
 
                     <!-- *** STEP 2 {{AGE}} START****-->
                     <div class="card step" id="step-2">
@@ -64,17 +64,65 @@
                         </div>
 
                         <div class="card-body">
+
+
+
+
                             <div class="card-row">
 
-                                <input type="number" class="input-age" id="input-age" required>
 
+                                <input type="number" class="input-age" id="input-age" required>
 
                             </div>
                         </div>
 
-                        <!-- *** STEP 2 {{AGE}} END ****-->
                     </div>
-                    <!-- *** STEP 2 {{AGE}} END ****-->
+
+                    <!-- *** STEP 3 {{RELIGION}} START****-->
+                    <div class="card step" id="step-3">
+                        <!-- *** STEP 3 {{RELIGION}} START****-->
+
+                        <div class="card-header">
+                            <div class="card-row">
+                                <h1>דת</h1>
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+
+                            <div class="card-row">
+
+                                <label class="switch">
+                                    <input type="checkbox" id="switch-religion">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+
+                            <div class="card-row">
+                                <input type="text" class="input-md" id="input-religion" disabled>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- *** STEP 4 {{MARITAL STATUS}} START****-->
+                    <div class="card step" id="step-4">
+                        <!-- *** STEP 4 {{MARITAL STATUS}} START****-->
+
+                        <div class="card-header">
+                            <div class="card-row">
+                                <h1>מצב משפחתי</h1>
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+
+                            <div class="card-row">
+                                <input type="text" class="input-md" id="input-marital-status">
+                            </div>
+                        </div>
+
+                    </div>
 
 
 

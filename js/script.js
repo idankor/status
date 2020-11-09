@@ -20,9 +20,10 @@ for (i = 1; i < 11; i++) {
   let tempElement = document.createElement("li");
   tempElement.setAttribute("id", "step-nav-" + i);
   document.getElementById("step-nav").appendChild(tempElement);
+  $("#step-nav-" + i).addClass("nav-li");
 }
 
-$("li").click(function () {
+$(".nav-li").click(function () {
   let idString = this.id;
   idString = idString.replace(/^\D+/g, "");
   console.log(idString);
@@ -121,6 +122,12 @@ $("#switch-religion").focus(function () {
   $(this).change(function () {
     $("#input-religion").prop("disabled", false);
     $("#input-religion").focus();
+  });
+  $(this).keyup(function (e) {
+    if (e.keyCode == 13) {
+      setStep(4);
+      $("#step-4").find("#input-marital-status").focus();
+    }
   });
 });
 

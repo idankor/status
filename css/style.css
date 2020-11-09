@@ -15,7 +15,7 @@ h1 {
 .debug {
   font-size: 20px;
   color: red;
-  border: 2px solid red;
+  border: 1px solid red;
 }
 
 .centrum {
@@ -115,8 +115,6 @@ h1 {
   /* border: 1px solid #909399; */
   border-radius: 10px;
   width: 100%;
-
-  flex: 1;
 }
 
 .the-output {
@@ -161,7 +159,6 @@ textarea {
 
 .btn-gender:focus {
   background-color: #409eff;
-
   color: #fff;
   cursor: pointer;
   border: none;
@@ -182,10 +179,12 @@ textarea {
 
 input {
   border: 1px solid #dcdfe6;
-  border-radius: 25px;
+  border-radius: 30px;
   direction: rtl;
   min-width: 0;
   color: #303133;
+  font-size: 40px;
+  padding: 3%;
 }
 
 input:disabled {
@@ -198,13 +197,13 @@ input:disabled {
   text-align: center;
 }
 
-.input-big {
-  font-size: 50px;
+.input-md {
+  width: 50%;
+  text-align: center;
 }
 
 .input-age {
   width: 20%;
-  font-size: 28px;
   padding: 0.5em 0.2em;
   text-align: center;
 }
@@ -261,6 +260,10 @@ input[type="number"] {
   -moz-appearance: textfield; /* Firefox */
 }
 
+select option {
+  background-color: yellow;
+}
+
 /* ----- TOGGLE SWITCH ----- */
 
 /* The switch - the box around the slider */
@@ -269,6 +272,7 @@ input[type="number"] {
   display: inline-block;
   width: 60em;
   height: 34em;
+  margin: 2%;
 }
 
 /* Hide default HTML checkbox */
@@ -292,7 +296,7 @@ input[type="number"] {
 /* Toggle switch size */
 .switch,
 .slider {
-  font-size: 0.6px;
+  font-size: 1px;
 }
 
 .slider:before {
@@ -332,7 +336,7 @@ input:checked + .slider:before {
   color: #606266;
 }
 
-ol {
+.nav-list {
   cursor: pointer;
   counter-reset: item;
   list-style-type: none;
@@ -344,16 +348,16 @@ ol {
   padding-left: 25%;
 }
 
-li {
+.nav-li {
   font-size: 28px;
 }
 
-li:before {
+.nav-li:before {
   content: counter(item) "  ";
   counter-increment: item;
 }
 
-li:hover {
+.nav-li:hover {
   color: #e6a23c;
   font-size: 30px;
 }
