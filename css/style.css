@@ -12,10 +12,20 @@ h1 {
   font-weight: 500;
 }
 
+h2 {
+  color: #c0c4cc;
+  font-size: 18px;
+}
+
+.label {
+  margin-left: 5%;
+}
+
 .debug {
   font-size: 20px;
   color: red;
   border: 1px solid red;
+  background-color: lightgreen;
 }
 
 .centrum {
@@ -117,6 +127,24 @@ h1 {
   width: 100%;
 }
 
+.card-row-right {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  margin: 5%;
+}
+
+.card-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  margin-right: 10%;
+}
+
 .the-output {
   display: flex;
   flex-direction: column;
@@ -179,12 +207,12 @@ textarea {
 
 input {
   border: 1px solid #dcdfe6;
-  border-radius: 30px;
+  border-radius: 20px;
   direction: rtl;
   min-width: 0;
   color: #303133;
-  font-size: 40px;
-  padding: 3%;
+  font-size: 22px;
+  padding: 2%;
 }
 
 input:disabled {
@@ -193,12 +221,12 @@ input:disabled {
 }
 
 .input-sm {
-  width: 40%;
+  width: 15%;
   text-align: center;
 }
 
 .input-md {
-  width: 50%;
+  width: 30%;
   text-align: center;
 }
 

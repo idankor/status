@@ -201,7 +201,6 @@
   margin: 0;
   display: block;
   outline: 0;
-  border-radius: 15px;
 }
 .ui-menu .ui-menu {
   position: absolute;
@@ -981,7 +980,6 @@ a.ui-button:active,
   background: #409eff;
   font-weight: normal;
   color: #ffffff;
-  border-radius: 15px;
 }
 .ui-icon-background,
 .ui-state-active .ui-icon-background {
