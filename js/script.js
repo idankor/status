@@ -56,6 +56,8 @@ function showError(errorContent) {
 
 let isRunning = false;
 
+// search JQuery shake lobrary / animation
+
 function shakeId(id) {
   if (!isRunning) {
     isRunning = true;
@@ -71,7 +73,7 @@ function shakeId(id) {
 
 $("#indicator").focus(function () {
   $("#indicator").keydown(function (e) {
-    if (e.keyCode == 13) {
+    if (e.keyCode === 13) {
       if (!$("#btn-male").is(":focus") && !$("#btn-female").is(":focus")) {
         showError("חייב לבחור מגדר!");
         shakeId("#btn-male, #btn-female");
@@ -81,10 +83,11 @@ $("#indicator").focus(function () {
 });
 
 $(document).keydown(function (e) {
-  if (e.keyCode == 39) {
+  // check currentStep (if = step1), if yes, do:
+  if (e.keyCode === 39) {
     $("#btn-male").focus();
   }
-  if (e.keyCode == 37) {
+  if (e.keyCode === 37) {
     $("#btn-female").focus();
   }
 });
@@ -92,6 +95,7 @@ $(document).keydown(function (e) {
 // MALE
 
 $("#btn-male").focus(function () {
+  // read
   $("#btn-male").click(function () {
     theGender = "male";
     $(".error-box").remove();
@@ -145,24 +149,20 @@ $("#input-age").focus(function () {
 // *** STEP 3 -- RELIGION ***
 
 $("#input-religion").focus(function () {
+  const religionArray = ["חרדי"];
   if (theGender == "male") {
-    $(document).ready(function () {
-      const religionArray = ["חרדי"];
-      $("#input-religion").autocomplete({
-        source: religionArray,
-        minLength: 0,
-        autoFocus: true,
-      });
+    $("#input-religion").autocomplete({
+      source: religionArray,
+      minLength: 0,
+      autoFocus: true,
     });
   }
   if (theGender == "female") {
-    $(document).ready(function () {
-      const religionArray = ["חרדית"];
-      $("#input-religion").autocomplete({
-        source: religionArray,
-        minLength: 0,
-        autoFocus: true,
-      });
+    const religionArray = ["חרדית"];
+    $("#input-religion").autocomplete({
+      source: religionArray,
+      minLength: 0,
+      autoFocus: true,
     });
   }
   $("#input-religion").keydown(function (e) {
