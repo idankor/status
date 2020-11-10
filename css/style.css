@@ -216,13 +216,65 @@ ion-icon {
 }
 
 .the-output {
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: #f2f6fc;
   flex: 1;
   margin: 0.5%;
+}
+
+.result-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  background-color: cadetblue;
+}
+
+.result-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background-color: chartreuse;
+  margin-bottom: 10px;
+}
+
+.result-sub-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 95%;
+  height: 95%;
+  font-size: 16px;
+  background-color: burlywood;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+
+.result {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 95%;
+  height: 95%;
+  font-size: 16px;
+  background-color: burlywood;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+
+.component {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
 }
 
 textarea {
