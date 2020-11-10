@@ -124,6 +124,10 @@ h2 {
   font-weight: 400;
 }
 
+#indicator {
+  color: black;
+}
+
 .single-item {
   display: flex;
   flex-direction: row;
@@ -179,6 +183,7 @@ ion-icon {
   justify-content: center;
   align-items: center;
   flex: 1;
+  margin-bottom: 1%;
 }
 
 .card-row {

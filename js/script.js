@@ -41,6 +41,7 @@ function setStep(stepNumber) {
 }
 
 function showError(errorContent) {
+  console.log(errorContent);
   document.getElementById("card-footer").innerHTML = "";
   document.getElementsByClassName("error-box").innerHTML = "";
   let errorElement = document.createElement("div");
@@ -75,25 +76,27 @@ function shakeId(id) {
 
 // *** // STEP 1 // GENDER // *** //
 
-$(document).keydown(function (e) {
-  if (e.keyCode == 13) {
-    if (!$("#btn-male").is(":focus") && !$("#btn-female").is(":focus")) {
-      showError("חייב לבחור מגדר!");
-      shakeId("#btn-male, #btn-female");
-    }
-  }
-});
+document.getElementById("indicator").focus();
 
-if (currentStep == 1) {
-  $(document).keydown(function (e) {
-    if (e.keyCode == 39) {
-      $("#btn-male").focus();
-    }
-    if (e.keyCode == 37) {
-      $("#btn-female").focus();
+$("#indicator").focus(function () {
+  $("#indicator").keydown(function (e) {
+    if (e.keyCode == 13) {
+      if (!$("#btn-male").is(":focus") && !$("#btn-female").is(":focus")) {
+        showError("חייב לבחור מגדר!");
+        shakeId("#btn-male, #btn-female");
+      }
     }
   });
-}
+});
+
+$(document).keydown(function (e) {
+  if (e.keyCode == 39) {
+    $("#btn-male").focus();
+  }
+  if (e.keyCode == 37) {
+    $("#btn-female").focus();
+  }
+});
 
 // MALE
 
