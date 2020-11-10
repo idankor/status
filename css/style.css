@@ -17,6 +17,12 @@ h2 {
   font-size: 18px;
 }
 
+h3 {
+  color: #f56c6c;
+  font-size: 16px;
+  font-weight: 400;
+}
+
 .label {
   margin-left: 5%;
 }
@@ -259,6 +265,26 @@ input:disabled {
   width: 20%;
   padding: 0.5em 0.2em;
   text-align: center;
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
 }
 
 textarea:focus,

@@ -79,16 +79,27 @@ $("#btn-female").focus(function () {
 
 // *** STEP 2 -- AGE ***
 
+let errorStep2 = false;
+
 $("#input-age").focus(function () {
   $(this).keydown(function (e) {
     if (e.keyCode == 13) {
       if ($("#input-age").val() > 0) {
+        $("#input-age").css("border", "1px solid #dcdfe6");
         $("#the-output").append($(this).val() + ", ");
         currentStep == 3;
         setStep(3);
         $("#step-3").find("#switch-religion").focus();
       } else if ($("#input-age").val() == 0) {
-        alert("no!");
+        document.getElementById("input-age").style.animation = "shake 0.5s";
+        if (errorStep2 == false) {
+          $("#input-age").css("border", "2px solid #F56C6C");
+          let errorElement = document.createElement("h3");
+          errorElement.innerHTML = "הגיל צריך להיות גדול מאפס!";
+          document.getElementById("input-age-error").appendChild(errorElement);
+          errorStep2 = true;
+          $("#input-age").focus();
+        }
       }
     }
   });
