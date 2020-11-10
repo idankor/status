@@ -19,8 +19,12 @@ h2 {
 
 h3 {
   color: #f56c6c;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 400;
+  background-color: #fde2e1;
+  padding: 2%;
+  border-radius: 5px;
+  animation: shake 0.5s;
 }
 
 .label {
@@ -110,7 +114,8 @@ h3 {
   height: 40%;
   width: 20%;
   background-color: #edf5ff;
-  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034);
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.054);
+  margin: 0px 1%;
 }
 
 .instruction {
@@ -161,7 +166,15 @@ ion-icon {
   width: 100%;
   height: 100%;
   flex: 5;
-  margin-bottom: 18%;
+}
+
+.card-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex: 1;
 }
 
 .card-row {
@@ -222,6 +235,8 @@ textarea {
   margin: 10px;
   border: 1px solid #e4e7ed;
   border-radius: 2%;
+  box-shadow: 0 5px 10px rgba(154, 160, 185, 0.05),
+    0 15px 40px rgba(166, 173, 201, 0.2);
 }
 
 .btn-gender:hover {
@@ -260,6 +275,8 @@ input {
   color: #303133;
   font-size: 22px;
   padding: 2%;
+  box-shadow: 0 5px 10px rgba(154, 160, 185, 0.05),
+    0 15px 40px rgba(166, 173, 201, 0.2);
 }
 
 input:disabled {
@@ -458,6 +475,14 @@ input:checked + .slider:before {
 }
 
 /* ----- STEPS ----- */
+
+.step {
+  display: none;
+}
+
+.step1 {
+  display: flex;
+}
 
 #step-1 {
   display: flex;

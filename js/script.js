@@ -42,6 +42,17 @@ function setStep(stepNumber) {
 
 // *** // STEP 1 // GENDER // *** //
 
+$(document).keydown(function (e) {
+  if (e.keyCode == 13) {
+    if (!$("#btn-male").is(":focus") && !$("#btn-female").is(":focus")) {
+      let errorElement = document.createElement("h3");
+      errorElement.innerHTML = "חייב לבחור מגדר!";
+      document.getElementById("age-footer").appendChild(errorElement);
+      errorStep2 = true;
+    }
+  }
+});
+
 if (currentStep == 1) {
   $(document).keydown(function (e) {
     if (e.keyCode == 39) {
