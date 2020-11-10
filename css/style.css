@@ -17,14 +17,14 @@ h2 {
   font-size: 18px;
 }
 
-h3 {
+.error-box {
   color: #f56c6c;
   font-size: 14px;
   font-weight: 400;
   background-color: #fde2e1;
   padding: 2%;
   border-radius: 5px;
-  animation: shake 0.5s;
+  /* animation: shake 0.5s; */
 }
 
 .label {

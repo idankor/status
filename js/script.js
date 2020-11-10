@@ -40,15 +40,23 @@ function setStep(stepNumber) {
   $(`.step${stepNumber}`).css("display", "flex");
 }
 
+function showError(errorContent) {
+  document.getElementById("card-footer").innerHTML = "";
+  let errorElement = document.createElement("div");
+  errorElement.classList.add("error-box");
+  errorElement.innerHTML = errorContent;
+  document.getElementById("card-footer").appendChild(errorElement);
+  $(".error-box").hide();
+  $(".error-box").fadeIn(500);
+  $(".error-box").fadeOut(3200);
+}
+
 // *** // STEP 1 // GENDER // *** //
 
 $(document).keydown(function (e) {
   if (e.keyCode == 13) {
     if (!$("#btn-male").is(":focus") && !$("#btn-female").is(":focus")) {
-      let errorElement = document.createElement("h3");
-      errorElement.innerHTML = "חייב לבחור מגדר!";
-      document.getElementById("age-footer").appendChild(errorElement);
-      errorStep2 = true;
+      showError("חייב לבחור מגדר!");
     }
   }
 });
@@ -69,6 +77,7 @@ if (currentStep == 1) {
 $("#btn-male").focus(function () {
   $("#btn-male").click(function () {
     theGender = "male";
+    $(".error-box").remove();
     $("#the-output").append("<פרטים אישיים>" + "\r\n\r\n");
     $("#the-output").append("בן ");
     currentStep = 2;
@@ -82,6 +91,7 @@ $("#btn-male").focus(function () {
 $("#btn-female").focus(function () {
   $("#btn-female").click(function () {
     theGender = "female";
+    $(".error-box").remove();
     $("#the-output").append("<פרטים אישיים>" + "\r\n\r\n");
     $("#the-output").append("בת ");
     currentStep = 2;
@@ -111,7 +121,7 @@ $("#input-age").focus(function () {
           $("#input-age").css("animation", "none");
         }, 600);
         if (errorStep2 == false) {
-          $("#input-age").css("border", "2px solid #F56C6C");
+          $("#input-age").css("border", "1px solid #F56C6C");
           let errorElement = document.createElement("h3");
           errorElement.innerHTML = "הגיל צריך להיות גדול מאפס!";
           document.getElementById("input-age-error").appendChild(errorElement);
