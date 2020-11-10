@@ -132,10 +132,10 @@ $("#input-age").focus(function () {
         $("#the-output").append($(this).val() + ", ");
         currentStep == 3;
         setStep(3);
-        $("#step-3").find("#switch-religion").focus();
+        $("#step-3").find("#input-religion").focus();
       } else if ($("#input-age").val() == 0) {
         // אם הגיל שווה לאפס
-        showError("הגיל צריך להיות גדול מאפס!");
+        showError("הגיל צריך להיות גדול מאפס");
         shakeId("#input-age");
       }
     }
@@ -143,19 +143,6 @@ $("#input-age").focus(function () {
 });
 
 // *** STEP 3 -- RELIGION ***
-
-$("#switch-religion").focus(function () {
-  $(this).change(function () {
-    $("#input-religion").prop("disabled", false);
-    $("#input-religion").focus();
-  });
-  $(this).keydown(function (e) {
-    if (e.keyCode == 13) {
-      setStep(4);
-      $("#step-4").find("#input-marital-status").focus();
-    }
-  });
-});
 
 $("#input-religion").focus(function () {
   if (theGender == "male") {
@@ -226,21 +213,27 @@ $("#input-marital-status").focus(function () {
 // מספר ילדים
 
 $("#input-marital-status").keydown(function (e) {
-  if (e.keyCode == 13 && $(this).val() != undefined) {
-    $("#the-output").append($(this).val());
-    $("#step-4").find("#input-children-number").focus();
+  if (e.keyCode == 13) {
+    if ($("#input-marital-status").val() == "") {
+      showError("נא לציין מצב משפחתי");
+      shakeId("#input-marital-status");
+    } else {
+      $("#the-output").append($(this).val());
+      $("#step-4").find("#input-children-number").focus();
+    }
   }
 });
 
-$("#input-children-number").keyup(function (e) {
-  if (e.keyCode == 13 && $(this).val() === "0") {
+$("#input-children-number").keydown(function (e) {
+  if (e.keyCode == 13 && $(this).val() == "") {
+    showError("נא לציין מספר ילדים");
+    shakeId("#input-children-number");
+  } else if (e.keyCode == 13 && $(this).val() === "0") {
     $("#the-output").append(", ללא ילדים, ");
     currentStep = 5;
     setStep(5);
     $("#step-5").find("#input-sibiling-number").focus();
-  }
-
-  if (e.keyCode == 13 && $(this).val() > "0") {
+  } else if (e.keyCode == 13 && $(this).val() > "0") {
     $("#the-output").append(" + " + $(this).val() + ", ");
     currentStep = 5;
     setStep(5);
