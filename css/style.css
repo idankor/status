@@ -97,7 +97,7 @@ h3 {
 .bottom-row {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   width: 50%;
 }
@@ -105,10 +105,12 @@ h3 {
 .instruction-box {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-  padding: 0%;
-  height: 50%;
+  height: 40%;
+  width: 20%;
+  background-color: #edf5ff;
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034);
 }
 
 .instruction {
@@ -122,11 +124,12 @@ h3 {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin: 5%;
+  margin: 0px 5%;
 }
 
 ion-icon {
-  --ionicon-stroke-width: 60px;
+  --ionicon-stroke-width: 30px;
+  margin: 0px 2%;
 }
 
 .card {

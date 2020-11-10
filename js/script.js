@@ -88,12 +88,17 @@ $("#input-age").focus(function () {
     if (e.keyCode == 13) {
       if ($("#input-age").val() > 0) {
         $("#input-age").css("border", "1px solid #dcdfe6");
+        document.getElementById("input-age").style.animation = "";
+        $("#input-age-error").remove();
         $("#the-output").append($(this).val() + ", ");
         currentStep == 3;
         setStep(3);
         $("#step-3").find("#switch-religion").focus();
       } else if ($("#input-age").val() == 0) {
         document.getElementById("input-age").style.animation = "shake 0.5s";
+        setTimeout(function () {
+          $("#input-age").css("animation", "none");
+        }, 600);
         if (errorStep2 == false) {
           $("#input-age").css("border", "2px solid #F56C6C");
           let errorElement = document.createElement("h3");
