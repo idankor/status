@@ -28,147 +28,156 @@
 
                 <div class="section-middle">
 
-                    <!-- *** STEP 1 {{GENDER}} START****-->
-                    <div class="card step" id="step-1">
-                        <!-- *** STEP 1 {{GENDER}} START ****-->
+                    <div class="card-container">
 
-                        <div class="card-header">
-                            <div class="card-row">
-                                <h1>מגדר</h1>
+                        <!-- *** STEP 1 {{GENDER}} START****-->
+                        <div class="card step" id="step-1">
+                            <!-- *** STEP 1 {{GENDER}} START ****-->
+
+                            <div class="card-header">
+                                <div class="card-row">
+                                    <h1>מגדר</h1>
+                                </div>
                             </div>
+
+                            <div class="card-body">
+
+                                <div class="card-row">
+
+                                    <button class="btn-gender" id="btn-male">
+                                        <i class="fas fa-male fa-3x"></i>
+                                    </button>
+
+                                    <button class="btn-gender" id="btn-female">
+                                        <i class="fas fa-female fa-3x"></i>
+                                    </button>
+
+                                </div>
+
+                                <div class="card-row" id="gender-error">
+                                </div>
+
+                            </div>
+
+
                         </div>
 
-                        <div class="card-body">
 
-                            <div class="card-row">
 
-                                <button class="btn-gender" id="btn-male">
-                                    <i class="fas fa-male fa-3x"></i>
-                                </button>
+                        <!-- *** STEP 2 {{AGE}} START****-->
+                        <div class="card step" id="step-2">
+                            <!-- *** STEP 2 {{AGE}} START****-->
 
-                                <button class="btn-gender" id="btn-female">
-                                    <i class="fas fa-female fa-3x"></i>
-                                </button>
+                            <div class="card-header">
+                                <div class="card-row">
+                                    <h1>גיל</h1>
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+
+                                <div class="card-row">
+                                    <input type="number" class="input-age" id="input-age" required>
+                                </div>
 
                             </div>
 
-                            <div class="card-row" id="gender-error">
+                        </div>
+
+                        <!-- *** STEP 3 {{RELIGION}} START****-->
+                        <div class="card step" id="step-3">
+                            <!-- *** STEP 3 {{RELIGION}} START****-->
+
+                            <div class="card-header">
+                                <div class="card-row">
+                                    <h1>דת</h1>
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+
+                                <div class="card-row">
+
+                                    <label class="switch">
+                                        <input type="checkbox" id="switch-religion">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+
+                                <div class="card-row">
+                                    <input type="text" class="input-md" id="input-religion" disabled>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- *** STEP 4 {{MARITAL STATUS}} START****-->
+                        <div class="card step" id="step-4">
+                            <!-- *** STEP 4 {{MARITAL STATUS}} START****-->
+
+                            <div class="card-header">
+                                <div class="card-row">
+                                    <h1>מצב משפחתי</h1>
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+
+                                <div class="card-group">
+
+                                    <div class="card-row-right">
+                                        <h2 class="label">מצב משפחתי</h2>
+                                        <input type="text" class="input-md" id="input-marital-status">
+                                    </div>
+
+                                    <div class="card-row-right">
+                                        <h2 class="label">מספר ילדים</h2>
+                                        <input type="number" class="input-sm" id="input-children-number">
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- *** STEP 5 {{SIBILINGS}} START****-->
+                        <div class="card step" id="step-5">
+                            <!-- *** STEP 5 {{SIBILINGS}} START****-->
+
+                            <div class="card-header">
+                                <div class="card-row">
+                                    <h1>אחאים</h1>
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+
+                                <div class="card-group">
+
+                                    <div class="card-row-right">
+                                        <h2 class="label">מספר אחאים</h2>
+                                        <input type="number" class="input-sm" id="input-sibiling-number">
+                                    </div>
+
+                                    <div class="card-row-right">
+                                        <h2 class="label">מיקום</h2>
+                                        <input type="number" class="input-sm" id="input-sibiling-position">
+                                    </div>
+
+                                </div>
+
                             </div>
 
                         </div>
 
                         <div class="card-footer" id="card-footer"></div>
 
-                    </div>
-
-                    <!-- *** STEP 2 {{AGE}} START****-->
-                    <div class="card step" id="step-2">
-                        <!-- *** STEP 2 {{AGE}} START****-->
-
-                        <div class="card-header">
-                            <div class="card-row">
-                                <h1>גיל</h1>
-                            </div>
-                        </div>
-
-                        <div class="card-body">
-
-                            <div class="card-row">
-                                <input type="number" class="input-age" id="input-age" required>
-                            </div>
-                            <div class="card-row" id="input-age-error"></div>
-
-                        </div>
 
                     </div>
 
-                    <!-- *** STEP 3 {{RELIGION}} START****-->
-                    <div class="card step" id="step-3">
-                        <!-- *** STEP 3 {{RELIGION}} START****-->
 
-                        <div class="card-header">
-                            <div class="card-row">
-                                <h1>דת</h1>
-                            </div>
-                        </div>
-
-                        <div class="card-body">
-
-                            <div class="card-row">
-
-                                <label class="switch">
-                                    <input type="checkbox" id="switch-religion">
-                                    <span class="slider round"></span>
-                                </label>
-                            </div>
-
-                            <div class="card-row">
-                                <input type="text" class="input-md" id="input-religion" disabled>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <!-- *** STEP 4 {{MARITAL STATUS}} START****-->
-                    <div class="card step" id="step-4">
-                        <!-- *** STEP 4 {{MARITAL STATUS}} START****-->
-
-                        <div class="card-header">
-                            <div class="card-row">
-                                <h1>מצב משפחתי</h1>
-                            </div>
-                        </div>
-
-                        <div class="card-body">
-
-                            <div class="card-group">
-
-                                <div class="card-row-right">
-                                    <h2 class="label">מצב משפחתי</h2>
-                                    <input type="text" class="input-md" id="input-marital-status">
-                                </div>
-
-                                <div class="card-row-right">
-                                    <h2 class="label">מספר ילדים</h2>
-                                    <input type="number" class="input-sm" id="input-children-number">
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <!-- *** STEP 5 {{SIBILINGS}} START****-->
-                    <div class="card step" id="step-5">
-                        <!-- *** STEP 5 {{SIBILINGS}} START****-->
-
-                        <div class="card-header">
-                            <div class="card-row">
-                                <h1>אחאים</h1>
-                            </div>
-                        </div>
-
-                        <div class="card-body">
-
-                            <div class="card-group">
-
-                                <div class="card-row-right">
-                                    <h2 class="label">מספר אחאים</h2>
-                                    <input type="number" class="input-sm" id="input-sibiling-number">
-                                </div>
-
-                                <div class="card-row-right">
-                                    <h2 class="label">מיקום</h2>
-                                    <input type="number" class="input-sm" id="input-sibiling-position">
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
 
 
 

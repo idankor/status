@@ -42,12 +42,14 @@ function setStep(stepNumber) {
 
 function showError(errorContent) {
   document.getElementById("card-footer").innerHTML = "";
+  document.getElementsByClassName("error-box").innerHTML = "";
   let errorElement = document.createElement("div");
   errorElement.classList.add("error-box");
+  errorElement.innerHTML = "";
   errorElement.innerHTML = errorContent;
   document.getElementById("card-footer").appendChild(errorElement);
   $(".error-box").hide();
-  $(".error-box").fadeIn(500);
+  $(".error-box").fadeIn(0);
   $(".error-box").fadeOut(3200);
 }
 
@@ -63,11 +65,11 @@ let isRunning = false;
 function shakeId(id) {
   if (!isRunning) {
     isRunning = true;
-    $(id).addClass("shake-hard shake-constant");
+    $(id).addClass("shake-horizontal shake-constant");
     setTimeout(function () {
-      $(id).removeClass("shake-hard shake-constant");
+      $(id).removeClass("shake-horizontal shake-constant");
       isRunning = false;
-    }, 500);
+    }, 200);
   }
 }
 
@@ -129,6 +131,7 @@ $("#input-age").focus(function () {
   $(this).keydown(function (e) {
     if (e.keyCode == 13) {
       if ($("#input-age").val() > 0) {
+        // אם הגיל גדול מאפס
         $("#input-age").css("border", "1px solid #dcdfe6");
         document.getElementById("input-age").style.animation = "";
         $("#input-age-error").remove();
@@ -137,18 +140,8 @@ $("#input-age").focus(function () {
         setStep(3);
         $("#step-3").find("#switch-religion").focus();
       } else if ($("#input-age").val() == 0) {
-        document.getElementById("input-age").style.animation = "shake 0.5s";
-        setTimeout(function () {
-          $("#input-age").css("animation", "none");
-        }, 600);
-        if (errorStep2 == false) {
-          $("#input-age").css("border", "1px solid #F56C6C");
-          let errorElement = document.createElement("h3");
-          errorElement.innerHTML = "הגיל צריך להיות גדול מאפס!";
-          document.getElementById("input-age-error").appendChild(errorElement);
-          errorStep2 = true;
-          $("#input-age").focus();
-        }
+        // אם הגיל שווה לאפס
+        showError("הגיל צריך להיות גדול מאפס!");
       }
     }
   });
