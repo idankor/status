@@ -29,6 +29,7 @@ $(".nav-li").click(function () {
   console.log(idString);
   $(".step").css("display", "none");
   $(`#step-${idString}`).css("display", "flex");
+  $(`.step${idString}`).css("display", "flex");
 });
 
 // {{SET STEP FUNCTION}}
@@ -36,6 +37,7 @@ $(".nav-li").click(function () {
 function setStep(stepNumber) {
   $(".step").css("display", "none");
   $(`#step-${stepNumber}`).css("display", "flex");
+  $(`.step${stepNumber}`).css("display", "flex");
 }
 
 // *** // STEP 1 // GENDER // *** //
