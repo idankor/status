@@ -51,12 +51,33 @@ function showError(errorContent) {
   $(".error-box").fadeOut(3200);
 }
 
+// function shakeId(theId) {
+//   $(`#${theId}`).addClass("shake-slow shake-constant");
+//   setTimeout(function () {
+//     $(`#${theId}`).removeClass("shake-slow shake-constant");
+//   }, 1000);
+// }
+
+let isRunning = false;
+
+function shakeId(id) {
+  if (!isRunning) {
+    isRunning = true;
+    $(id).addClass("shake-hard shake-constant");
+    setTimeout(function () {
+      $(id).removeClass("shake-hard shake-constant");
+      isRunning = false;
+    }, 500);
+  }
+}
+
 // *** // STEP 1 // GENDER // *** //
 
 $(document).keydown(function (e) {
   if (e.keyCode == 13) {
     if (!$("#btn-male").is(":focus") && !$("#btn-female").is(":focus")) {
       showError("חייב לבחור מגדר!");
+      shakeId("#btn-male, #btn-female");
     }
   }
 });
