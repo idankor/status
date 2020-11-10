@@ -54,13 +54,6 @@ function showError(errorContent) {
   $(".error-box").fadeOut(3200);
 }
 
-// function shakeId(theId) {
-//   $(`#${theId}`).addClass("shake-slow shake-constant");
-//   setTimeout(function () {
-//     $(`#${theId}`).removeClass("shake-slow shake-constant");
-//   }, 1000);
-// }
-
 let isRunning = false;
 
 function shakeId(id) {
@@ -70,7 +63,7 @@ function shakeId(id) {
     setTimeout(function () {
       $(id).removeClass("shake-horizontal shake-constant");
       isRunning = false;
-    }, 200);
+    }, 300);
   }
 }
 
@@ -143,6 +136,7 @@ $("#input-age").focus(function () {
       } else if ($("#input-age").val() == 0) {
         // אם הגיל שווה לאפס
         showError("הגיל צריך להיות גדול מאפס!");
+        shakeId("#input-age");
       }
     }
   });
