@@ -76,8 +76,6 @@ function shakeId(id) {
 
 // *** // STEP 1 // GENDER // *** //
 
-document.getElementById("indicator").focus();
-
 $("#indicator").focus(function () {
   $("#indicator").keydown(function (e) {
     if (e.keyCode == 13) {
@@ -313,3 +311,7 @@ $("#input-sibiling-position").focus(function () {
     }
   });
 });
+
+// Indicator for step 1
+
+document.getElementById("indicator").focus();
