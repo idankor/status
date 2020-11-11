@@ -285,8 +285,7 @@ ion-icon {
 }
 
 .component:hover {
-  filter: brightness(110%);
-  filter: contrast(120%);
+  background-color: #ffff3f !important;
 }
 
 textarea {

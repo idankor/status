@@ -39,7 +39,7 @@ $(function () {
   //
   // ^^^ [GLOBAL READY] ^^^
   //
-  // // // @KEYPRESS EVENTS@
+  // // // // @KEYPRESS EVENTS@
   //
   $(document).keydown(function (e) {
     //
@@ -60,18 +60,38 @@ $(function () {
         }
       }
     }
-    renderResult();
     //
     // $STEP2$
     // ^AGE^
     //
-    // if (currentStep === "age") {
-    //   updateData("age", $("#input-age").val());
-    //   renderResult();
-    // }
+    if (currentStep === "age") {
+      if (e.keyCode === 13) {
+        setStep(3);
+        currentStep = "religion";
+        $("#input-religion").focus();
+      }
+    }
+
+    //
+    // $STEP2$
+    // ^AGE^
+    //
+    if (currentStep === "religion") {
+      if ($("#input-religion").val() != "") {
+        if (e.keyCode === 13) {
+          setStep(4);
+          renderResult();
+        }
+      }
+    }
   });
 
-  // // // @CLICK EVENTS@
+  // // // // @CLICK EVENTS@
+
+  //
+  // $STEP1$
+  // ^GENDER^
+  //
 
   // male
 
@@ -97,31 +117,48 @@ $(function () {
     $("#step-2").find("#input-age").focus();
   });
 
+  // // // // @INPUT EVENTS@
+
+  //
+  // $STEP2$
+  // ^AGE^
+  //
+
   $("#input-age").on("input", function () {
     updateData("age", $("#input-age").val());
     renderResult();
   });
 
-  $("#input-age").focus(function () {
-    $(this).keydown(function (e) {
-      if (e.keyCode == 13) {
-        if ($("#input-age").val() > 0) {
-          // אם הגיל גדול מאפס
-          $("#input-age").css("border", "1px solid #dcdfe6");
-          document.getElementById("input-age").style.animation = "";
-          $("#input-age-error").remove();
-          $("#the-output").append($(this).val() + ", ");
-          currentStep == 3;
-          setStep(3);
-          $("#step-3").find("#input-religion").focus();
-        } else if ($("#input-age").val() == 0) {
-          // אם הגיל שווה לאפס
-          showError("הגיל צריך להיות גדול מאפס");
-          shakeId("#input-age");
-        }
-      }
-    });
+  //
+  // $STEP3$
+  // ^RELIGION^
+  //
+
+  $("#input-religion").on("input", function () {
+    updateData("religion", $("#input-religion").val());
+    renderResult();
   });
+
+  // $("#input-age").focus(function () {
+  //   $(this).keydown(function (e) {
+  //     if (e.keyCode == 13) {
+  //       if ($("#input-age").val() > 0) {
+  //         // אם הגיל גדול מאפס
+  //         $("#input-age").css("border", "1px solid #dcdfe6");
+  //         document.getElementById("input-age").style.animation = "";
+  //         $("#input-age-error").remove();
+  //         $("#the-output").append($(this).val() + ", ");
+  //         currentStep == 3;
+  //         setStep(3);
+  //         $("#step-3").find("#input-religion").focus();
+  //       } else if ($("#input-age").val() == 0) {
+  //         // אם הגיל שווה לאפס
+  //         showError("הגיל צריך להיות גדול מאפס");
+  //         shakeId("#input-age");
+  //       }
+  //     }
+  //   });
+  // });
   //
   // *** STEP 3 -- RELIGION ***
   //
@@ -281,13 +318,15 @@ $(function () {
   function renderResult() {
     $("#result-sub-container").html("");
     let theStrcture = ["before", "value", "after"];
+    let i = 0;
+    let componentBgIndex = 0;
+    let sectionBgIndex = 0;
     for (let step of theOutput) {
       let jumper = false;
       if (step.value === null) {
         jumper = true;
       }
       if (step[theStrcture[1]] != null && !jumper) {
-        bgIndex = 0;
         if (step.newSection) {
           $("#result-sub-container").append(
             `<div class="result-section">${step[theStrcture[1]]}</div>`
@@ -295,27 +334,29 @@ $(function () {
           $(".result-section").last().css("background-color") == undefined;
           $(".result-section")
             .last()
-            .css("background-color", sectionBackground[bgIndex % 5]);
+            .css("background-color", sectionBackground[sectionBgIndex % 5]);
           $("#result-sub-container").append(
             `<div class="result-sub-section"></div>`
           );
+          sectionBgIndex++;
         } else {
           $(".result-sub-section")
             .last()
             .append(
-              `<div class="component" id="custom${bgIndex}">${
-                step[theStrcture[0]]
-              }` +
+              `<div class="component" id="custom${i}">${step[theStrcture[0]]}` +
                 `${step[theStrcture[1]]}` +
                 `${step[theStrcture[2]]}
             </div>`
             );
         }
-        $(`#custom${bgIndex}`)
-          .last()
-          .css("background-color", componentBackground[bgIndex % 8]);
+
+        $(`#custom${i}`).css(
+          "background-color",
+          componentBackground[(componentBgIndex % 8) - 1]
+        );
+        componentBgIndex++;
       }
-      bgIndex++;
+      i++;
     }
   }
 
