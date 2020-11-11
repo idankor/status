@@ -5,20 +5,29 @@ $(document).ready(function () {
   let bgIndex = 0;
 
   function renderResult() {
+    $("#result-sub-container").html("");
     let theStrcture = ["before", "value", "after"];
     for (let step of theOutput) {
       let jumper = false;
       if (step.value === null) {
         jumper = true;
       }
-      for (let item of theStrcture) {
-        if (step[item] != null && !jumper) {
-          if (step.newSection)
-            $("#resultId").append(`<div class="component">${step[item]}</div>`);
-          $(".component")
+      if (step[theStrcture[1]] != null && !jumper) {
+        if (step.newSection) {
+          $("#result-sub-container").append(
+            `<div class="result-section">${step[theStrcture[1]]}</div>`
+          );
+          $("#result-sub-container").append(
+            `<div class="result-sub-section"></div>`
+          );
+        } else {
+          $(".result-sub-section")
             .last()
-            .css("background-color", changingBackground[bgIndex % 8]);
+            .append(`<div class="component">${step[theStrcture[1]]}</div>`);
         }
+        $(".component")
+          .last()
+          .css("background-color", changingBackground[bgIndex % 8]);
       }
       bgIndex++;
     }
@@ -100,11 +109,13 @@ $(document).ready(function () {
 
   $(document).keydown(function (e) {
     // check currentStep (if = step1), if yes, do:
-    if (e.keyCode === 39) {
-      $("#btn-male").focus();
-    }
-    if (e.keyCode === 37) {
-      $("#btn-female").focus();
+    if (currentStep === 1) {
+      if (e.keyCode === 39) {
+        $("#btn-male").focus();
+      }
+      if (e.keyCode === 37) {
+        $("#btn-female").focus();
+      }
     }
   });
 

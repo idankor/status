@@ -239,8 +239,15 @@ ion-icon {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  background-color: chartreuse;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.result-sub-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background-color: coral;
 }
 
 .result-sub-container {
