@@ -65,12 +65,10 @@ $(function () {
     // $STEP2$
     // ^AGE^
     //
-    if (currentStep === "age") {
-      if (e.keyCode === 13) {
-        updateData("age", $("#input-age").val());
-        renderResult();
-      }
-    }
+    // if (currentStep === "age") {
+    //   updateData("age", $("#input-age").val());
+    //   renderResult();
+    // }
   });
 
   // // // @CLICK EVENTS@
@@ -97,6 +95,11 @@ $(function () {
     currentStep = "age";
     setStep(2);
     $("#step-2").find("#input-age").focus();
+  });
+
+  $("#input-age").on("input", function () {
+    updateData("age", $("#input-age").val());
+    renderResult();
   });
 
   $("#input-age").focus(function () {
