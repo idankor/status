@@ -1,136 +1,76 @@
+// @VARIABLES@
+
+let theGender = undefined;
+let currentStep = 1;
+let bgIndex = 0;
+
+// @ARRAYS@
+
+let maleNumbers = [
+  undefined,
+  undefined,
+  "שני",
+  "שלושה",
+  "ארבעה",
+  "חמישה",
+  "שישה",
+  "שבעה",
+  "שמונה",
+  "תשעה",
+  "עשרה",
+];
+
+let componentBackground = [
+  "#ffadad",
+  "#ffd6a5",
+  "#fdffb6",
+  "#caffbf",
+  "#9bf6ff",
+  "#a0c4ff",
+  "#bdb2ff",
+  "#ffc6ff",
+];
+
+let sectionBackground = ["#540d6e", "#ee4266", "#ffd23f", "#3bceac", "#0ead69"];
+
 $(document).ready(function () {
-  let theGender = undefined;
-  let currentStep = 1;
+  //
+  // @KEYPRESS EVENTS@
+  //
 
-  let bgIndex = 0;
+  $(document).keydown(function (e) {
+    //
+    //
+    //
+    // $$STEP1$$
+    //
 
-  function renderResult() {
-    $("#result-sub-container").html("");
-    let theStrcture = ["before", "value", "after"];
-    for (let step of theOutput) {
-      let jumper = false;
-      if (step.value === null) {
-        jumper = true;
-      }
-      if (step[theStrcture[1]] != null && !jumper) {
-        if (step.newSection) {
-          $("#result-sub-container").append(
-            `<div class="result-section">${step[theStrcture[1]]}</div>`
-          );
-          $(".result-section")
-            .last()
-            .css("background-color", sectionBackground[bgIndex % 5]);
-          $("#result-sub-container").append(
-            `<div class="result-sub-section"></div>`
-          );
-        } else {
-          $(".result-sub-section")
-            .last()
-            .append(`<div class="component">${step[theStrcture[1]]}</div>`);
-        }
-        $(".component")
-          .last()
-          .css("background-color", componentBackground[bgIndex % 8]);
-      }
-      bgIndex++;
-    }
-  }
-
-  renderResult();
-
-  $(document).keydown(function () {
-    renderResult();
-  });
-
-  // Create step-nav
-
-  for (i = 1; i < 11; i++) {
-    let tempElement = document.createElement("li");
-    tempElement.setAttribute("id", "step-nav-" + i);
-    document.getElementById("step-nav").appendChild(tempElement);
-    $("#step-nav-" + i).addClass("nav-li");
-  }
-
-  $(".nav-li").click(function () {
-    let idString = this.id;
-    idString = idString.replace(/^\D+/g, "");
-    console.log(idString);
-    $(".step").css("display", "none");
-    $(`#step-${idString}`).css("display", "flex");
-    $(`.step${idString}`).css("display", "flex");
-  });
-
-  // {{SET STEP FUNCTION}}
-
-  function setStep(stepNumber) {
-    $(".step").css("display", "none");
-    $(`#step-${stepNumber}`).css("display", "flex");
-    $(`.step${stepNumber}`).css("display", "flex");
-  }
-
-  function showError(errorContent) {
-    console.log(errorContent);
-    document.getElementById("card-footer").innerHTML = "";
-    document.getElementsByClassName("error-box").innerHTML = "";
-    let errorElement = document.createElement("div");
-    errorElement.classList.add("error-box");
-    errorElement.innerHTML = "";
-    errorElement.innerHTML = errorContent;
-    document.getElementById("card-footer").appendChild(errorElement);
-    $(".error-box").hide();
-    $(".error-box").fadeIn(0);
-    $(".error-box").fadeOut(3200);
-  }
-
-  let isRunning = false;
-
-  // search JQuery shake lobrary / animation
-
-  function shakeId(id) {
-    if (!isRunning) {
-      isRunning = true;
-      $(id).addClass("shake-horizontal shake-constant");
-      setTimeout(function () {
-        $(id).removeClass("shake-horizontal shake-constant");
-        isRunning = false;
-      }, 300);
-    }
-  }
-
-  // *** // STEP 1 // GENDER // *** //
-
-  $("#indicator").focus(function () {
-    $("#indicator").keydown(function (e) {
-      if (e.keyCode === 13) {
+    if (currentStep === 1) {
+      if (e.keyCode === 39) {
+        $("#btn-male").focus();
+      } else if (e.keyCode === 37) {
+        $("#btn-female").focus();
+      } else if (e.keyCode === 13) {
         if (!$("#btn-male").is(":focus") && !$("#btn-female").is(":focus")) {
           showError("חייב לבחור מגדר!");
           shakeId("#btn-male, #btn-female");
         }
       }
-    });
-  });
-
-  $(document).keydown(function (e) {
-    // check currentStep (if = step1), if yes, do:
-    if (currentStep === 1) {
-      if (e.keyCode === 39) {
-        $("#btn-male").focus();
-      }
-      if (e.keyCode === 37) {
-        $("#btn-female").focus();
-      }
     }
+    renderResult();
   });
 
-  // MALE
+  //
+  // @STEPS@
+  //
+  // $$STEP1$$
 
   $("#btn-male").focus(function () {
-    // read
     $("#btn-male").click(function () {
       theGender = "male";
       $(".error-box").remove();
-      $("#the-output").append("<פרטים אישיים>" + "\r\n\r\n");
-      $("#the-output").append("בן ");
+      updateData("gender", "בן");
+      renderResult();
       currentStep = 2;
       setStep(2);
       $("#step-2").find("#input-age").focus();
@@ -329,7 +269,108 @@ $(document).ready(function () {
     });
   });
 
-  // Indicator for step 1
+  // @FUNCTIONS@
 
-  document.getElementById("indicator").focus();
+  function renderResult() {
+    $("#result-sub-container").html("");
+    let theStrcture = ["before", "value", "after"];
+    for (let step of theOutput) {
+      let jumper = false;
+      if (step.value === null) {
+        jumper = true;
+      }
+      if (step[theStrcture[1]] != null && !jumper) {
+        bgIndex = 0;
+        if (step.newSection) {
+          $("#result-sub-container").append(
+            `<div class="result-section">${step[theStrcture[1]]}</div>`
+          );
+          $(".result-section").last().css("background-color") == undefined;
+          $(".result-section")
+            .last()
+            .css("background-color", sectionBackground[bgIndex % 5]);
+          $("#result-sub-container").append(
+            `<div class="result-sub-section"></div>`
+          );
+        } else {
+          $(".result-sub-section")
+            .last()
+            .append(`<div class="component">${step[theStrcture[1]]}</div>`);
+        }
+        $(".component")
+          .last()
+          .css("background-color", componentBackground[bgIndex % 8]);
+      }
+      bgIndex++;
+    }
+  }
+
+  renderResult();
+
+  $(document).keydown(function () {
+    renderResult();
+  });
+
+  // Create step-nav
+
+  for (i = 1; i < 11; i++) {
+    let tempElement = document.createElement("li");
+    tempElement.setAttribute("id", "step-nav-" + i);
+    document.getElementById("step-nav").appendChild(tempElement);
+    $("#step-nav-" + i).addClass("nav-li");
+  }
+
+  $(".nav-li").click(function () {
+    let idString = this.id;
+    idString = idString.replace(/^\D+/g, "");
+    console.log(idString);
+    $(".step").css("display", "none");
+    $(`#step-${idString}`).css("display", "flex");
+    $(`.step${idString}`).css("display", "flex");
+  });
+
+  // {{SET STEP FUNCTION}}
+
+  function setStep(stepNumber) {
+    $(".step").css("display", "none");
+    $(`#step-${stepNumber}`).css("display", "flex");
+    $(`.step${stepNumber}`).css("display", "flex");
+  }
+
+  function showError(errorContent) {
+    console.log(errorContent);
+    document.getElementById("card-footer").innerHTML = "";
+    document.getElementsByClassName("error-box").innerHTML = "";
+    let errorElement = document.createElement("div");
+    errorElement.classList.add("error-box");
+    errorElement.innerHTML = "";
+    errorElement.innerHTML = errorContent;
+    document.getElementById("card-footer").appendChild(errorElement);
+    $(".error-box").hide();
+    $(".error-box").fadeIn(0);
+    $(".error-box").fadeOut(3200);
+  }
+
+  let isRunning = false;
+
+  // search JQuery shake lobrary / animation
+
+  function shakeId(id) {
+    if (!isRunning) {
+      isRunning = true;
+      $(id).addClass("shake-horizontal shake-constant");
+      setTimeout(function () {
+        $(id).removeClass("shake-horizontal shake-constant");
+        isRunning = false;
+      }, 300);
+    }
+  }
+
+  function updateData(value, input) {
+    for (i = 0; i < theOutput.length; i++) {
+      if (theOutput[i].stepName === value) {
+        theOutput[i].value = input;
+      }
+    }
+  }
 });
