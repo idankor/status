@@ -1,7 +1,7 @@
 // @VARIABLES@
 
 let theGender = undefined;
-let currentStep = 1;
+let currentStep = "gender";
 let bgIndex = 0;
 
 // @ARRAYS@
@@ -32,9 +32,10 @@ let componentBackground = [
 ];
 
 let sectionBackground = ["#540d6e", "#ee4266", "#ffd23f", "#3bceac", "#0ead69"];
+//
 // ---- [PROCESS] ---- //
 //
-$(document).ready(function () {
+$(function () {
   //
   // ^^^ [GLOBAL READY] ^^^
   //
@@ -45,7 +46,9 @@ $(document).ready(function () {
     // $STEP1$
     // ^GENDER^
     //
-    if (currentStep === 1) {
+    // error
+    //
+    if (currentStep === "gender") {
       if (e.keyCode === 39) {
         $("#btn-male").focus();
       } else if (e.keyCode === 37) {
@@ -58,40 +61,43 @@ $(document).ready(function () {
       }
     }
     renderResult();
+    //
+    // $STEP2$
+    // ^AGE^
+    //
+    if (currentStep === "age") {
+      if (e.keyCode === 13) {
+        updateData("age", $("#input-age").val());
+        renderResult();
+      }
+    }
   });
 
-  //
-  // @STEPS@
-  //
-  // $$STEP1$$ // ^GENDER^
+  // // // @CLICK EVENTS@
 
-  $("#btn-male").focus(function () {
-    $("#btn-male").click(function () {
-      theGender = "male";
-      $(".error-box").remove();
-      updateData("gender", "בן");
-      renderResult();
-      currentStep = 2;
-      setStep(2);
-      $("#step-2").find("#input-age").focus();
-    });
+  // male
+
+  $("#btn-male").click(function () {
+    theGender = "male";
+    $(".error-box").remove();
+    updateData("gender", "בן");
+    renderResult();
+    currentStep = "age";
+    setStep(2);
+    $("#step-2").find("#input-age").focus();
   });
 
-  // FEMALE
+  // female
 
-  $("#btn-female").focus(function () {
-    $("#btn-female").click(function () {
-      theGender = "female";
-      $(".error-box").remove();
-      $("#the-output").append("<פרטים אישיים>" + "\r\n\r\n");
-      $("#the-output").append("בת ");
-      currentStep = 2;
-      setStep(2);
-      $("#step-2").find("#input-age").focus();
-    });
+  $("#btn-female").click(function () {
+    theGender = "female";
+    $(".error-box").remove();
+    updateData("gender", "בת");
+    renderResult();
+    currentStep = "age";
+    setStep(2);
+    $("#step-2").find("#input-age").focus();
   });
-
-  // *** STEP 2 -- AGE ***
 
   $("#input-age").focus(function () {
     $(this).keydown(function (e) {
@@ -113,9 +119,9 @@ $(document).ready(function () {
       }
     });
   });
-
+  //
   // *** STEP 3 -- RELIGION ***
-
+  //
   $("#input-religion").focus(function () {
     const religionArray = ["חרדי"];
     if (theGender == "male") {
