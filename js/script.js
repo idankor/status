@@ -299,9 +299,16 @@ $(function () {
         } else {
           $(".result-sub-section")
             .last()
-            .append(`<div class="component">${step[theStrcture[1]]}</div>`);
+            .append(
+              `<div class="component" id="custom${bgIndex}">${
+                step[theStrcture[0]]
+              }` +
+                `${step[theStrcture[1]]}` +
+                `${step[theStrcture[2]]}
+            </div>`
+            );
         }
-        $(".component")
+        $(`#custom${bgIndex}`)
           .last()
           .css("background-color", componentBackground[bgIndex % 8]);
       }
