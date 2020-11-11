@@ -8,7 +8,7 @@ const theOutput = [
     binary: true,
     before: null,
     after: null,
-    value: "<פרטים אישיים>",
+    value: "פרטים אישיים",
     newSection: true,
     link: null,
     source: null,
@@ -129,7 +129,7 @@ let maleNumbers = [
   "עשרה",
 ];
 
-let changingBackground = [
+let componentBackground = [
   "#ffadad",
   "#ffd6a5",
   "#fdffb6",
@@ -139,3 +139,5 @@ let changingBackground = [
   "#bdb2ff",
   "#ffc6ff",
 ];
+
+let sectionBackground = ["#540d6e", "#ee4266", "#ffd23f", "#3bceac", "#0ead69"];

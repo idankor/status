@@ -17,6 +17,9 @@ $(document).ready(function () {
           $("#result-sub-container").append(
             `<div class="result-section">${step[theStrcture[1]]}</div>`
           );
+          $(".result-section")
+            .last()
+            .css("background-color", sectionBackground[bgIndex % 5]);
           $("#result-sub-container").append(
             `<div class="result-sub-section"></div>`
           );
@@ -27,7 +30,7 @@ $(document).ready(function () {
         }
         $(".component")
           .last()
-          .css("background-color", changingBackground[bgIndex % 8]);
+          .css("background-color", componentBackground[bgIndex % 8]);
       }
       bgIndex++;
     }

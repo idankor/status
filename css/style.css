@@ -1,6 +1,6 @@
 * {
   font-family: "Assistant";
-  font-size: 22px;
+  font-size: 16px;
   font-weight: 400;
 }
 
@@ -231,7 +231,17 @@ ion-icon {
   justify-content: center;
   align-items: center;
   flex: 1;
-  background-color: cadetblue;
+}
+
+.result-sub-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 90%;
+  height: 90%;
+  flex-wrap: wrap;
+  align-content: flex-start;
 }
 
 .result-section {
@@ -239,7 +249,10 @@ ion-icon {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  color: white;
+  padding: 5px;
+  font-weight: 600;
 }
 
 .result-sub-section {
@@ -248,19 +261,7 @@ ion-icon {
   justify-content: flex-start;
   align-items: flex-start;
   background-color: coral;
-}
-
-.result-sub-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  width: 95%;
-  height: 95%;
-  font-size: 16px;
-  background-color: burlywood;
-  flex-wrap: wrap;
-  align-content: flex-start;
+  margin-bottom: 20px;
 }
 
 .result {
@@ -270,8 +271,6 @@ ion-icon {
   align-items: flex-start;
   width: 95%;
   height: 95%;
-  font-size: 16px;
-  background-color: burlywood;
   flex-wrap: wrap;
   align-content: flex-start;
 }
@@ -282,6 +281,12 @@ ion-icon {
   justify-content: center;
   align-items: center;
   padding: 5px;
+  font-weight: 400;
+}
+
+.component:hover {
+  filter: brightness(110%);
+  filter: contrast(120%);
 }
 
 textarea {
