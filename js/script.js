@@ -32,19 +32,19 @@ let componentBackground = [
 ];
 
 let sectionBackground = ["#540d6e", "#ee4266", "#ffd23f", "#3bceac", "#0ead69"];
-
+// ---- [PROCESS] ---- //
+//
 $(document).ready(function () {
   //
-  // @KEYPRESS EVENTS@
+  // ^^^ [GLOBAL READY] ^^^
   //
-
+  // // // @KEYPRESS EVENTS@
+  //
   $(document).keydown(function (e) {
     //
+    // $STEP1$
+    // ^GENDER^
     //
-    //
-    // $$STEP1$$
-    //
-
     if (currentStep === 1) {
       if (e.keyCode === 39) {
         $("#btn-male").focus();
@@ -53,7 +53,7 @@ $(document).ready(function () {
       } else if (e.keyCode === 13) {
         if (!$("#btn-male").is(":focus") && !$("#btn-female").is(":focus")) {
           showError("חייב לבחור מגדר!");
-          shakeId("#btn-male, #btn-female");
+          $("#btn-male, #btn-female").effect("shake", { distance: 5 });
         }
       }
     }
@@ -63,7 +63,7 @@ $(document).ready(function () {
   //
   // @STEPS@
   //
-  // $$STEP1$$
+  // $$STEP1$$ // ^GENDER^
 
   $("#btn-male").focus(function () {
     $("#btn-male").click(function () {
@@ -92,8 +92,6 @@ $(document).ready(function () {
   });
 
   // *** STEP 2 -- AGE ***
-
-  let errorStep2 = false;
 
   $("#input-age").focus(function () {
     $(this).keydown(function (e) {
@@ -352,19 +350,6 @@ $(document).ready(function () {
   }
 
   let isRunning = false;
-
-  // search JQuery shake lobrary / animation
-
-  function shakeId(id) {
-    if (!isRunning) {
-      isRunning = true;
-      $(id).addClass("shake-horizontal shake-constant");
-      setTimeout(function () {
-        $(id).removeClass("shake-horizontal shake-constant");
-        isRunning = false;
-      }, 300);
-    }
-  }
 
   function updateData(value, input) {
     for (i = 0; i < theOutput.length; i++) {
