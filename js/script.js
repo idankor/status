@@ -98,6 +98,11 @@ $(function () {
     // ^RELIGION^
     //
     if (currentStep === "religion") {
+      if (e.keyCode === 40) {
+        $("#btn-religion-next").focus();
+      } else if (e.keyCode === 38) {
+        $("#input-religion").focus();
+      }
       if ($("#input-religion").val() !== "") {
         if (e.keyCode === 13) {
           currentStep = "marital status";
@@ -187,28 +192,6 @@ $(function () {
       $("#input-religion").focus();
     }
   });
-
-  //
-  // *** PAGE 3 -- RELIGION ***
-  //
-  // $("#input-religion").focus(function () {
-  //   const religionArray = ["חרדי"];
-  //   if (theGender == "male") {
-  //     $("#input-religion").autocomplete({
-  //       source: religionArray,
-  //       minLength: 0,
-  //       autoFocus: true,
-  //     });
-  //   }
-  //   if (theGender == "female") {
-  //     const religionArray = ["חרדית"];
-  //     $("#input-religion").autocomplete({
-  //       source: religionArray,
-  //       minLength: 0,
-  //       autoFocus: true,
-  //     });
-  //   }
-  // });
 
   // *** PAGE 4 -- MARITAL STATUS ***
 
