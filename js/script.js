@@ -97,7 +97,6 @@ $(function () {
         }
       }
     }
-
     //
     // $PAGE3$
     // ^RELIGION^
@@ -112,6 +111,7 @@ $(function () {
         if (e.keyCode === 13) {
           currentStep = "marital status";
           nextStep();
+          $("#input-marital-status").focus();
         }
       }
     }
@@ -151,7 +151,8 @@ $(function () {
   //
 
   $("#input-marital-status").on("input", function () {
-    updateData("");
+    updateData("marital-status", $("#input-marital-status").val());
+    renderResult();
   });
 
   // // // // @CLICK EVENTS@ // // // //
@@ -197,22 +198,6 @@ $(function () {
       $("#input-religion").focus();
     }
   });
-
-  // *** PAGE 4 -- MARITAL STATUS ***
-
-  // מספר ילדים
-
-  // $("#input-marital-status").keydown(function (e) {
-  //   if (e.keyCode == 13) {
-  //     if ($("#input-marital-status").val() == "") {
-  //       showError("נא לציין מצב משפחתי");
-  //       shakeId("#input-marital-status");
-  //     } else {
-  //       $("#the-output").append($(this).val());
-  //       $("#step-4").find("#input-children-number").focus();
-  //     }
-  //   }
-  // });
 
   $("#input-children-number").keydown(function (e) {
     if (e.keyCode == 13 && $(this).val() == "") {

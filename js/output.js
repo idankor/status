@@ -59,8 +59,8 @@ const theOutput = [
   {
     stepNumber: 4,
     stepName: "marital status",
-    pageName: "marital status",
     pageNumber: 4,
+    pageName: "marital status",
     type: "content",
     binary: false,
     before: "",
@@ -72,8 +72,8 @@ const theOutput = [
   {
     stepNumber: 5,
     stepName: "number of children",
-    pageName: "marital status",
     pageNumber: 4,
+    pageName: "marital status",
     type: "content",
     binary: false,
     before: "",
