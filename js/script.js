@@ -66,15 +66,23 @@ $(function () {
     //
     if (currentStep === "age") {
       if (e.keyCode === 13) {
-        setStep(3);
-        currentStep = "religion";
-        $("#input-religion").focus();
+        if ($("#input-age").val() === "") {
+          showError("חובה לציין גיל");
+          $("#input-age").effect("shake", { distance: 5 });
+        } else if ($("#input-age").val() === "0") {
+          showError("הגיל צריך להיות גדול מאפס");
+          $("#input-age").effect("shake", { distance: 5 });
+        } else {
+          setStep(3);
+          currentStep = "religion";
+          $("#input-religion").focus();
+        }
       }
     }
 
     //
-    // $STEP2$
-    // ^AGE^
+    // $STEP3$
+    // ^RELIGION^
     //
     if (currentStep === "religion") {
       if ($("#input-religion").val() != "") {
