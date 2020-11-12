@@ -171,7 +171,7 @@ $(function () {
     currentStep = "age";
     generateAutocompletion();
     nextStep();
-    $("#step-age").find("#input-age").focus();
+    $(".step-age").find("#input-age").focus();
   });
 
   // female
@@ -184,7 +184,7 @@ $(function () {
     currentStep = "age";
     generateAutocompletion();
     nextStep();
-    $("#step-age").find("#input-age").focus();
+    $(".step-age").find("#input-age").focus();
   });
 
   //
