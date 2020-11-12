@@ -1,9 +1,9 @@
 let stepIndicator = 0;
+let currentStep = 0;
 
 // @VARIABLES@
 
 let theGender = undefined;
-let currentStep = "gender";
 let bgIndex = 0;
 
 // @ARRAYS@
@@ -59,16 +59,22 @@ $(function () {
   //
   $(document).keydown(function (e) {
     //
+    renderResult;
+    //
+    //
     // $PAGE1$
     // ^GENDER^
     //
-    // error
+
     //
-    if (currentStep === "gender") {
+    if (stepOrder[currentStep] === "gender") {
       if (e.keyCode === 39) {
         $("#btn-male").focus();
       } else if (e.keyCode === 37) {
         $("#btn-female").focus();
+        //
+        // error
+        //
       } else if (
         e.keyCode === 13 &&
         !$("#btn-male").is(":focus") &&
@@ -82,7 +88,7 @@ $(function () {
     // $PAGE2$
     // ^AGE^
     //
-    if (currentStep === "age") {
+    if (stepOrder[currentStep] === "age") {
       if (e.keyCode === 13) {
         if ($("#input-age").val() === "") {
           showError("חובה לציין גיל");
@@ -91,7 +97,6 @@ $(function () {
           showError("הגיל צריך להיות גדול מאפס");
           $("#input-age").effect("shake", { distance: 5 });
         } else {
-          currentStep = "religion";
           nextStep();
           $("#input-religion").focus();
         }
@@ -101,7 +106,7 @@ $(function () {
     // $PAGE3$
     // ^RELIGION^
     //
-    if (currentStep === "religion") {
+    if (stepOrder[currentStep] === "religion") {
       if (e.keyCode === 40) {
         $("#btn-religion-next").focus();
       } else if (e.keyCode === 38) {
@@ -109,7 +114,6 @@ $(function () {
       }
       if ($("#input-religion").val() !== "") {
         if (e.keyCode === 13) {
-          currentStep = "marital status";
           nextStep();
           $("#input-marital-status").focus();
         }
@@ -119,7 +123,10 @@ $(function () {
     // $PAGE4$
     // ^MARITAL STATUS^
     //
-    if (currentStep === "marital status") {
+    if (stepOrder[currentStep] === "marital-status") {
+      if (e.keyCode === 13 && $("#input-marital-status").val() != "") {
+        $("#input-children-number").focus();
+      }
     }
   });
 
@@ -150,9 +157,18 @@ $(function () {
   // ^MARITAL STATUS^
   //
 
+  // marital status
+
   $("#input-marital-status").on("input", function () {
-    updateData("marital-status", $("#input-marital-status").val());
+    updateData("marital status", $("#input-marital-status").val());
     renderResult();
+  });
+
+  // number of children
+
+  $("#input-children-number").on("input", function () {
+    updateData("children number", "ללא ילדים");
+    renderResult;
   });
 
   // // // // @CLICK EVENTS@ // // // //
@@ -169,7 +185,6 @@ $(function () {
     $(".error-box").remove();
     updateData("gender", "בן");
     renderResult();
-    currentStep = "age";
     generateAutocompletion();
     nextStep();
     $(".step-age").find("#input-age").focus();
@@ -182,7 +197,6 @@ $(function () {
     $(".error-box").remove();
     updateData("gender", "בת");
     renderResult();
-    currentStep = "age";
     generateAutocompletion();
     nextStep();
     $(".step-age").find("#input-age").focus();
@@ -199,26 +213,25 @@ $(function () {
     }
   });
 
-  $("#input-children-number").keydown(function (e) {
-    if (e.keyCode == 13 && $(this).val() == "") {
-      showError("נא לציין מספר ילדים");
-      shakeId("#input-children-number");
-    } else if (e.keyCode == 13 && $(this).val() === "0") {
-      $("#the-output").append(", ללא ילדים, ");
-      currentStep = 5;
-      nextStep();
-      $("#step-5").find("#input-sibiling-number").focus();
-    } else if (e.keyCode == 13 && $(this).val() > "0") {
-      $("#the-output").append(" + " + $(this).val() + ", ");
-      currentStep = 5;
-      nextStep();
-      $("#step-5").find("#input-sibiling-number").focus();
-    }
-  });
+  // $("#input-children-number").keydown(function (e) {
+  //   if (e.keyCode == 13 && $(this).val() == "") {
+  //     showError("נא לציין מספר ילדים");
+  //     shakeId("#input-children-number");
+  //   } else if (e.keyCode == 13 && $(this).val() === "0") {
+  //     $("#the-output").append(", ללא ילדים, ");
+  //     currentStep = 5;
+  //     nextStep();
+  //     $("#step-5").find("#input-sibiling-number").focus();
+  //   } else if (e.keyCode == 13 && $(this).val() > "0") {
+  //     $("#the-output").append(" + " + $(this).val() + ", ");
+  //     currentStep = 5;
+  //     nextStep();
+  //     $("#step-5").find("#input-sibiling-number").focus();
+  //   }
+  // });
 
   // *** PAGE 5 -- SIBILINGS ***
 
-  let sibilingNumber = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
   let sibilingPositionMale = [
     "ראשון",
     "שני",
@@ -280,6 +293,7 @@ $(function () {
     $(".step").css("display", "none");
     $(`.step-${stepOrder[stepIndicator]}`).css("display", "flex");
     stepIndicator++;
+    currentStep = stepIndicator - 1;
   }
 
   function generateAutocompletion() {
@@ -306,9 +320,9 @@ $(function () {
     let componentBgIndex = 0;
     let sectionBgIndex = 0;
     for (let step of theOutput) {
-      if (step.value === null) {
-      }
-      if (step[theStrcture[1]] != null) {
+      // if (step.value === null) {
+      // }
+      if (step[theStrcture[1]] !== undefined) {
         if (step.newSection) {
           $("#result-sub-container").append(
             `<div class="result-section">${step[theStrcture[1]]}</div>`
@@ -343,11 +357,7 @@ $(function () {
     }
   }
 
-  renderResult();
-
-  $(document).keydown(function () {
-    renderResult();
-  });
+  // renderResult();
 
   // Create step-nav
 
