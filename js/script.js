@@ -59,7 +59,7 @@ $(function () {
   //
   $(document).keydown(function (e) {
     //
-    renderResult;
+    renderResult();
     //
     //
     // $PAGE1$
@@ -128,6 +128,7 @@ $(function () {
         $("#input-children-number").focus();
       }
     }
+    renderResult();
   });
 
   // // // // @INPUT EVENTS@ // // // //
@@ -168,7 +169,7 @@ $(function () {
 
   $("#input-children-number").on("input", function () {
     updateData("children number", "ללא ילדים");
-    renderResult;
+    renderResult();
   });
 
   // // // // @CLICK EVENTS@ // // // //
@@ -257,35 +258,35 @@ $(function () {
     "עשירית",
   ];
 
-  $("#input-sibiling-number").focus(function () {
-    //
-    // {{ENTER}}
-    //
-    $("#input-sibiling-number").keyup(function (e) {
-      if (e.keyCode == 13 && $(this).is(":focus")) {
-        if ($(this).val() == "0" || $(this).val() == "") {
-          $("#the-output").append("בן יחיד.");
-        } else {
-          $("#step-5").find("#input-sibiling-position").focus();
-        }
-      }
-    });
-  });
+  // $("#input-sibiling-number").focus(function () {
+  //   //
+  //   // {{ENTER}}
+  //   //
+  //   $("#input-sibiling-number").keyup(function (e) {
+  //     if (e.keyCode == 13 && $(this).is(":focus")) {
+  //       if ($(this).val() == "0" || $(this).val() == "") {
+  //         $("#the-output").append("בן יחיד.");
+  //       } else {
+  //         $("#step-5").find("#input-sibiling-position").focus();
+  //       }
+  //     }
+  //   });
+  // });
 
-  $("#input-sibiling-position").focus(function () {
-    $("#input-sibiling-position").keyup(function (e) {
-      if (e.keyCode == 13 && $(this).is(":focus")) {
-        let tempIndex = $("#input-sibiling-position").val();
-        tempIndex--;
-        if (theGender == "male") {
-          let numberHebrew = sibilingPositionMale[tempIndex];
-          $("#the-output").append(`ה${numberHebrew}` + " מבין ");
-          let tempInt = parseInt($("#input-sibiling-number").val());
-          $("#the-output").append(maleNumbers[tempInt] + " אחאים.");
-        }
-      }
-    });
-  });
+  // $("#input-sibiling-position").focus(function () {
+  //   $("#input-sibiling-position").keyup(function (e) {
+  //     if (e.keyCode == 13 && $(this).is(":focus")) {
+  //       let tempIndex = $("#input-sibiling-position").val();
+  //       tempIndex--;
+  //       if (theGender == "male") {
+  //         let numberHebrew = sibilingPositionMale[tempIndex];
+  //         $("#the-output").append(`ה${numberHebrew}` + " מבין ");
+  //         let tempInt = parseInt($("#input-sibiling-number").val());
+  //         $("#the-output").append(maleNumbers[tempInt] + " אחאים.");
+  //       }
+  //     }
+  //   });
+  // });
 
   // @FUNCTIONS@
 
@@ -398,7 +399,10 @@ $(function () {
     for (i = 0; i < theOutput.length; i++) {
       if (theOutput[i].stepName === value) {
         theOutput[i].value = input;
+        renderResult();
       }
+      renderResult();
     }
+    renderResult();
   }
 });
