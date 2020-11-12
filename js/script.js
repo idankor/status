@@ -318,15 +318,13 @@ $(function () {
   function renderResult() {
     $("#result-sub-container").html("");
     let theStrcture = ["before", "value", "after"];
-    let i = 0;
+    let componentIdIndicator = 0;
     let componentBgIndex = 0;
     let sectionBgIndex = 0;
     for (let step of theOutput) {
-      let jumper = false;
       if (step.value === null) {
-        jumper = true;
       }
-      if (step[theStrcture[1]] != null && !jumper) {
+      if (step[theStrcture[1]] != null) {
         if (step.newSection) {
           $("#result-sub-container").append(
             `<div class="result-section">${step[theStrcture[1]]}</div>`
@@ -343,20 +341,21 @@ $(function () {
           $(".result-sub-section")
             .last()
             .append(
-              `<div class="component" id="custom${i}">${step[theStrcture[0]]}` +
+              `<div class="component" id="custom${componentIdIndicator}">${
+                step[theStrcture[0]]
+              }` +
                 `${step[theStrcture[1]]}` +
                 `${step[theStrcture[2]]}
             </div>`
             );
+          $(`#custom${componentIdIndicator}`).css(
+            "background-color",
+            componentBackground[componentBgIndex % 8]
+          );
+          componentIdIndicator++;
+          componentBgIndex++;
         }
-
-        $(`#custom${i}`).css(
-          "background-color",
-          componentBackground[(componentBgIndex % 8) - 1]
-        );
-        componentBgIndex++;
       }
-      i++;
     }
   }
 
