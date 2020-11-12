@@ -59,8 +59,6 @@ $(function () {
   //
   $(document).keydown(function (e) {
     //
-    renderResult();
-    //
     //
     // $PAGE1$
     // ^GENDER^
@@ -204,11 +202,10 @@ $(function () {
   // $PAGE3$
   // ^RELIGION^
   //
-  $("#switch-religion").click(function () {
-    if ($("#input-religion").prop("disabled")) {
-      $("#input-religion").prop("disabled", false);
-      $("#input-religion").focus();
-    }
+
+  $("#btn-religion-next").click(function () {
+    nextStep();
+    $("#input-marital-status").focus();
   });
 
   // $("#input-children-number").keydown(function (e) {
