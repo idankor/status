@@ -431,7 +431,7 @@ button:focus {
 }
 
 .spacer {
-  height: 5%;
+  height: 2%;
 }
 
 input::-webkit-outer-spin-button,
@@ -481,7 +481,7 @@ select option {
 /* Toggle switch size */
 .switch,
 .slider {
-  font-size: 1px;
+  font-size: 0.75px;
 }
 
 .slider:before {

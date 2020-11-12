@@ -32,6 +32,19 @@ let componentBackground = [
 ];
 
 let sectionBackground = ["#540d6e", "#ee4266", "#ffd23f", "#3bceac", "#0ead69"];
+
+var maritalStatusAutocompleteMale = ["רווק", "נשוי", "פרוד", "אלמן", "גרוש"];
+maritalStatusAutocompleteMale.sort();
+
+var maritalStatusAutocompleteFemale = [
+  "רווקה",
+  "נשואה",
+  "פרודה",
+  "אלמנה",
+  "גרושה",
+];
+maritalStatusAutocompleteFemale.sort();
+
 //
 // ---- [PROCESS] ---- //
 //
@@ -43,7 +56,7 @@ $(function () {
   //
   $(document).keydown(function (e) {
     //
-    // $STEP1$
+    // $PAGE1$
     // ^GENDER^
     //
     // error
@@ -61,7 +74,7 @@ $(function () {
       }
     }
     //
-    // $STEP2$
+    // $PAGE2$
     // ^AGE^
     //
     if (currentStep === "age") {
@@ -73,31 +86,68 @@ $(function () {
           showError("הגיל צריך להיות גדול מאפס");
           $("#input-age").effect("shake", { distance: 5 });
         } else {
-          setStep(3);
           currentStep = "religion";
-          $("#input-religion").focus();
+          setStep(3);
+          $("#switch-religion").focus();
         }
       }
     }
 
     //
-    // $STEP3$
+    // $PAGE3$
     // ^RELIGION^
     //
     if (currentStep === "religion") {
-      if ($("#input-religion").val() != "") {
+      if ($("#input-religion").val() !== "") {
         if (e.keyCode === 13) {
+          currentStep = "marital status";
           setStep(4);
-          renderResult();
         }
       }
     }
+    //
+    // $PAGE4$
+    // ^MARITAL STATUS^
+    //
+    if (currentStep === "marital status") {
+    }
+  });
+
+  // // // // @INPUT EVENTS@
+
+  //
+  // $PAGE2$
+  // ^AGE^
+  //
+
+  $("#input-age").on("input", function () {
+    updateData("age", $("#input-age").val());
+    renderResult();
+  });
+
+  //
+  // $PAGE3$
+  // ^RELIGION^
+  //
+
+  $("#input-religion").on("input", function () {
+    updateData("religion", $("#input-religion").val());
+    renderResult();
+  });
+
+  //
+  // $PAGE4$
+  // ^MARITAL STATUS^
+  //
+
+  $("#input-marital-status").on("input", function () {
+    updateData("");
   });
 
   // // // // @CLICK EVENTS@
 
   //
-  // $STEP1$
+  // $PAGE1$
   // ^GENDER^
   //
 
@@ -109,6 +159,7 @@ $(function () {
     updateData("gender", "בן");
     renderResult();
     currentStep = "age";
+    generateAutocompletion();
     setStep(2);
     $("#step-2").find("#input-age").focus();
   });
@@ -121,130 +172,59 @@ $(function () {
     updateData("gender", "בת");
     renderResult();
     currentStep = "age";
+    generateAutocompletion();
     setStep(2);
     $("#step-2").find("#input-age").focus();
   });
 
-  // // // // @INPUT EVENTS@
-
   //
-  // $STEP2$
-  // ^AGE^
-  //
-
-  $("#input-age").on("input", function () {
-    updateData("age", $("#input-age").val());
-    renderResult();
-  });
-
-  //
-  // $STEP3$
+  // $PAGE3$
   // ^RELIGION^
   //
-
-  $("#input-religion").on("input", function () {
-    updateData("religion", $("#input-religion").val());
-    renderResult();
+  $("#switch-religion").click(function () {
+    if ($("#input-religion").prop("disabled")) {
+      $("#input-religion").prop("disabled", false);
+      $("#input-religion").focus();
+    }
   });
 
-  // $("#input-age").focus(function () {
-  //   $(this).keydown(function (e) {
-  //     if (e.keyCode == 13) {
-  //       if ($("#input-age").val() > 0) {
-  //         // אם הגיל גדול מאפס
-  //         $("#input-age").css("border", "1px solid #dcdfe6");
-  //         document.getElementById("input-age").style.animation = "";
-  //         $("#input-age-error").remove();
-  //         $("#the-output").append($(this).val() + ", ");
-  //         currentStep == 3;
-  //         setStep(3);
-  //         $("#step-3").find("#input-religion").focus();
-  //       } else if ($("#input-age").val() == 0) {
-  //         // אם הגיל שווה לאפס
-  //         showError("הגיל צריך להיות גדול מאפס");
-  //         shakeId("#input-age");
-  //       }
-  //     }
-  //   });
+  //
+  // *** PAGE 3 -- RELIGION ***
+  //
+  // $("#input-religion").focus(function () {
+  //   const religionArray = ["חרדי"];
+  //   if (theGender == "male") {
+  //     $("#input-religion").autocomplete({
+  //       source: religionArray,
+  //       minLength: 0,
+  //       autoFocus: true,
+  //     });
+  //   }
+  //   if (theGender == "female") {
+  //     const religionArray = ["חרדית"];
+  //     $("#input-religion").autocomplete({
+  //       source: religionArray,
+  //       minLength: 0,
+  //       autoFocus: true,
+  //     });
+  //   }
   // });
-  //
-  // *** STEP 3 -- RELIGION ***
-  //
-  $("#input-religion").focus(function () {
-    const religionArray = ["חרדי"];
-    if (theGender == "male") {
-      $("#input-religion").autocomplete({
-        source: religionArray,
-        minLength: 0,
-        autoFocus: true,
-      });
-    }
-    if (theGender == "female") {
-      const religionArray = ["חרדית"];
-      $("#input-religion").autocomplete({
-        source: religionArray,
-        minLength: 0,
-        autoFocus: true,
-      });
-    }
-    $("#input-religion").keydown(function (e) {
-      if (e.keyCode == 13) {
-        if ($("#input-religion").val() != "") {
-          $("#the-output").append($("#input-religion").val() + ", ");
-        }
-        currentStep = 4;
-        setStep(4);
-        $("#step-4").find("#input-marital-status").focus();
-      }
-    });
-  });
 
-  // *** STEP 4 -- MARITAL STATUS ***
-
-  $("#input-marital-status").focus(function () {
-    //
-    // MALE
-
-    if (theGender == "male") {
-      $(document).ready(function () {
-        var maritalStatusOptions = ["רווק", "נשוי", "פרוד", "אלמן"];
-        maritalStatusOptions.sort();
-        $("#input-marital-status").autocomplete({
-          source: maritalStatusOptions,
-          minLength: 0,
-          autoFocus: true,
-        });
-      });
-    }
-    //
-    // FEMALE
-
-    if (theGender == "female") {
-      $(document).ready(function () {
-        var maritalStatusOptions = ["רווקה", "נשואה", "פרודה", "אלמנה"];
-        maritalStatusOptions.sort();
-        $("#input-marital-status").autocomplete({
-          source: maritalStatusOptions,
-          minLength: 0,
-          autoFocus: true,
-        });
-      });
-    }
-  });
+  // *** PAGE 4 -- MARITAL STATUS ***
 
   // מספר ילדים
 
-  $("#input-marital-status").keydown(function (e) {
-    if (e.keyCode == 13) {
-      if ($("#input-marital-status").val() == "") {
-        showError("נא לציין מצב משפחתי");
-        shakeId("#input-marital-status");
-      } else {
-        $("#the-output").append($(this).val());
-        $("#step-4").find("#input-children-number").focus();
-      }
-    }
-  });
+  // $("#input-marital-status").keydown(function (e) {
+  //   if (e.keyCode == 13) {
+  //     if ($("#input-marital-status").val() == "") {
+  //       showError("נא לציין מצב משפחתי");
+  //       shakeId("#input-marital-status");
+  //     } else {
+  //       $("#the-output").append($(this).val());
+  //       $("#step-4").find("#input-children-number").focus();
+  //     }
+  //   }
+  // });
 
   $("#input-children-number").keydown(function (e) {
     if (e.keyCode == 13 && $(this).val() == "") {
@@ -263,7 +243,7 @@ $(function () {
     }
   });
 
-  // *** STEP 5 -- SIBILINGS ***
+  // *** PAGE 5 -- SIBILINGS ***
 
   let sibilingNumber = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
   let sibilingPositionMale = [
@@ -321,7 +301,54 @@ $(function () {
     });
   });
 
+  // // // // @CLICK EVENTS@
+
+  //
+  // $STEP1$
+  // ^GENDER^
+  //
+
+  // male
+
+  $("#btn-male").click(function () {
+    theGender = "male";
+    $(".error-box").remove();
+    updateData("gender", "בן");
+    renderResult();
+    currentStep = "age";
+    setStep(2);
+    $("#step-2").find("#input-age").focus();
+  });
+
+  // female
+
+  $("#btn-female").click(function () {
+    theGender = "female";
+    $(".error-box").remove();
+    updateData("gender", "בת");
+    renderResult();
+    currentStep = "age";
+    setStep(2);
+    $("#step-2").find("#input-age").focus();
+  });
   // @FUNCTIONS@
+
+  function generateAutocompletion() {
+    if (theGender === "male") {
+      $("#input-marital-status").autocomplete({
+        source: maritalStatusAutocompleteMale,
+        minLength: 0,
+        autoFocus: true,
+      });
+    }
+    if (theGender === "female") {
+      $("#input-marital-status").autocomplete({
+        source: maritalStatusAutocompleteFemale,
+        minLength: 0,
+        autoFocus: true,
+      });
+    }
+  }
 
   function renderResult() {
     $("#result-sub-container").html("");
