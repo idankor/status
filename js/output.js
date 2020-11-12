@@ -84,3 +84,7 @@ const theOutput = [
     source: null,
   },
 ];
+
+// Spaces are not allowed in this array's values!
+//
+const stepOrder = ["gender", "age", "religion", "marital-status"];

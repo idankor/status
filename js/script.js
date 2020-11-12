@@ -1,3 +1,5 @@
+let stepIndicator = 0;
+
 // @VARIABLES@
 
 let theGender = undefined;
@@ -49,10 +51,11 @@ maritalStatusAutocompleteFemale.sort();
 // ---- [PROCESS] ---- //
 //
 $(function () {
+  nextStep();
   //
   // ^^^ [GLOBAL READY] ^^^
   //
-  // // // // @KEYPRESS EVENTS@
+  // // // // @KEYPRESS EVENTS@ // // // //
   //
   $(document).keydown(function (e) {
     //
@@ -66,11 +69,13 @@ $(function () {
         $("#btn-male").focus();
       } else if (e.keyCode === 37) {
         $("#btn-female").focus();
-      } else if (e.keyCode === 13) {
-        if (!$("#btn-male").is(":focus") && !$("#btn-female").is(":focus")) {
-          showError("חייב לבחור מגדר!");
-          $("#btn-male, #btn-female").effect("shake", { distance: 5 });
-        }
+      } else if (
+        e.keyCode === 13 &&
+        !$("#btn-male").is(":focus") &&
+        !$("#btn-female").is(":focus")
+      ) {
+        showError("חייב לבחור מגדר!");
+        $("#btn-male, #btn-female").effect("shake", { distance: 5 });
       }
     }
     //
@@ -87,7 +92,7 @@ $(function () {
           $("#input-age").effect("shake", { distance: 5 });
         } else {
           currentStep = "religion";
-          setStep(3);
+          nextStep();
           $("#input-religion").focus();
         }
       }
@@ -106,7 +111,7 @@ $(function () {
       if ($("#input-religion").val() !== "") {
         if (e.keyCode === 13) {
           currentStep = "marital status";
-          setStep(4);
+          nextStep();
         }
       }
     }
@@ -118,7 +123,7 @@ $(function () {
     }
   });
 
-  // // // // @INPUT EVENTS@
+  // // // // @INPUT EVENTS@ // // // //
 
   //
   // $PAGE2$
@@ -149,7 +154,7 @@ $(function () {
     updateData("");
   });
 
-  // // // // @CLICK EVENTS@
+  // // // // @CLICK EVENTS@ // // // //
 
   //
   // $PAGE1$
@@ -165,8 +170,8 @@ $(function () {
     renderResult();
     currentStep = "age";
     generateAutocompletion();
-    setStep(2);
-    $("#step-2").find("#input-age").focus();
+    nextStep();
+    $("#step-age").find("#input-age").focus();
   });
 
   // female
@@ -178,8 +183,8 @@ $(function () {
     renderResult();
     currentStep = "age";
     generateAutocompletion();
-    setStep(2);
-    $("#step-2").find("#input-age").focus();
+    nextStep();
+    $("#step-age").find("#input-age").focus();
   });
 
   //
@@ -216,12 +221,12 @@ $(function () {
     } else if (e.keyCode == 13 && $(this).val() === "0") {
       $("#the-output").append(", ללא ילדים, ");
       currentStep = 5;
-      setStep(5);
+      nextStep();
       $("#step-5").find("#input-sibiling-number").focus();
     } else if (e.keyCode == 13 && $(this).val() > "0") {
       $("#the-output").append(" + " + $(this).val() + ", ");
       currentStep = 5;
-      setStep(5);
+      nextStep();
       $("#step-5").find("#input-sibiling-number").focus();
     }
   });
@@ -284,37 +289,13 @@ $(function () {
     });
   });
 
-  // // // // @CLICK EVENTS@
-
-  //
-  // $STEP1$
-  // ^GENDER^
-  //
-
-  // male
-
-  $("#btn-male").click(function () {
-    theGender = "male";
-    $(".error-box").remove();
-    updateData("gender", "בן");
-    renderResult();
-    currentStep = "age";
-    setStep(2);
-    $("#step-2").find("#input-age").focus();
-  });
-
-  // female
-
-  $("#btn-female").click(function () {
-    theGender = "female";
-    $(".error-box").remove();
-    updateData("gender", "בת");
-    renderResult();
-    currentStep = "age";
-    setStep(2);
-    $("#step-2").find("#input-age").focus();
-  });
   // @FUNCTIONS@
+
+  function nextStep() {
+    $(".step").css("display", "none");
+    $(`#step-${stepOrder[stepIndicator]}`).css("display", "flex");
+    stepIndicator++;
+  }
 
   function generateAutocompletion() {
     if (theGender === "male") {
@@ -403,12 +384,6 @@ $(function () {
 
   // {{SET STEP FUNCTION}}
 
-  function setStep(stepNumber) {
-    $(".step").css("display", "none");
-    $(`#step-${stepNumber}`).css("display", "flex");
-    $(`.step${stepNumber}`).css("display", "flex");
-  }
-
   function showError(errorContent) {
     console.log(errorContent);
     document.getElementById("card-footer").innerHTML = "";
@@ -422,8 +397,6 @@ $(function () {
     $(".error-box").fadeIn(0);
     $(".error-box").fadeOut(4200);
   }
-
-  let isRunning = false;
 
   function updateData(value, input) {
     for (i = 0; i < theOutput.length; i++) {

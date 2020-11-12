@@ -570,27 +570,23 @@ input:checked + .slider:before {
   display: none;
 }
 
-.step1 {
-  display: flex;
-}
-
-#step-1 {
-  display: flex;
+#step-gender {
+  display: none;
 }
 
 #step-1-instructions {
   display: flex;
 }
 
-#step-2 {
+#step-age {
   display: none;
 }
 
-#step-3 {
+#step-religion {
   display: none;
 }
 
-#step-4 {
+#step-marital-status {
   display: none;
 }
 
