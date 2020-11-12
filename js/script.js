@@ -88,7 +88,7 @@ $(function () {
         } else {
           currentStep = "religion";
           setStep(3);
-          $("#switch-religion").focus();
+          $("#input-religion").focus();
         }
       }
     }
@@ -437,7 +437,7 @@ $(function () {
     document.getElementById("card-footer").appendChild(errorElement);
     $(".error-box").hide();
     $(".error-box").fadeIn(0);
-    $(".error-box").fadeOut(3200);
+    $(".error-box").fadeOut(4200);
   }
 
   let isRunning = false;

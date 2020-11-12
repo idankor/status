@@ -1,29 +1,32 @@
 * {
   font-family: "Assistant";
-  font-size: 16px;
   font-weight: 400;
+}
+
+:root {
+  font-size: 16px;
 }
 
 h1 {
   color: #606266;
   padding: 5px;
   margin: 0px;
-  font-size: 28px;
+  font-size: 2rem;
   font-weight: 500;
 }
 
 h2 {
   color: #606266;
-  font-size: 18px;
+  font-size: 1.5rem;
 }
 
 .error-box {
   color: #f56c6c;
-  font-size: 14px;
+  font-size: 1rem;
   font-weight: 400;
   background-color: #fde2e1;
   padding: 2%;
-  border-radius: 5px;
+  border-radius: 0.15rem;
   /* animation: shake 0.5s; */
 }
 
@@ -297,6 +300,17 @@ textarea {
   color: #303133;
 }
 
+.btn-basic {
+  color: #fff;
+  background-color: #409eff;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 16px;
+  padding: 1% 2%;
+}
+
 .btn-gender {
   color: #303133;
   background-color: white;
@@ -431,7 +445,7 @@ button:focus {
 }
 
 .spacer {
-  height: 2%;
+  height: 5%;
 }
 
 input::-webkit-outer-spin-button,
