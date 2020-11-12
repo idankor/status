@@ -1,3 +1,5 @@
+/* MAIN */
+
 * {
   font-family: "Assistant";
   font-weight: 400;
@@ -6,6 +8,8 @@
 :root {
   font-size: 16px;
 }
+
+/* TITLES */
 
 h1 {
   color: #606266;
@@ -19,6 +23,8 @@ h2 {
   color: #606266;
   font-size: 1.5rem;
 }
+
+/* ERRORS */
 
 .error-box {
   color: #f56c6c;
@@ -34,12 +40,16 @@ h2 {
   margin-left: 5%;
 }
 
+/* DEBUGGER */
+
 .debug {
-  font-size: 20px;
+  font-size: 1rem;
   color: red;
   border: 1px solid red;
   background-color: lightgreen;
 }
+
+/* LAYOUT */
 
 .centrum {
   display: flex;
@@ -123,13 +133,8 @@ h2 {
 
 .instruction {
   /* margin: 10%; */
-  font-size: 14px;
+  font-size: 0.8rem;
   font-weight: 400;
-}
-
-#indicator {
-  color: black;
-  font-size: 0px;
 }
 
 .single-item {
@@ -141,7 +146,7 @@ h2 {
 }
 
 ion-icon {
-  --ionicon-stroke-width: 30px;
+  --ionicon-stroke-width: 1.5rem;
   margin: 0px 2%;
 }
 
@@ -291,24 +296,22 @@ ion-icon {
   background-color: #ffff3f !important;
 }
 
-textarea {
-  padding: 25px;
-  border-radius: 25px;
-  border: 1px solid #dcdfe6;
-  font-size: 18px;
-  resize: none;
-  color: #303133;
-}
-
 .btn-basic {
   color: #fff;
-  background-color: #409eff;
+  background-color: #daebff;
   border: none;
   cursor: pointer;
   text-align: center;
   border-radius: 10px;
   font-size: 16px;
   padding: 1% 2%;
+}
+
+.btn-basic:hover {
+  background-color: #3f9eff;
+}
+.btn-basic:focus {
+  background-color: #3f9eff;
 }
 
 .btn-gender {
