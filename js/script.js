@@ -293,7 +293,7 @@ $(function () {
 
   function nextStep() {
     $(".step").css("display", "none");
-    $(`#step-${stepOrder[stepIndicator]}`).css("display", "flex");
+    $(`.step-${stepOrder[stepIndicator]}`).css("display", "flex");
     stepIndicator++;
   }
 
@@ -373,12 +373,13 @@ $(function () {
     $("#step-nav-" + i).addClass("nav-li");
   }
 
+  // Use step-nav
+
   $(".nav-li").click(function () {
     let idString = this.id;
-    idString = idString.replace(/^\D+/g, "");
-    console.log(idString);
+    idString = parseInt(idString.replace(/^\D+/g, "") - 1);
     $(".step").css("display", "none");
-    $(`#step-${idString}`).css("display", "flex");
+    $(`.step-${stepOrder[idString]}`).css("display", "flex");
     $(`.step${idString}`).css("display", "flex");
   });
 
