@@ -128,7 +128,6 @@ $(function () {
         $("#input-children-number").focus();
       }
     }
-    renderResult();
   });
 
   // // // // @INPUT EVENTS@ // // // //
@@ -140,7 +139,6 @@ $(function () {
 
   $("#input-age").on("input", function () {
     updateData("age", $("#input-age").val());
-    renderResult();
   });
 
   //
@@ -150,7 +148,6 @@ $(function () {
 
   $("#input-religion").on("input", function () {
     updateData("religion", $("#input-religion").val());
-    renderResult();
   });
 
   //
@@ -162,14 +159,14 @@ $(function () {
 
   $("#input-marital-status").on("input", function () {
     updateData("marital status", $("#input-marital-status").val());
-    renderResult();
   });
 
   // number of children
 
   $("#input-children-number").on("input", function () {
-    updateData("children number", "ללא ילדים");
-    renderResult();
+    if ($("#input-children-number").val() == 0) {
+      updateData("children number", "ללא ילדים");
+    }
   });
 
   // // // // @CLICK EVENTS@ // // // //
@@ -358,8 +355,6 @@ $(function () {
     }
   }
 
-  // renderResult();
-
   // Create step-nav
 
   for (i = 1; i < 11; i++) {
@@ -399,9 +394,7 @@ $(function () {
     for (i = 0; i < theOutput.length; i++) {
       if (theOutput[i].stepName === value) {
         theOutput[i].value = input;
-        renderResult();
       }
-      renderResult();
     }
     renderResult();
   }
