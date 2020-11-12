@@ -1,5 +1,6 @@
 let stepIndicator = 0;
 let currentStep = 0;
+let justArrived = true;
 
 // @VARIABLES@
 
@@ -95,6 +96,11 @@ $(function () {
           showError("הגיל צריך להיות גדול מאפס");
           $("#input-age").effect("shake", { distance: 5 });
         } else {
+          $(document).keyup(function (kup) {
+            if (kup.keyCode === 13) {
+              justArrived = false;
+            }
+          });
           nextStep();
           $("#input-religion").focus();
         }
@@ -115,6 +121,9 @@ $(function () {
           nextStep();
           $("#input-marital-status").focus();
         }
+      } else if (e.keyCode === 13 && !justArrived) {
+        showError("יש לציין דת או לדלג");
+        $("#input-religion").effect("shake", { distance: 5 });
       }
     }
     //
