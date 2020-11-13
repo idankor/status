@@ -324,17 +324,16 @@ function generateAutocompletion() {
 
 function renderResult() {
   $("#result-sub-container").html("");
-  let theStrcture = ["before", "value", "after"];
   let componentIdIndicator = 0;
   let componentBgIndex = 0;
   let sectionBgIndex = 0;
   for (let step of theOutput) {
     // if (step.value === null) {
     // }
-    if (step[theStrcture[1]] !== undefined) {
+    if (step.value !== undefined) {
       if (step.newSection) {
         $("#result-sub-container").append(
-          `<div class="result-section">${step[theStrcture[1]]}</div>`
+          `<div class="result-section">${step.value}</div>`
         );
         $(".result-section").last().css("background-color") == undefined;
         $(".result-section")
@@ -343,24 +342,33 @@ function renderResult() {
         $("#result-sub-container").append(
           `<div class="result-sub-section"></div>`
         );
-        sectionBgIndex++;
       } else {
-        $(".result-sub-section")
-          .last()
-          .append(
-            `<div class="component" id="custom${componentIdIndicator}">${
-              step[theStrcture[0]]
-            }` +
-              `${step[theStrcture[1]]}` +
-              `${step[theStrcture[2]]}
+        if (step.value !== "") {
+          $(".result-sub-section").last().append(
+            `<div class="component" id="custom${componentIdIndicator}">${step.before}${step.value}${step.after}
             </div>`
           );
-        $(`#custom${componentIdIndicator}`).css(
-          "background-color",
-          componentBackground[componentBgIndex % 8]
-        );
+          $(`#custom${componentIdIndicator}`).css(
+            "background-color",
+            componentBackground[componentBgIndex % 8]
+          );
+          componentBgIndex++;
+        }
+        // $(".result-sub-section")
+        //   .last()
+        //   .append(
+        //     `<div class="component" id="custom${componentIdIndicator}">${
+        //       step[theStrcture[0]]
+        //     }` +
+        //       `${step[theStrcture[1]]}` +
+        //       `${step[theStrcture[2]]}
+        //     </div>`
+        //   );
+        // $(`#custom${componentIdIndicator}`).css(
+        //   "background-color",
+        //   componentBackground[componentBgIndex % 8]
+        // );
         componentIdIndicator++;
-        componentBgIndex++;
       }
     }
   }
