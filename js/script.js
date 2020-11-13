@@ -103,7 +103,7 @@ $("#input-age").on("keydown", function (e) {
   if (e.keyCode === 13) {
     if ($("#input-age").val() === "") {
       showError("חובה לציין גיל");
-      $("#input-age-container").effect("shake", { distance: 5 });
+      shakeId("input-age");
     } else if ($("#input-age").val() === "0") {
       showError("הגיל צריך להיות גדול מאפס");
       $("#input-age-container").effect("shake", { distance: 5 });
@@ -166,6 +166,14 @@ $("#input-age").focusout(function () {
 
 $("#input-religion").on("input", function () {
   validateHebrew("input-religion", "religion");
+});
+
+$("#input-religion").focusin(function () {
+  focusBorder("input-religion");
+});
+
+$("#input-religion").focusout(function () {
+  unfocusBorder("input-religion");
 });
 
 // $PAGE4$
@@ -451,4 +459,11 @@ function focusBorder(name) {
 
 function unfocusBorder(name) {
   $(`#${name}-container`).css("border", "none");
+}
+
+function shakeId(name) {
+  $(`#${name}`).addClass("shake-horizontal shake-constant");
+  setTimeout(function () {
+    $(`#${name}`).removeClass("shake-horizontal shake-constant");
+  }, 200);
 }
