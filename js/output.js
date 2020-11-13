@@ -64,7 +64,7 @@ const theOutput = [
     type: "content",
     binary: false,
     before: "",
-    after: ",",
+    after: "",
     value: undefined,
     newSection: false,
     source: null,
