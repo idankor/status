@@ -84,6 +84,14 @@ $(document).keydown(function (e) {
       $("#btn-male, #btn-female").effect("shake", { distance: 5 });
     }
   }
+
+  if (stepOrder[currentStep] === "religion") {
+    if (e.keyCode === 40) {
+      $("#btn-religion-next").focus();
+    } else if (e.keyCode === 38) {
+      $("#input-religion").focus();
+    }
+  }
 });
 //
 // // // // ---- LOCAL ---- // // // //
@@ -110,11 +118,6 @@ $("#input-age").on("keydown", function (e) {
 // ^RELIGION^
 
 $("#input-religion").on("keydown", function (e) {
-  if (e.keyCode === 40) {
-    $("#btn-religion-next").focus();
-  } else if (e.keyCode === 38) {
-    $("#input-religion").focus();
-  }
   if ($("#input-religion").val() !== "") {
     if (e.keyCode === 13) {
       nextStep();
@@ -330,6 +333,8 @@ function validateHebrew(fieldName, dataName) {
     } else {
       updateData(dataName, $(`#${fieldName}`).val());
     }
+  } else {
+    updateData(dataName, "");
   }
 }
 
@@ -347,6 +352,8 @@ function validateNumbers(fieldName, dataName) {
     } else {
       updateData(dataName, $(`#${fieldName}`).val());
     }
+  } else {
+    updateData(dataName, "");
   }
 }
 
