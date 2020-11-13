@@ -22,6 +22,10 @@ h1 {
 h2 {
   color: #606266;
   font-size: 1.5rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* ERRORS */
@@ -34,10 +38,6 @@ h2 {
   padding: 2%;
   border-radius: 0.15rem;
   /* animation: shake 0.5s; */
-}
-
-.label {
-  margin-left: 5%;
 }
 
 /* DEBUGGER */
@@ -485,7 +485,7 @@ button:focus {
 }
 
 .spacer {
-  height: 5%;
+  height: 10%;
 }
 
 input::-webkit-outer-spin-button,

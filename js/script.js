@@ -161,6 +161,14 @@ $("#input-marital-status").on("input", function () {
   validateHebrew("input-marital-status", "marital status");
 });
 
+$("#input-marital-status").focusin(function () {
+  focusBorder("input-marital-status");
+});
+
+$("#input-marital-status").focusout(function () {
+  unfocusBorder("input-marital-status");
+});
+
 // number of children
 
 $("#input-children-number").on("input", function () {
