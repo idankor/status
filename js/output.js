@@ -1,6 +1,6 @@
 // @OUTPUT@
 
-const theOutput = [
+const theData = [
   {
     stepNumber: 0,
     stepName: "personal details",
@@ -14,6 +14,7 @@ const theOutput = [
     newSection: true,
     page: null,
     source: null,
+    title: "מגדר",
   },
   {
     stepNumber: 1,
@@ -28,6 +29,7 @@ const theOutput = [
     newSection: false,
     page: null,
     source: null,
+    title: "מגדר",
   },
   {
     stepNumber: 2,
@@ -42,6 +44,7 @@ const theOutput = [
     newSection: false,
     page: null,
     source: null,
+    title: "גיל",
   },
   {
     stepNumber: 3,
@@ -55,6 +58,7 @@ const theOutput = [
     value: undefined,
     newSection: false,
     source: null,
+    title: "דת",
   },
   {
     stepNumber: 4,
@@ -68,6 +72,7 @@ const theOutput = [
     value: undefined,
     newSection: false,
     source: null,
+    title: "סטטוס משפחתי",
   },
   {
     stepNumber: 5,
@@ -82,6 +87,7 @@ const theOutput = [
     newSection: false,
     page: null,
     source: null,
+    title: "סטטוס משפחתי",
   },
 ];
 

@@ -313,6 +313,13 @@ let sibilingPositionFemale = [
 function nextStep() {
   $(".step").css("display", "none");
   $(`.step-${stepOrder[stepIndicator]}`).css("display", "flex");
+  if ($("#current-title").length) {
+    $("#current-title").remove();
+    console.log("out!");
+  }
+  $("#header-title").append(
+    `<div class="title-box" id="current-title">${theData[stepIndicator].title}</div>`
+  );
   stepIndicator++;
   currentStep = stepIndicator - 1;
 }
@@ -377,7 +384,7 @@ function renderResult() {
   let componentIdIndicator = 0;
   let componentBgIndex = 0;
   let sectionBgIndex = 0;
-  for (let step of theOutput) {
+  for (let step of theData) {
     // if (step.value === null) {
     // }
     if (step.value !== undefined) {
@@ -443,9 +450,9 @@ function showError(errorContent) {
 }
 
 function updateData(name, input) {
-  for (i = 0; i < theOutput.length; i++) {
-    if (theOutput[i].stepName === name) {
-      theOutput[i].value = input;
+  for (i = 0; i < theData.length; i++) {
+    if (theData[i].stepName === name) {
+      theData[i].value = input;
     }
   }
   renderResult();
