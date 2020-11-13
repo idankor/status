@@ -144,28 +144,33 @@ $("#input-children-number").on("keydown", function (e) {
 
 // // // // @INPUT EVENTS@ // // // //
 
-//
 // $PAGE2$
 // ^AGE^
-//
 
 $("#input-age").on("input", function () {
   updateData("age", $("#input-age").val());
 });
 
-//
 // $PAGE3$
 // ^RELIGION^
-//
 
 $("#input-religion").on("input", function () {
-  updateData("religion", $("#input-religion").val());
+  var hasNumber = /^[א-ת]/;
+  let tempString = "";
+  tempString = $("#input-religion").val();
+  tempString = tempString.slice(-1);
+  console.log(tempString);
+  if (!hasNumber.test(tempString)) {
+    let correction = $("#input-religion").val().slice(0, -1);
+    $("#input-religion").val(correction);
+    showError("נא להכניס רק אותיות אותיות בעברית");
+  } else {
+    updateData("religion", $("#input-religion").val());
+  }
 });
 
-//
 // $PAGE4$
 // ^MARITAL STATUS^
-//
 
 // marital status
 
@@ -354,20 +359,6 @@ function renderResult() {
           );
           componentBgIndex++;
         }
-        // $(".result-sub-section")
-        //   .last()
-        //   .append(
-        //     `<div class="component" id="custom${componentIdIndicator}">${
-        //       step[theStrcture[0]]
-        //     }` +
-        //       `${step[theStrcture[1]]}` +
-        //       `${step[theStrcture[2]]}
-        //     </div>`
-        //   );
-        // $(`#custom${componentIdIndicator}`).css(
-        //   "background-color",
-        //   componentBackground[componentBgIndex % 8]
-        // );
         componentIdIndicator++;
       }
     }
