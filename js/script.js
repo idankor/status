@@ -315,10 +315,11 @@ function nextStep() {
   $(`.step-${stepOrder[stepIndicator]}`).css("display", "flex");
   if ($("#current-title").length) {
     $("#current-title").remove();
-    console.log("out!");
   }
   $("#header-title").append(
-    `<div class="title-box" id="current-title">${theData[stepIndicator].title}</div>`
+    `<div class="title-box" id="current-title">${
+      theData[stepIndicator + 1].title
+    }</div>`
   );
   stepIndicator++;
   currentStep = stepIndicator - 1;
