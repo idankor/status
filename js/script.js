@@ -155,18 +155,7 @@ $("#input-age").on("input", function () {
 // ^RELIGION^
 
 $("#input-religion").on("input", function () {
-  var hasNumber = /^[א-ת]/;
-  let tempString = "";
-  tempString = $("#input-religion").val();
-  tempString = tempString.slice(-1);
-  console.log(tempString);
-  if (!hasNumber.test(tempString)) {
-    let correction = $("#input-religion").val().slice(0, -1);
-    $("#input-religion").val(correction);
-    showError("נא להכניס רק אותיות אותיות בעברית");
-  } else {
-    updateData("religion", $("#input-religion").val());
-  }
+  validateHebrew("input-religion");
 });
 
 // $PAGE4$
@@ -175,7 +164,7 @@ $("#input-religion").on("input", function () {
 // marital status
 
 $("#input-marital-status").on("input", function () {
-  updateData("marital status", $("#input-marital-status").val());
+  validateHebrew("input-marital-status");
 });
 
 // number of children
@@ -327,6 +316,23 @@ function generateAutocompletion() {
   }
 }
 
+function validateHebrew(fieldName) {
+  if ($("#input-religion").val() != "") {
+    var hasNumber = /^[א-ת]/;
+    let tempString = "";
+    tempString = $(`#${fieldName}`).val();
+    tempString = tempString.slice(-1);
+    console.log(tempString);
+    if (!hasNumber.test(tempString)) {
+      let correction = $(`#${fieldName}`).val().slice(0, -1);
+      $(`#${fieldName}`).val(correction);
+      showError("נא להכניס רק אותיות בעברית");
+    } else {
+      updateData("religion", $("#input-religion").val());
+    }
+  }
+}
+
 function renderResult() {
   $("#result-sub-container").html("");
   let componentIdIndicator = 0;
@@ -383,8 +389,6 @@ $(".nav-li").click(function () {
   $(`.step-${stepOrder[idString]}`).css("display", "flex");
   $(`.step${idString}`).css("display", "flex");
 });
-
-// {{SET STEP FUNCTION}}
 
 function showError(errorContent) {
   document.getElementById("card-footer").innerHTML = "";
