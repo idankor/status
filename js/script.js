@@ -454,5 +454,5 @@ function shakeId(name) {
   $(`#${name}`).addClass("shake-horizontal shake-constant");
   setTimeout(function () {
     $(`#${name}`).removeClass("shake-horizontal shake-constant");
-  }, 200);
+  }, 150);
 }
