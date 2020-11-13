@@ -139,8 +139,6 @@ $("#input-marital-status").on("keydown", function (e) {
 });
 $("#input-children-number").on("keydown", function (e) {
   if (e.keyCode === 13) {
-    updateData("marital status", $("#input-marital-status").val());
-    console.log($("#input-marital-status").val());
   }
 });
 
