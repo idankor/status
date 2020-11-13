@@ -204,6 +204,16 @@ ion-icon {
   width: 100%;
 }
 
+.element-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 1%;
+  border: #409eff 5px solid;
+  border-radius: 20px;
+}
+
 .card-row-right {
   display: flex;
   flex-direction: row;
@@ -298,6 +308,10 @@ ion-icon {
   background-color: #409eff !important;
 }
 
+.width-25 {
+  width: 25%;
+}
+
 .btn-basic {
   color: #fff;
   background-color: #daebff;
@@ -389,7 +403,7 @@ input:disabled {
 }
 
 .input-age {
-  width: 20%;
+  width: 100%;
   padding: 0.5em 0.2em;
   text-align: center;
 }
