@@ -207,7 +207,6 @@ $("#btn-male").click(function () {
   $(".error-box").remove();
   updateData("gender", "בן");
   renderResult();
-  generateAutocompletion();
   nextStep();
   $(".step-age").find("#input-age").focus();
 });
@@ -219,7 +218,6 @@ $("#btn-female").click(function () {
   $(".error-box").remove();
   updateData("gender", "בת");
   renderResult();
-  generateAutocompletion();
   nextStep();
   $(".step-age").find("#input-age").focus();
 });
@@ -323,23 +321,6 @@ function nextStep() {
   );
   stepIndicator++;
   currentStep = stepIndicator - 1;
-}
-
-function generateAutocompletion() {
-  if (theGender === "male") {
-    $("#input-marital-status").autocomplete({
-      source: maritalStatusAutocompleteMale,
-      minLength: 0,
-      autoFocus: true,
-    });
-  }
-  if (theGender === "female") {
-    $("#input-marital-status").autocomplete({
-      source: maritalStatusAutocompleteFemale,
-      minLength: 0,
-      autoFocus: true,
-    });
-  }
 }
 
 function validateHebrew(fieldName, dataName) {
@@ -462,7 +443,7 @@ function updateData(name, input) {
 let recentFocus = "";
 
 function focusBorder(name) {
-  $(`#${name}-container`).css("border", "5px solid #409eff");
+  $(`#${name}-container`).css("border", "4px solid #409eff");
 }
 
 function unfocusBorder(name) {
