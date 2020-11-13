@@ -36,18 +36,6 @@ let componentBackground = [
 
 let sectionBackground = ["#540d6e", "#ee4266", "#ffd23f", "#3bceac", "#0ead69"];
 
-var maritalStatusAutocompleteMale = ["רווק", "נשוי", "פרוד", "אלמן", "גרוש"];
-maritalStatusAutocompleteMale.sort();
-
-var maritalStatusAutocompleteFemale = [
-  "רווקה",
-  "נשואה",
-  "פרודה",
-  "אלמנה",
-  "גרושה",
-];
-maritalStatusAutocompleteFemale.sort();
-
 //
 // ---- [PROCESS] ---- //
 //
@@ -131,18 +119,6 @@ $("#input-religion").on("keydown", function (e) {
 
 // $PAGE4$
 // ^MARITAL STATUS^
-
-$("#input-marital-status").on("keydown", function (e) {
-  if (e.keyCode === 13 && $("#input-marital-status").val() != "") {
-    console.log($("#input-marital-status").val());
-    updateData("marital status", $("#input-marital-status").val());
-    $("#input-children-number").focus();
-  }
-});
-$("#input-children-number").on("keydown", function (e) {
-  if (e.keyCode === 13) {
-  }
-});
 
 // // // // @INPUT EVENTS@ // // // //
 
@@ -324,7 +300,7 @@ function nextStep() {
 }
 
 function validateHebrew(fieldName, dataName) {
-  if ($("#input-religion").val() != "") {
+  if ($(`#${fieldName}`).val() != "") {
     var hasNumber = /^[א-ת]/;
     let tempString = "";
     tempString = $(`#${fieldName}`).val();
@@ -367,9 +343,7 @@ function renderResult() {
   let componentBgIndex = 0;
   let sectionBgIndex = 0;
   for (let step of theData) {
-    // if (step.value === null) {
-    // }
-    if (step.value !== undefined) {
+    if (step.value !== undefined && step.value !== "") {
       if (step.newSection) {
         $("#result-sub-container").append(
           `<div class="result-section">${step.value}</div>`
