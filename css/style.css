@@ -294,7 +294,8 @@ ion-icon {
 }
 
 .component:hover {
-  background-color: #ffff3f !important;
+  color: white;
+  background-color: #409eff !important;
 }
 
 .btn-basic {

@@ -105,10 +105,10 @@ $("#input-age").on("keydown", function (e) {
     }
   }
 });
-//
+
 // $PAGE3$
 // ^RELIGION^
-//
+
 $("#input-religion").on("keydown", function (e) {
   if (e.keyCode === 40) {
     $("#btn-religion-next").focus();
@@ -126,10 +126,9 @@ $("#input-religion").on("keydown", function (e) {
   }
 });
 
-//
 // $PAGE4$
 // ^MARITAL STATUS^
-//
+
 $("#input-marital-status").on("keydown", function (e) {
   if (e.keyCode === 13 && $("#input-marital-status").val() != "") {
     console.log($("#input-marital-status").val());
@@ -148,14 +147,15 @@ $("#input-children-number").on("keydown", function (e) {
 // ^AGE^
 
 $("#input-age").on("input", function () {
-  updateData("age", $("#input-age").val());
+  validateNumbers("input-age", "age");
+  // updateData("age", $("#input-age").val());
 });
 
 // $PAGE3$
 // ^RELIGION^
 
 $("#input-religion").on("input", function () {
-  validateHebrew("input-religion");
+  validateHebrew("input-religion", "religion");
 });
 
 // $PAGE4$
@@ -164,7 +164,7 @@ $("#input-religion").on("input", function () {
 // marital status
 
 $("#input-marital-status").on("input", function () {
-  validateHebrew("input-marital-status");
+  validateHebrew("input-marital-status", "marital status");
 });
 
 // number of children
@@ -316,7 +316,7 @@ function generateAutocompletion() {
   }
 }
 
-function validateHebrew(fieldName) {
+function validateHebrew(fieldName, dataName) {
   if ($("#input-religion").val() != "") {
     var hasNumber = /^[א-ת]/;
     let tempString = "";
@@ -328,7 +328,24 @@ function validateHebrew(fieldName) {
       $(`#${fieldName}`).val(correction);
       showError("נא להכניס רק אותיות בעברית");
     } else {
-      updateData("religion", $("#input-religion").val());
+      updateData(dataName, $(`#${fieldName}`).val());
+    }
+  }
+}
+
+function validateNumbers(fieldName, dataName) {
+  if ($(`#${fieldName}`).val() != "") {
+    var hasNumber = /^[0-9]/;
+    let tempString = "";
+    tempString = $(`#${fieldName}`).val();
+    tempString = tempString.slice(-1);
+    console.log(tempString);
+    if (!hasNumber.test(tempString)) {
+      let correction = $(`#${fieldName}`).val().slice(0, -1);
+      $(`#${fieldName}`).val(correction);
+      showError("נא להכניס רק מספרים");
+    } else {
+      updateData(dataName, $(`#${fieldName}`).val());
     }
   }
 }
@@ -403,9 +420,9 @@ function showError(errorContent) {
   $(".error-box").fadeOut(4200);
 }
 
-function updateData(value, input) {
+function updateData(name, input) {
   for (i = 0; i < theOutput.length; i++) {
-    if (theOutput[i].stepName === value) {
+    if (theOutput[i].stepName === name) {
       theOutput[i].value = input;
     }
   }
