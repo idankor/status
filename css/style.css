@@ -199,7 +199,6 @@ ion-icon {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  /* border: 1px solid #909399; */
   border-radius: 10px;
   width: 100%;
 }
@@ -209,9 +208,10 @@ ion-icon {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 1%;
-  border: #409eff 5px solid;
+  padding: 2% 2% !important;
   border-radius: 20px;
+  width: 90%;
+  height: 90% !important;
 }
 
 .card-row-right {
@@ -370,6 +370,10 @@ ion-icon {
   margin: 10px;
 }
 
+#input-age-container {
+  border: none;
+}
+
 .debug {
   border: 2px solid red;
 }
@@ -381,9 +385,10 @@ input {
   min-width: 0;
   color: #303133;
   font-size: 22px;
-  padding: 2%;
+  padding: 10%;
   box-shadow: 0 5px 10px rgba(154, 160, 185, 0.05),
     0 15px 40px rgba(166, 173, 201, 0.2);
+  width: 100%;
 }
 
 input:disabled {
@@ -394,6 +399,7 @@ input:disabled {
 .input-sm {
   width: 15%;
   text-align: center;
+  height: 100%;
 }
 
 .input-md {
@@ -403,8 +409,8 @@ input:disabled {
 }
 
 .input-age {
-  width: 100%;
-  padding: 0.5em 0.2em;
+  width: 90% !important;
+
   text-align: center;
 }
 

@@ -103,10 +103,10 @@ $("#input-age").on("keydown", function (e) {
   if (e.keyCode === 13) {
     if ($("#input-age").val() === "") {
       showError("חובה לציין גיל");
-      $("#input-age").effect("shake", { distance: 5 });
+      $("#input-age-container").effect("shake", { distance: 5 });
     } else if ($("#input-age").val() === "0") {
       showError("הגיל צריך להיות גדול מאפס");
-      $("#input-age").effect("shake", { distance: 5 });
+      $("#input-age-container").effect("shake", { distance: 5 });
     } else {
       nextStep();
       $("#input-religion").focus();
@@ -151,7 +151,14 @@ $("#input-children-number").on("keydown", function (e) {
 
 $("#input-age").on("input", function () {
   validateNumbers("input-age", "age");
-  // updateData("age", $("#input-age").val());
+});
+
+$("#input-age").focusin(function () {
+  focusBorder("input-age");
+});
+
+$("#input-age").focusout(function () {
+  unfocusBorder("input-age");
 });
 
 // $PAGE3$
@@ -434,4 +441,14 @@ function updateData(name, input) {
     }
   }
   renderResult();
+}
+
+let recentFocus = "";
+
+function focusBorder(name) {
+  $(`#${name}-container`).css("border", "5px solid #409eff");
+}
+
+function unfocusBorder(name) {
+  $(`#${name}-container`).css("border", "none");
 }
