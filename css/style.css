@@ -232,6 +232,7 @@ ion-icon {
   padding: 0.25rem 0.6rem;
   border-radius: 20px;
   height: 100%;
+  border: none;
 }
 
 .card-row-right {
