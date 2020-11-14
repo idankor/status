@@ -178,6 +178,9 @@ $("#input-sibiling-number").on("keydown", function (e) {
     if ($("#input-sibiling-number").val() === "") {
       showError("חובה לציין מספר אחאים");
       shakeId("input-sibiling-number");
+    } else if ($("#input-sibiling-number").val() > 0) {
+      $("#input-sibiling-position").prop("disabled", false);
+      $("#input-sibiling-position").focus();
     }
   }
 });
@@ -268,6 +271,21 @@ $("#input-sibiling-number").on("input", function () {
   }
 });
 
+$("#input-sibiling-position").on("input", function () {});
+
+let sibilingPosition = [
+  "ראשון",
+  "שני",
+  "שלישי",
+  "רביעי",
+  "חמישי",
+  "שישי",
+  "שביעי",
+  "שמיני",
+  "תשיעי",
+  "עשירי",
+];
+
 // blue focus
 
 $("#input-sibiling-number").focusin(function () {
@@ -324,31 +342,6 @@ $("#btn-religion-next").click(function () {
   nextStep();
   $("#input-marital-status").focus();
 });
-
-let sibilingPositionMale = [
-  "ראשון",
-  "שני",
-  "שלישי",
-  "רביעי",
-  "חמישי",
-  "שישי",
-  "שביעי",
-  "שמיני",
-  "תשיעי",
-  "עשירי",
-];
-let sibilingPositionFemale = [
-  "ראשונה",
-  "שניה",
-  "שלישית",
-  "רביעית",
-  "חמישית",
-  "שישית",
-  "שביעית",
-  "שמינית",
-  "תשיעית",
-  "עשירית",
-];
 
 // @FUNCTIONS@
 
