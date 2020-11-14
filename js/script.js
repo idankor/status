@@ -282,6 +282,8 @@ $("#input-sibiling-number").on("input", function () {
   ) {
     showError("הערך חייב להיות גדול או שווה למיקום");
     $("#input-sibiling-number").val("");
+  } else {
+    sibilings();
   }
 });
 
@@ -327,8 +329,11 @@ function hebrewfy(gender, number, type) {
       } else if (number === 2) {
         ending = "ניים";
       } else if (
-        (number >= 3 && number <= 4) ||
-        (number >= 7 && number <= 10)
+        number === 3 ||
+        number === 4 ||
+        number === 7 ||
+        number === 9 ||
+        number === 10
       ) {
         ending = "ה";
       } else if (number === 5 || nubmer === 6) {
@@ -353,31 +358,39 @@ function hebrewfy(gender, number, type) {
 $("#input-sibiling-position").on("input", function () {
   validateNumbersWithoutUpdate("input-sibiling-position");
   leadingZero("input-sibiling-position");
-  if ($("#input-sibiling-position").val() === 0) {
+  if ($("#sibiling-position-number") === "") {
+    updateData("sibilings", "");
+  } else if ($("#input-sibiling-position").val() === "0") {
     showError("הערך חייב להיות גדול מאפס");
+    updateData("sibilings", "");
     $("#input-sibiling-position").val("");
+    shakeId("input-sibiling-position");
   } else if (
     parseInt($("#input-sibiling-position").val()) >
     parseInt($("#input-sibiling-number").val())
   ) {
     showError("הערך חייב להיות קטן או שווה למספר האחאים");
+    shakeId("input-sibiling-position");
     $("#input-sibiling-position").val("");
-  }
-  if ($("#input-sibiling-position").val() != "0") {
-    let tempPosition = hebrewfy(
-      thisPatient.gender,
-      parseInt($("#input-sibiling-position").val()),
-      "position"
-    );
-    let tempQuantity = hebrewfy(
-      "בן",
-      parseInt($("#input-sibiling-position").val()),
-      "quantity"
-    );
-    let tempString = `ה${tempPosition} מבין ${tempQuantity} אחאים`;
-    updateData("sibilings", tempString);
+  } else if ($("#input-sibiling-position").val() != "0") {
+    sibilings();
   }
 });
+
+function sibilings() {
+  let tempPosition = hebrewfy(
+    thisPatient.gender,
+    parseInt($("#input-sibiling-position").val()),
+    "position"
+  );
+  let tempQuantity = hebrewfy(
+    "בן",
+    parseInt($("#input-sibiling-number").val()),
+    "quantity"
+  );
+  let tempString = `ה${tempPosition} מבין ${tempQuantity} אחאים`;
+  updateData("sibilings", tempString);
+}
 
 // blue focus
 
