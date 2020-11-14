@@ -89,8 +89,23 @@ const theData = [
     source: null,
     title: "סטטוס משפחתי",
   },
+  {
+    stepNumber: 6,
+    stepName: "sibilings",
+    pageNumber: 5,
+    pageName: "marital status",
+    type: "content",
+    binary: false,
+    before: "",
+    after: "",
+    value: undefined,
+    newSection: false,
+    page: null,
+    source: null,
+    title: "אחאים",
+  },
 ];
 
 // Spaces are not allowed in this array's values!
 //
-const stepOrder = ["gender", "age", "religion", "marital-status"];
+const stepOrder = ["gender", "age", "religion", "marital-status", "sibilings"];

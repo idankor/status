@@ -54,13 +54,13 @@ $(document).keydown(function (e) {
   //
   // $PAGE1$
   // ^GENDER^
-  //
+
   if (stepOrder[currentStep] === "gender") {
     if (e.keyCode === 39) {
       $("#btn-male").focus();
     } else if (e.keyCode === 37) {
       $("#btn-female").focus();
-      //
+
       // error
       //
     } else if (
@@ -74,6 +74,9 @@ $(document).keydown(function (e) {
     }
   }
 
+  // $PAGE3$
+  // ^GENDER^
+
   if (stepOrder[currentStep] === "religion") {
     if (e.keyCode === 40) {
       $("#btn-religion-next").focus();
@@ -81,6 +84,9 @@ $(document).keydown(function (e) {
       $("#input-religion").focus();
     }
   }
+
+  // $PAGE4$
+  // ^MARITAL STATUS^
 
   if (stepOrder[currentStep] === "marital-status") {
     if (e.keyCode === 40) {
@@ -92,12 +98,12 @@ $(document).keydown(function (e) {
     }
   }
 });
-//
+
 // // // // ---- LOCAL ---- // // // //
-//
+
 // $PAGE2$
 // ^AGE^
-//
+
 $("#input-age").on("keydown", function (e) {
   if (e.keyCode === 13) {
     if ($("#input-age").val() === "") {
@@ -137,6 +143,17 @@ $("#input-marital-status").on("keydown", function (e) {
   } else if (e.keyCode === 13 && $(this).val() === "") {
     showError("חובה לציין מצב משפחתי");
     shakeId("input-marital-status");
+  }
+});
+
+$("#input-children-number").on("keydown", function (e) {
+  if (e.keyCode === 13) {
+    if ($("#input-children-number").val() === "") {
+      showError("חובה לציין מספר ילדים");
+      shakeId("input-children-number");
+    } else {
+      nextStep();
+    }
   }
 });
 
@@ -195,6 +212,7 @@ $("#input-children-number").on("input", function () {
   if ($("#input-children-number").val() == "0") {
     updateData("children number", "ללא ילדים");
   } else {
+    setCustomValue("children number", "before", "+ ");
     validateNumbers("input-children-number", "children number");
   }
 });
@@ -286,6 +304,7 @@ function nextStep() {
   );
   stepIndicator++;
   currentStep = stepIndicator - 1;
+  console.log(stepIndicator);
 }
 
 function validateHebrew(fieldName, dataName) {
@@ -414,4 +433,14 @@ function shakeId(name) {
   setTimeout(function () {
     $(`#${name}`).removeClass("shake-horizontal shake-constant");
   }, 150);
+}
+
+function setCustomValue(theName, theProperty, theValue) {
+  for (i = 0; i < theData.length; i++) {
+    if (theData[i].stepName === theName) {
+      theData[i][theProperty] = theValue;
+      return;
+    }
+  }
+  console.log(`Error: can't find "${theName}" in "theData.`);
 }
