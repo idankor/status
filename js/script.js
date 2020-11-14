@@ -44,60 +44,72 @@ $(function () {
   // ^^^ [GLOBAL READY] ^^^
   //
   nextStep();
-});
-//
-// // // // @KEYPRESS EVENTS@ // // // //
-//
-// // // // ---- GLOBAL ---- // // // //
-//
-$(document).keydown(function (e) {
   //
-  // $PAGE1$
-  // ^GENDER^
+  // // // // @KEYPRESS EVENTS@ // // // //
+  //
+  // // // // ---- GLOBAL ---- // // // //
+  //
+  $(document).keydown(function (e) {
+    //
+    // $PAGE1$
+    // ^GENDER^
 
-  if (stepOrder[currentStep] === "gender") {
-    if (e.keyCode === 39) {
-      $("#btn-male").focus();
-    } else if (e.keyCode === 37) {
-      $("#btn-female").focus();
+    if (stepOrder[currentStep] === "gender") {
+      if (e.keyCode === 39) {
+        $("#btn-male").focus();
+      } else if (e.keyCode === 37) {
+        $("#btn-female").focus();
 
-      // error
-      //
-    } else if (
-      e.keyCode === 13 &&
-      !$("#btn-male").is(":focus") &&
-      !$("#btn-female").is(":focus")
-    ) {
-      showError("חייב לבחור מגדר!");
-      shakeId("btn-male");
-      shakeId("btn-female");
+        // error
+        //
+      } else if (
+        e.keyCode === 13 &&
+        !$("#btn-male").is(":focus") &&
+        !$("#btn-female").is(":focus")
+      ) {
+        showError("חייב לבחור מגדר!");
+        shakeId("btn-male");
+        shakeId("btn-female");
+      }
     }
-  }
 
-  // $PAGE3$
-  // ^GENDER^
+    // $PAGE3$
+    // ^GENDER^
 
-  if (stepOrder[currentStep] === "religion") {
-    if (e.keyCode === 40) {
-      $("#btn-religion-next").focus();
-    } else if (e.keyCode === 38) {
-      $("#input-religion").focus();
+    if (stepOrder[currentStep] === "religion") {
+      if (e.keyCode === 40) {
+        $("#btn-religion-next").focus();
+      } else if (e.keyCode === 38) {
+        $("#input-religion").focus();
+      }
     }
-  }
 
-  // $PAGE4$
-  // ^MARITAL STATUS^
+    // $PAGE4$
+    // ^MARITAL STATUS^
 
-  if (stepOrder[currentStep] === "marital-status") {
-    if (e.keyCode === 40) {
-      e.preventDefault();
-      $("#input-children-number").focus();
-    } else if (e.keyCode === 38) {
-      e.preventDefault();
-      $("#input-marital-status").focus();
+    if (stepOrder[currentStep] === "marital-status") {
+      if (e.keyCode === 40) {
+        e.preventDefault();
+        $("#input-children-number").focus();
+      } else if (e.keyCode === 38) {
+        e.preventDefault();
+        $("#input-marital-status").focus();
+      }
     }
-  }
-});
+    // $PAGE5$
+    // ^SIBILINGS^
+
+    if (stepOrder[currentStep] === "sibilings") {
+      if (e.keyCode === 40) {
+        e.preventDefault();
+        $("#input-sibiling-position").focus();
+      } else if (e.keyCode === 38) {
+        e.preventDefault();
+        $("#input-sibiling-number").focus();
+      }
+    }
+  }); // -------- END OF GLOBAL KEYPRESSES -------- //
+}); // -------- END OF READY FUNCTION-------- //
 
 // // // // ---- LOCAL ---- // // // //
 
@@ -153,6 +165,7 @@ $("#input-children-number").on("keydown", function (e) {
       shakeId("input-children-number");
     } else {
       nextStep();
+      $("#input-sibiling-number").focus();
     }
   }
 });
@@ -223,6 +236,25 @@ $("#input-children-number").focusin(function () {
 
 $("#input-children-number").focusout(function () {
   unfocusBorder("input-children-number");
+});
+
+// $PAGE5$
+// ^SIBILINGS^
+
+$("#input-sibiling-number").focusin(function () {
+  focusBorder("input-sibiling-number");
+});
+
+$("#input-sibiling-number").focusout(function () {
+  unfocusBorder("input-sibiling-number");
+});
+
+$("#input-sibiling-position").focusin(function () {
+  focusBorder("input-sibiling-position");
+});
+
+$("#input-sibiling-position").focusout(function () {
+  unfocusBorder("input-sibiling-position");
 });
 
 // // // // @CLICK EVENTS@ // // // //
