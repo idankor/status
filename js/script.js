@@ -293,7 +293,8 @@ $("#input-sibiling-position").on("input", function () {
     showError("הערך חייב להיות גדול מאפס");
     $("#input-sibiling-position").val("");
   } else if (
-    $("#input-sibiling-position".val() > $("#input-sibiling-number").val())
+    parseInt($("#input-sibiling-position").val()) >
+    parseInt($("#input-sibiling-number").val())
   ) {
     showError("הערך חייב להיות קטן או שווה לממספר האחאים");
     $("#input-sibiling-position").val("");
