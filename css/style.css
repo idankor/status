@@ -631,3 +631,74 @@ input:checked + .slider:before {
 #step-5 {
   display: none;
 }
+
+/* assistant-200 - latin_hebrew */
+@font-face {
+  font-family: "Assistant";
+  font-style: normal;
+  font-weight: 200;
+  src: local(""),
+    url("fonts/assistant-v6-latin_hebrew-200.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url("fonts/assistant-v6-latin_hebrew-200.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* assistant-300 - latin_hebrew */
+@font-face {
+  font-family: "Assistant";
+  font-style: normal;
+  font-weight: 300;
+  src: local(""),
+    url("fonts/assistant-v6-latin_hebrew-300.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url("fonts/assistant-v6-latin_hebrew-300.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* assistant-regular - latin_hebrew */
+@font-face {
+  font-family: "Assistant";
+  font-style: normal;
+  font-weight: 400;
+  src: local(""),
+    url("fonts/assistant-v6-latin_hebrew-regular.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url("fonts/assistant-v6-latin_hebrew-regular.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* assistant-500 - latin_hebrew */
+@font-face {
+  font-family: "Assistant";
+  font-style: normal;
+  font-weight: 500;
+  src: local(""),
+    url("fonts/assistant-v6-latin_hebrew-500.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url("fonts/assistant-v6-latin_hebrew-500.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* assistant-600 - latin_hebrew */
+@font-face {
+  font-family: "Assistant";
+  font-style: normal;
+  font-weight: 600;
+  src: local(""),
+    url("fonts/assistant-v6-latin_hebrew-600.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url("fonts/assistant-v6-latin_hebrew-600.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* assistant-700 - latin_hebrew */
+@font-face {
+  font-family: "Assistant";
+  font-style: normal;
+  font-weight: 700;
+  src: local(""),
+    url("fonts/assistant-v6-latin_hebrew-700.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url("fonts/assistant-v6-latin_hebrew-700.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* assistant-800 - latin_hebrew */
+@font-face {
+  font-family: "Assistant";
+  font-style: normal;
+  font-weight: 800;
+  src: local(""),
+    url("fonts/assistant-v6-latin_hebrew-800.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url("fonts/assistant-v6-latin_hebrew-800.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
