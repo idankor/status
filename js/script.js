@@ -220,21 +220,35 @@ $("#input-religion").focusout(function () {
 // $PAGE4$
 // ^MARITAL STATUS^
 
+function maritalStatusGenerator() {
+  if ($("#input-marital-status") === "") {
+    updateData("marital-status", "");
+  }
+  let tempMaritalStatus = $("#input-marital-status").val();
+  let tempChildrenNumber = $("input-children-number").val();
+  if ($("#input-children-number").val() === "0") {
+    tempChildrenNumber = " ללא ילדים";
+  } else if ($("#input-children-number").val() === "") {
+    tempChildrenNumber = "";
+  } else {
+    tempChildrenNumber = ` + ${$("#input-children-number").val()}`;
+  }
+  let tempString = tempMaritalStatus + tempChildrenNumber;
+  updateData("marital-status", tempString);
+}
+
 // marital status
 
 $("#input-marital-status").on("input", function () {
-  validateHebrew("input-marital-status", "marital-status");
+  validateHebrewWithoutUpdate("input-marital-status");
+  maritalStatusGenerator();
 });
 
 // number of children
 
 $("#input-children-number").on("input", function () {
-  if ($("#input-children-number").val() == "0") {
-    updateData("children-number", "ללא ילדים");
-  } else {
-    setCustomValue("children-number", "before", "+ ");
-    validateNumbers("input-children-number", "children-number");
-  }
+  validateNumbersWithoutUpdate("input-children-number");
+  maritalStatusGenerator();
 });
 
 // blue focus
@@ -271,7 +285,18 @@ $("#input-sibiling-number").on("input", function () {
   }
 });
 
-$("#input-sibiling-position").on("input", function () {});
+$("#input-sibiling-position").on("input", function () {
+  validateNumbersWithoutUpdate("input-sibiling-position");
+  if ($("#input-sibiling-position").val() === 0) {
+    showError("הערך חייב להיות גדול מאפס");
+    $("#input-sibiling-position").val("");
+  } else if (
+    $("#input-sibiling-position".val() > $("#input-sibiling-number").val())
+  ) {
+    showError("הערך חייב להיות קטן או שווה לממספר האחאים");
+    $("#input-sibiling-position").val("");
+  }
+});
 
 let sibilingPosition = [
   "ראשון",
@@ -381,6 +406,20 @@ function validateHebrew(fieldName, dataName) {
   }
 }
 
+function validateHebrewWithoutUpdate(fieldName, dataName) {
+  if ($(`#${fieldName}`).val() != "") {
+    var hasNumber = /^[א-ת]/;
+    let tempString = "";
+    tempString = $(`#${fieldName}`).val();
+    tempString = tempString.slice(-1);
+    if (!hasNumber.test(tempString)) {
+      let correction = $(`#${fieldName}`).val().slice(0, -1);
+      $(`#${fieldName}`).val(correction);
+      showError("נא להכניס רק אותיות בעברית");
+    }
+  }
+}
+
 function validateNumbers(fieldName, dataName) {
   if ($(`#${fieldName}`).val() != "") {
     var hasNumber = /^[0-9]/;
@@ -402,8 +441,7 @@ function validateNumbers(fieldName, dataName) {
 function validateNumbersWithoutUpdate(fieldName) {
   if ($(`#${fieldName}`).val() != "") {
     var hasNumber = /^[0-9]/;
-    let tempString = "";
-    tempString = $(`#${fieldName}`).val();
+    let tempString = $(`#${fieldName}`).val();
     tempString = tempString.slice(-1);
     if (!hasNumber.test(tempString)) {
       let correction = $(`#${fieldName}`).val().slice(0, -1);
@@ -481,6 +519,9 @@ $(".nav-li").click(function () {
       );
     }
   }
+
+  currentStep = theData[idString + 1].stepName;
+  console.log(currentStep);
 });
 
 // Show error
