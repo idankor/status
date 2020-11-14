@@ -69,7 +69,8 @@ $(document).keydown(function (e) {
       !$("#btn-female").is(":focus")
     ) {
       showError("חייב לבחור מגדר!");
-      $("#btn-male, #btn-female").effect("shake", { distance: 5 });
+      shakeId("btn-male");
+      shakeId("btn-female");
     }
   }
 
@@ -78,6 +79,16 @@ $(document).keydown(function (e) {
       $("#btn-religion-next").focus();
     } else if (e.keyCode === 38) {
       $("#input-religion").focus();
+    }
+  }
+
+  if (stepOrder[currentStep] === "marital-status") {
+    if (e.keyCode === 40) {
+      e.preventDefault();
+      $("#input-children-number").focus();
+    } else if (e.keyCode === 38) {
+      e.preventDefault();
+      $("#input-marital-status").focus();
     }
   }
 });
@@ -94,7 +105,7 @@ $("#input-age").on("keydown", function (e) {
       shakeId("input-age");
     } else if ($("#input-age").val() === "0") {
       showError("הגיל צריך להיות גדול מאפס");
-      $("#input-age-container").effect("shake", { distance: 5 });
+      shakeId("input-age");
     } else {
       nextStep();
       $("#input-religion").focus();
@@ -113,12 +124,21 @@ $("#input-religion").on("keydown", function (e) {
     }
   } else if (e.keyCode === 13) {
     showError("יש לציין דת או לדלג");
-    $("#input-religion").effect("shake", { distance: 5 });
+    shakeId("input-religion");
   }
 });
 
 // $PAGE4$
 // ^MARITAL STATUS^
+
+$("#input-marital-status").on("keydown", function (e) {
+  if (e.keyCode === 13 && $(this).val() !== "") {
+    $("#input-children-number").focus();
+  } else if (e.keyCode === 13 && $(this).val() === "") {
+    showError("חובה לציין מצב משפחתי");
+    shakeId("input-marital-status");
+  }
+});
 
 // // // // @INPUT EVENTS@ // // // //
 
@@ -272,7 +292,6 @@ function validateHebrew(fieldName, dataName) {
     let tempString = "";
     tempString = $(`#${fieldName}`).val();
     tempString = tempString.slice(-1);
-    console.log(tempString);
     if (!hasNumber.test(tempString)) {
       let correction = $(`#${fieldName}`).val().slice(0, -1);
       $(`#${fieldName}`).val(correction);
@@ -291,7 +310,6 @@ function validateNumbers(fieldName, dataName) {
     let tempString = "";
     tempString = $(`#${fieldName}`).val();
     tempString = tempString.slice(-1);
-    console.log(tempString);
     if (!hasNumber.test(tempString)) {
       let correction = $(`#${fieldName}`).val().slice(0, -1);
       $(`#${fieldName}`).val(correction);
