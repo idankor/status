@@ -91,9 +91,9 @@ const theData = [
   },
   {
     stepNumber: 6,
-    stepName: "sibilings",
+    stepName: "sibiling-number",
     pageNumber: 5,
-    pageName: "marital-status",
+    pageName: "sibilings",
     type: "content",
     binary: false,
     before: "",
