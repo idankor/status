@@ -263,6 +263,8 @@ $("#input-sibiling-number").on("input", function () {
       tempString += "ה";
     }
     updateData("sibilings", `${tempString}`);
+  } else if ($("#input-sibiling-number").val() === "") {
+    updateData("sibilings", "");
   }
 });
 
