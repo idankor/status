@@ -2,6 +2,32 @@ let stepIndicator = 0;
 let currentStep = 0;
 let justArrived = true;
 
+let hebrewPosition = [
+  "ראשו",
+  "שני",
+  "שלישי",
+  "רביעי",
+  "חמישי",
+  "שישי",
+  "שביעי",
+  "שמיני",
+  "תשיעי",
+  "עשירי",
+];
+
+let hebrewQuantity = [
+  "אח",
+  "ש",
+  "שלוש",
+  "ארבע",
+  "חמ",
+  "ש",
+  "שבע",
+  "שמונה",
+  "תשע",
+  "עשר",
+];
+
 // @VARIABLES@
 
 let theGender = undefined;
@@ -287,32 +313,6 @@ $("#input-sibiling-number").on("input", function () {
   }
 });
 
-let hebrewPosition = [
-  "ראשו",
-  "שני",
-  "שלישי",
-  "רביעי",
-  "חמישי",
-  "שישי",
-  "שביעי",
-  "שמיני",
-  "תשיעי",
-  "עשירי",
-];
-
-let hebrewQuantity = [
-  "אח",
-  "ש",
-  "שלוש",
-  "ארבע",
-  "חמ",
-  "ש",
-  "שבע",
-  "שמונה",
-  "תשע",
-  "עשר",
-];
-
 function hebrewfy(gender, number, type) {
   let starting = "";
   let ending = "";
@@ -358,7 +358,7 @@ function hebrewfy(gender, number, type) {
 $("#input-sibiling-position").on("input", function () {
   validateNumbersWithoutUpdate("input-sibiling-position");
   leadingZero("input-sibiling-position");
-  if ($("#sibiling-position-number") === "") {
+  if ($("#input-sibiling-position").val() === "") {
     updateData("sibilings", "");
   } else if ($("#input-sibiling-position").val() === "0") {
     showError("הערך חייב להיות גדול מאפס");
@@ -385,7 +385,7 @@ function sibilings() {
   );
   let tempQuantity = hebrewfy(
     "בן",
-    parseInt($("#input-sibiling-number").val()),
+    parseInt($("#input-sibiling-number").val()) + 1,
     "quantity"
   );
   let tempString = `ה${tempPosition} מבין ${tempQuantity} אחאים`;
