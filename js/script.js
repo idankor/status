@@ -195,7 +195,7 @@ $("#input-religion").focusout(function () {
 // marital status
 
 $("#input-marital-status").on("input", function () {
-  validateHebrew("input-marital-status", "marital status");
+  validateHebrew("input-marital-status", "marital-status");
 });
 
 $("#input-marital-status").focusin(function () {
@@ -210,10 +210,10 @@ $("#input-marital-status").focusout(function () {
 
 $("#input-children-number").on("input", function () {
   if ($("#input-children-number").val() == "0") {
-    updateData("children number", "ללא ילדים");
+    updateData("children-number", "ללא ילדים");
   } else {
-    setCustomValue("children number", "before", "+ ");
-    validateNumbers("input-children-number", "children number");
+    setCustomValue("children-number", "before", "+ ");
+    validateNumbers("input-children-number", "children-number");
   }
 });
 
@@ -292,19 +292,22 @@ let sibilingPositionFemale = [
 // @FUNCTIONS@
 
 function nextStep() {
+  // הצעד הבא
   $(".step").css("display", "none");
   $(`.step-${stepOrder[stepIndicator]}`).css("display", "flex");
   if ($("#current-title").length) {
     $("#current-title").remove();
   }
-  $("#header-title").append(
-    `<div class="title-box" id="current-title">${
-      theData[stepIndicator + 1].title
-    }</div>`
-  );
+  for (i = 0; i < theData.length; i++) {
+    if (theData[i].stepName === stepOrder[stepIndicator]) {
+      $("#header-title").append(
+        `<div class="title-box" id="current-title">${theData[i].title}</div>`
+      );
+    }
+  }
   stepIndicator++;
   currentStep = stepIndicator - 1;
-  console.log(stepIndicator);
+  console.log(stepIndicator + 1);
 }
 
 function validateHebrew(fieldName, dataName) {
@@ -396,7 +399,17 @@ $(".nav-li").click(function () {
   $(".step").css("display", "none");
   $(`.step-${stepOrder[idString]}`).css("display", "flex");
   $(`.step${idString}`).css("display", "flex");
+  for (i = 0; i < theData.length; i++) {
+    if (theData[i].pageNumber === idString + 1) {
+      $("#current-title").remove();
+      $("#header-title").append(
+        `<div class="title-box" id="current-title">${theData[i].title}</div>`
+      );
+    }
+  }
 });
+
+// Show error
 
 function showError(errorContent) {
   document.getElementById("card-footer").innerHTML = "";
@@ -411,8 +424,16 @@ function showError(errorContent) {
   $(".error-box").fadeOut(4200);
 }
 
+// Update data
+
+let stepCounter = 0;
+
 function updateData(name, input) {
+  stepCounter = 0;
   for (i = 0; i < theData.length; i++) {
+    if (theData[i].value === undefined) {
+      stepCounter++;
+    }
     if (theData[i].stepName === name) {
       theData[i].value = input;
     }
