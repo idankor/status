@@ -170,6 +170,18 @@ $("#input-children-number").on("keydown", function (e) {
   }
 });
 
+// $PAGE5$
+// ^SIBILINGS^
+
+$("#input-sibiling-number").on("keydown", function (e) {
+  if (e.keyCode === 13) {
+    if ($("#input-sibiling-number").val() === "") {
+      showError("חובה לציין מספר אחאים");
+      shakeId("input-sibiling-number");
+    }
+  }
+});
+
 // // // // @INPUT EVENTS@ // // // //
 
 // $PAGE2$
@@ -211,14 +223,6 @@ $("#input-marital-status").on("input", function () {
   validateHebrew("input-marital-status", "marital-status");
 });
 
-$("#input-marital-status").focusin(function () {
-  focusBorder("input-marital-status");
-});
-
-$("#input-marital-status").focusout(function () {
-  unfocusBorder("input-marital-status");
-});
-
 // number of children
 
 $("#input-children-number").on("input", function () {
@@ -228,6 +232,16 @@ $("#input-children-number").on("input", function () {
     setCustomValue("children-number", "before", "+ ");
     validateNumbers("input-children-number", "children-number");
   }
+});
+
+// blue focus
+
+$("#input-marital-status").focusin(function () {
+  focusBorder("input-marital-status");
+});
+
+$("#input-marital-status").focusout(function () {
+  unfocusBorder("input-marital-status");
 });
 
 $("#input-children-number").focusin(function () {
@@ -240,6 +254,19 @@ $("#input-children-number").focusout(function () {
 
 // $PAGE5$
 // ^SIBILINGS^
+
+$("#input-sibiling-number").on("input", function () {
+  validateNumbersWithoutUpdate("input-sibiling-number");
+  if ($("#input-sibiling-number").val() === "0") {
+    let tempString = theData[1].value + " יחיד";
+    if (theData[1].value === "בת") {
+      tempString += "ה";
+    }
+    updateData("sibilings", `${tempString}`);
+  }
+});
+
+// blue focus
 
 $("#input-sibiling-number").focusin(function () {
   focusBorder("input-sibiling-number");
@@ -377,6 +404,20 @@ function validateNumbers(fieldName, dataName) {
   }
 }
 
+function validateNumbersWithoutUpdate(fieldName) {
+  if ($(`#${fieldName}`).val() != "") {
+    var hasNumber = /^[0-9]/;
+    let tempString = "";
+    tempString = $(`#${fieldName}`).val();
+    tempString = tempString.slice(-1);
+    if (!hasNumber.test(tempString)) {
+      let correction = $(`#${fieldName}`).val().slice(0, -1);
+      $(`#${fieldName}`).val(correction);
+      showError("נא להכניס רק מספרים");
+    }
+  }
+}
+
 function renderResult() {
   $("#result-sub-container").html("");
   let componentIdIndicator = 0;
@@ -459,7 +500,7 @@ function showError(errorContent) {
   document.getElementById("card-footer").appendChild(errorElement);
   $(".error-box").hide();
   $(".error-box").fadeIn(0);
-  $(".error-box").fadeOut(4200);
+  $(".error-box").fadeOut(5000);
 }
 
 // Update data

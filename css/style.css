@@ -42,7 +42,6 @@ h2 {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  /* animation: shake 0.5s; */
 }
 
 /* DEBUGGER */
@@ -422,8 +421,8 @@ input {
 }
 
 input:disabled {
-  background-color: #c0c4cc;
-  border: 1px solid EBEEF5;
+  background-color: #ebeef5;
+  border: 1px solid #dcdfe6;
 }
 
 .input-sm {
