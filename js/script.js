@@ -248,6 +248,8 @@ $("#input-marital-status").on("input", function () {
 
 $("#input-children-number").on("input", function () {
   validateNumbersWithoutUpdate("input-children-number");
+  let tempString = $("#input-children-number").val();
+  $("#input-children-number").val(tempString.replace(/^0(?=\d)/, ""));
   maritalStatusGenerator();
 });
 
@@ -377,13 +379,11 @@ function nextStep() {
   if ($("#current-title").length) {
     $("#current-title").remove();
   }
-  for (i = 0; i < theData.length; i++) {
-    if (theData[i].stepName === stepOrder[stepIndicator]) {
-      $("#header-title").append(
-        `<div class="title-box" id="current-title">${theData[i].title}</div>`
-      );
-    }
-  }
+  $("#header-title").append(
+    `<div class="title-box" id="current-title">${
+      theData[stepIndicator + 1].title
+    }</div>`
+  );
   stepIndicator++;
   currentStep = stepIndicator - 1;
 }
