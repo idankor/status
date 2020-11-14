@@ -9,20 +9,6 @@ let bgIndex = 0;
 
 // @ARRAYS@
 
-let maleNumbers = [
-  undefined,
-  undefined,
-  "שני",
-  "שלושה",
-  "ארבעה",
-  "חמישה",
-  "שישה",
-  "שבעה",
-  "שמונה",
-  "תשעה",
-  "עשרה",
-];
-
 let componentBackground = [
   "#ffadad",
   "#ffd6a5",
@@ -290,8 +276,79 @@ $("#input-sibiling-number").on("input", function () {
     $("#input-sibiling-position").prop("disabled")
   ) {
     updateData("sibilings", "");
+  } else if (
+    parseInt($("#input-sibiling-position").val()) >
+    parseInt($("#input-sibiling-number").val())
+  ) {
+    showError("הערך חייב להיות גדול או שווה למיקום");
+    $("#input-sibiling-number").val("");
   }
 });
+
+let hebrewPosition = [
+  "ראשו",
+  "שני",
+  "שלישי",
+  "רביעי",
+  "חמישי",
+  "שישי",
+  "שביעי",
+  "שמיני",
+  "תשיעי",
+  "עשירי",
+];
+
+let hebrewQuantity = [
+  "אח",
+  "ש",
+  "שלוש",
+  "ארבע",
+  "חמ",
+  "ש",
+  "שבע",
+  "שמונה",
+  "תשע",
+  "עשר",
+];
+
+function hebrewfy(gender, number, type) {
+  let starting = "";
+  let ending = "";
+  if (gender === "בן") {
+    if (type === "position") {
+      starting = hebrewPosition[number - 1];
+      if (number === 1) {
+        ending = "ן";
+      }
+    } else if (type === "quantity") {
+      starting = hebrewQuantity[number - 1];
+      if (number === 1) {
+        ending = "ד";
+      } else if (number === 2) {
+        ending = "ניים";
+      } else if (
+        (number >= 3 && number <= 4) ||
+        (number >= 7 && number <= 10)
+      ) {
+        ending = "ה";
+      } else if (number === 5 || nubmer === 6) {
+        ending = "ישה";
+      }
+    }
+  } else if (gender === "בת") {
+    if (type === "position") {
+      starting = hebrewPosition[number - 1];
+      if (number === 1) {
+        ending = "נה";
+      } else if (number === 2) {
+        ending = "ה";
+      } else if (number >= 3 && number <= 10) {
+        ending = "ת";
+      }
+    }
+  }
+  return `${starting}${ending}`;
+}
 
 $("#input-sibiling-position").on("input", function () {
   validateNumbersWithoutUpdate("input-sibiling-position");
@@ -303,23 +360,24 @@ $("#input-sibiling-position").on("input", function () {
     parseInt($("#input-sibiling-position").val()) >
     parseInt($("#input-sibiling-number").val())
   ) {
-    showError("הערך חייב להיות קטן או שווה לממספר האחאים");
+    showError("הערך חייב להיות קטן או שווה למספר האחאים");
     $("#input-sibiling-position").val("");
   }
+  if ($("#input-sibiling-position").val() != "0") {
+    let tempPosition = hebrewfy(
+      thisPatient.gender,
+      parseInt($("#input-sibiling-position").val()),
+      "position"
+    );
+    let tempQuantity = hebrewfy(
+      "בן",
+      parseInt($("#input-sibiling-position").val()),
+      "quantity"
+    );
+    let tempString = `ה${tempPosition} מבין ${tempQuantity} אחאים`;
+    updateData("sibilings", tempString);
+  }
 });
-
-let sibilingPosition = [
-  "ראשון",
-  "שני",
-  "שלישי",
-  "רביעי",
-  "חמישי",
-  "שישי",
-  "שביעי",
-  "שמיני",
-  "תשיעי",
-  "עשירי",
-];
 
 // blue focus
 
@@ -349,7 +407,6 @@ $("#input-sibiling-position").focusout(function () {
 // male
 
 $("#btn-male").click(function () {
-  theGender = "male";
   $(".error-box").remove();
   updateData("gender", "בן");
   renderResult();
@@ -360,7 +417,6 @@ $("#btn-male").click(function () {
 // female
 
 $("#btn-female").click(function () {
-  theGender = "female";
   $(".error-box").remove();
   updateData("gender", "בת");
   renderResult();
@@ -527,9 +583,7 @@ $(".nav-li").click(function () {
       );
     }
   }
-
   currentStep = theData[idString + 1].stepName;
-  console.log(currentStep);
 });
 
 // Show error
@@ -552,6 +606,7 @@ function showError(errorContent) {
 let stepCounter = 0;
 
 function updateData(name, input) {
+  // פונקציית עדכון
   stepCounter = 0;
   for (i = 0; i < theData.length; i++) {
     if (theData[i].value === undefined) {
@@ -561,6 +616,7 @@ function updateData(name, input) {
       theData[i].value = input;
     }
   }
+  thisPatient[name] = input;
   renderResult();
 }
 

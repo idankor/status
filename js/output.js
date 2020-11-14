@@ -94,3 +94,12 @@ const theData = [
 // Spaces are not allowed in this array's values!
 //
 const stepOrder = ["gender", "age", "religion", "marital-status", "sibilings"];
+
+const thisPatient = {
+  gender: undefined,
+  age: undefined,
+  religion: undefined,
+  maritalStatus: undefined,
+  childrenNumber: undefined,
+  sibilingNumber: undefined,
+};
