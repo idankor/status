@@ -192,8 +192,10 @@ $("#input-marital-status").focusout(function () {
 // number of children
 
 $("#input-children-number").on("input", function () {
-  if ($("#input-children-number").val() == 0) {
+  if ($("#input-children-number").val() == "0") {
     updateData("children number", "ללא ילדים");
+  } else {
+    validateNumbers("input-children-number", "children number");
   }
 });
 
@@ -328,7 +330,7 @@ function renderResult() {
   let componentBgIndex = 0;
   let sectionBgIndex = 0;
   for (let step of theData) {
-    if (step.value !== undefined && step.value !== "") {
+    if (step.value !== undefined) {
       if (step.newSection) {
         $("#result-sub-container").append(
           `<div class="result-section">${step.value}</div>`
