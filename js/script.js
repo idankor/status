@@ -276,6 +276,7 @@ $("#input-children-number").focusout(function () {
 
 $("#input-sibiling-number").on("input", function () {
   validateNumbersWithoutUpdate("input-sibiling-number");
+  leadingZero("input-sibiling-number");
   if ($("#input-sibiling-number").val() === "0") {
     let tempString = theData[1].value + " יחיד";
     if (theData[1].value === "בת") {
@@ -284,11 +285,17 @@ $("#input-sibiling-number").on("input", function () {
     updateData("sibilings", `${tempString}`);
   } else if ($("#input-sibiling-number").val() === "") {
     updateData("sibilings", "");
+  } else if (
+    $("#input-sibiling-number").val() != "0" &&
+    $("#input-sibiling-position").prop("disabled")
+  ) {
+    updateData("sibilings", "");
   }
 });
 
 $("#input-sibiling-position").on("input", function () {
   validateNumbersWithoutUpdate("input-sibiling-position");
+  leadingZero("input-sibiling-position");
   if ($("#input-sibiling-position").val() === 0) {
     showError("הערך חייב להיות גדול מאפס");
     $("#input-sibiling-position").val("");
@@ -580,4 +587,9 @@ function setCustomValue(theName, theProperty, theValue) {
     }
   }
   console.log(`Error: can't find "${theName}" in "theData.`);
+}
+
+function leadingZero(fieldId) {
+  let tempString = $(`#${fieldId}`).val();
+  $(`#${fieldId}`).val(tempString.replace(/^0(?=\d)/, ""));
 }
