@@ -336,7 +336,7 @@ function hebrewfy(gender, number, type) {
         number === 10
       ) {
         ending = "ה";
-      } else if (number === 5 || nubmer === 6) {
+      } else if (number === 5 || number === 6) {
         ending = "ישה";
       }
     }
@@ -367,7 +367,7 @@ $("#input-sibiling-position").on("input", function () {
     shakeId("input-sibiling-position");
   } else if (
     parseInt($("#input-sibiling-position").val()) >
-    parseInt($("#input-sibiling-number").val())
+    parseInt($("#input-sibiling-number").val()) + 1
   ) {
     showError("הערך חייב להיות קטן או שווה למספר האחאים");
     shakeId("input-sibiling-position");
