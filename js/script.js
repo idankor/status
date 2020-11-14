@@ -307,7 +307,6 @@ function nextStep() {
   }
   stepIndicator++;
   currentStep = stepIndicator - 1;
-  console.log(stepIndicator + 1);
 }
 
 function validateHebrew(fieldName, dataName) {
@@ -384,11 +383,18 @@ function renderResult() {
 
 // Create step-nav
 
-for (i = 1; i < 11; i++) {
-  let tempElement = document.createElement("li");
-  tempElement.setAttribute("id", "step-nav-" + i);
-  document.getElementById("step-nav").appendChild(tempElement);
-  $("#step-nav-" + i).addClass("nav-li");
+let tempTitle = "";
+
+for (i = 0; i < stepOrder.length; i++) {
+  for (j = 0; j < theData.length; j++) {
+    if (theData[j].stepName === stepOrder[i]) {
+      $("#step-nav").append(
+        `<li id="step-nav-${i + 1}">${theData[j].title}</li>`
+      );
+    }
+  }
+  $("#step-nav").append(`<li id="step-nav-${i + 1}">${tempTitle}</li>`);
+  $(`#step-nav-${i + 1}`).addClass("nav-li");
 }
 
 // Use step-nav

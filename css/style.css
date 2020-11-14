@@ -296,6 +296,7 @@ ion-icon {
   color: white;
   padding: 5px;
   font-weight: 500;
+  font-size: 1.2rem;
 }
 
 .result-sub-section {
@@ -326,6 +327,7 @@ ion-icon {
   font-weight: 400;
   cursor: pointer;
   height: 65%;
+  font-size: 1.2rem;
 }
 
 .component:hover {
@@ -594,17 +596,12 @@ input:checked + .slider:before {
 }
 
 .nav-li {
-  font-size: 28px;
-}
-
-.nav-li:before {
-  content: counter(item) "  ";
-  counter-increment: item;
+  font-size: 1rem;
+  margin: 10% 0%;
 }
 
 .nav-li:hover {
   color: #e6a23c;
-  font-size: 30px;
 }
 
 /* ----- STEPS ----- */

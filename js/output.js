@@ -3,7 +3,7 @@
 const theData = [
   {
     stepNumber: 0,
-    stepName: "personal details",
+    stepName: "personal-details",
     pageNumber: 1,
     pageName: "gender",
     type: "title",
