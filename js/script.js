@@ -571,32 +571,32 @@ let tempTitle = "";
 for (i = 0; i < stepOrder.length; i++) {
   for (j = 0; j < theData.length; j++) {
     if (theData[j].stepName === stepOrder[i]) {
-      $("#step-nav").append(
-        `<li id="step-nav-${i + 1}">${theData[j].title}</li>`
-      );
+      $("#step-nav").append(`<li id="step-nav-${i}">${theData[j].title}</li>`);
     }
   }
-  $("#step-nav").append(`<li id="step-nav-${i + 1}">${tempTitle}</li>`);
-  $(`#step-nav-${i + 1}`).addClass("nav-li");
+  $("#step-nav").append(`<li id="step-nav-${i}">${tempTitle}</li>`);
+  $(`#step-nav-${i}`).addClass("nav-li");
 }
 
 // Use step-nav
 
 $(".nav-li").click(function () {
   let idString = this.id;
-  idString = parseInt(idString.replace(/^\D+/g, "") - 1);
+  idString = parseInt(idString.replace(/^\D+/g, ""));
   $(".step").css("display", "none");
   $(`.step-${stepOrder[idString]}`).css("display", "flex");
   $(`.step${idString}`).css("display", "flex");
   for (i = 0; i < theData.length; i++) {
-    if (theData[i].pageNumber === idString + 1) {
+    if (theData[i].pageNumber === idString) {
       $("#current-title").remove();
       $("#header-title").append(
-        `<div class="title-box" id="current-title">${theData[i].title}</div>`
+        `<div class="title-box" id="current-title">${
+          theData[i + 1].title
+        }</div>`
       );
     }
   }
-  currentStep = theData[idString + 1].stepName;
+  currentStep = theData[idString].stepName;
 });
 
 // Show error
