@@ -27,7 +27,22 @@ h2 {
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  margin: 0px 0px 0.5rem 0px;
+  margin: 0px 0px 0.25rem 0px;
+}
+
+h3 {
+  font-size: 0.75rem;
+}
+
+.comment {
+  margin: 0px;
+  font-size: 0.8rem;
+}
+
+.red {
+  color: #f56c6c;
+  margin: 0px 5px;
+  font-size: 0.9rem;
 }
 
 /* ERRORS */
@@ -208,6 +223,10 @@ ion-icon {
   background-color: #f2f6fc;
   width: 100%;
   flex: 8;
+}
+
+div {
+  /* border: pink 1px solid; */
 }
 
 .card-footer {
@@ -501,7 +520,7 @@ button:focus {
 }
 
 .spacer {
-  height: 5%;
+  height: 10%;
 }
 
 input::-webkit-outer-spin-button,
