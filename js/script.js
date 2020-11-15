@@ -1,3 +1,7 @@
+// @VARIABLES@
+
+let theGender = undefined;
+let bgIndex = 0;
 let stepIndicator = 0;
 let currentStep = 0;
 let justArrived = true;
@@ -27,11 +31,6 @@ let hebrewQuantity = [
   "תשע",
   "עשר",
 ];
-
-// @VARIABLES@
-
-let theGender = undefined;
-let bgIndex = 0;
 
 // @ARRAYS@
 
@@ -452,14 +451,12 @@ $("#btn-religion-next").click(function () {
 function nextStep() {
   // הצעד הבא
   $(".step").css("display", "none");
-  $(`.step-${stepOrder[stepIndicator]}`).css("display", "flex");
+  $(`.step-${stepOrder[stepIndicator]}`).css("display", "flex"); // סדר הריצה נקבע על ידי המערך stepOrder
   if ($("#current-title").length) {
     $("#current-title").remove();
   }
   $("#header-title").append(
-    `<div class="title-box" id="current-title">${
-      theData[stepIndicator + 1].title
-    }</div>`
+    `<div class="title-box" id="current-title">${theData[stepIndicator].title}</div>`
   );
   stepIndicator++;
   currentStep = stepIndicator - 1;
@@ -533,34 +530,31 @@ function renderResult() {
   let componentIdIndicator = 0;
   let componentBgIndex = 0;
   let sectionBgIndex = 0;
-  for (let step of theData) {
-    if (step.value !== undefined) {
-      if (step.newSection) {
-        $("#result-sub-container").append(
-          `<div class="result-section">${step.value}</div>`
-        );
-        $(".result-section").last().css("background-color") == undefined;
-        $(".result-section")
-          .last()
-          .css("background-color", sectionBackground[sectionBgIndex % 5]);
-        $("#result-sub-container").append(
-          `<div class="result-sub-section"></div>`
-        );
-      } else {
-        if (step.value !== "") {
-          $(".result-sub-section").last().append(
-            `<div class="component" id="custom${componentIdIndicator}">${step.before}${step.value}${step.after}
-            </div>`
-          );
-          $(`#custom${componentIdIndicator}`).css(
-            "background-color",
-            componentBackground[componentBgIndex % 8]
-          );
-          componentBgIndex++;
-        }
-        componentIdIndicator++;
-      }
+  for (i = 0; i < theData.length; i++) {
+    if (theData[i].newSection) {
+      $("#result-sub-container").append(
+        `<div class="result-section">${theData[i].sectionName}</div>`
+      );
+      $(".result-section")
+        .last()
+        .css("background-color", sectionBackground[sectionBgIndex % 5]);
+      $("#result-sub-container").append(
+        `<div class="result-sub-section"></div>`
+      );
     }
+    if (theData[i].value != "") {
+      $(".result-sub-section").last().append(
+        `<div class="component" id="custom${componentIdIndicator}">${theData[i].before}${theData[i].value}${theData[i].after}
+            </div>`
+      );
+      console.log("appended");
+      $(`#custom${componentIdIndicator}`).css(
+        "background-color",
+        componentBackground[componentBgIndex % 8]
+      );
+      componentBgIndex++;
+    }
+    componentIdIndicator++;
   }
 }
 
@@ -619,6 +613,7 @@ function showError(errorContent) {
 let stepCounter = 0;
 
 function updateData(name, input) {
+  // עדכון נתונים
   // פונקציית עדכון
   stepCounter = 0;
   for (i = 0; i < theData.length; i++) {
@@ -627,6 +622,7 @@ function updateData(name, input) {
     }
     if (theData[i].stepName === name) {
       theData[i].value = input;
+      console.log("updated");
     }
   }
   thisPatient[name] = input;
