@@ -37,6 +37,7 @@ h3 {
 .comment {
   margin: 0px;
   font-size: 0.8rem;
+  color: #909399;
 }
 
 .red {
@@ -320,6 +321,7 @@ div {
   color: white;
   padding: 5px;
   font-size: 1.2rem;
+  background-color: #c0c4cc;
 }
 
 .result-sub-section {

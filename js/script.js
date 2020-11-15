@@ -495,9 +495,6 @@ function renderResult() {
       $("#result-sub-container").append(
         `<div class="result-section">${theData[i].sectionName}</div>`
       );
-      $(".result-section")
-        .last()
-        .css("background-color", sectionBackground[sectionBgIndex % 5]);
       $("#result-sub-container").append(
         `<div class="result-sub-section"></div>`
       );
