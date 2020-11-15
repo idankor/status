@@ -21,11 +21,13 @@ h1 {
 
 h2 {
   color: #606266;
-  font-size: 1.2rem;
+  font-size: 1rem;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: row;
+  margin: 0px 0px 0.5rem 0px;
 }
 
 /* ERRORS */
@@ -224,7 +226,7 @@ ion-icon {
   justify-content: center;
   border-radius: 10px;
   width: 100%;
-  border: 1px plum solid;
+  /* border: 1px plum solid; */
 }
 
 .heigth-2rem {
@@ -419,6 +421,10 @@ input {
     0 15px 40px rgba(166, 173, 201, 0.2);
   text-align: center;
   height: 4rem;
+}
+
+input:focus {
+  border: #409eff solid 4px;
 }
 
 input:disabled {

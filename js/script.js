@@ -205,27 +205,11 @@ $("#input-age").on("input", function () {
   validateNumbers("input-age", "age");
 });
 
-$("#input-age").focusin(function () {
-  focusBorder("input-age");
-});
-
-$("#input-age").focusout(function () {
-  unfocusBorder("input-age");
-});
-
 // $PAGE3$
 // ^RELIGION^
 
 $("#input-religion").on("input", function () {
   validateHebrew("input-religion", "religion");
-});
-
-$("#input-religion").focusin(function () {
-  focusBorder("input-religion");
-});
-
-$("#input-religion").focusout(function () {
-  unfocusBorder("input-religion");
 });
 
 // $PAGE4$
@@ -262,24 +246,6 @@ $("#input-children-number").on("input", function () {
   let tempString = $("#input-children-number").val();
   $("#input-children-number").val(tempString.replace(/^0(?=\d)/, ""));
   maritalStatusGenerator();
-});
-
-// blue focus
-
-$("#input-marital-status").focusin(function () {
-  focusBorder("input-marital-status");
-});
-
-$("#input-marital-status").focusout(function () {
-  unfocusBorder("input-marital-status");
-});
-
-$("#input-children-number").focusin(function () {
-  focusBorder("input-children-number");
-});
-
-$("#input-children-number").focusout(function () {
-  unfocusBorder("input-children-number");
 });
 
 // $PAGE5$
@@ -401,24 +367,6 @@ function sibilings() {
   let tempString = `ה${tempPosition} מבין ${tempQuantity} אחאים`;
   updateData("sibilings", tempString);
 }
-
-// blue focus
-
-$("#input-sibiling-number").focusin(function () {
-  focusBorder("input-sibiling-number");
-});
-
-$("#input-sibiling-number").focusout(function () {
-  unfocusBorder("input-sibiling-number");
-});
-
-$("#input-sibiling-position").focusin(function () {
-  focusBorder("input-sibiling-position");
-});
-
-$("#input-sibiling-position").focusout(function () {
-  unfocusBorder("input-sibiling-position");
-});
 
 // // // // @CLICK EVENTS@ // // // //
 
@@ -648,14 +596,6 @@ function updateData(name, input) {
   }
   thisPatient[name] = input;
   renderResult();
-}
-
-function focusBorder(name) {
-  $(`#${name}-container`).css("border", "4px solid #409eff");
-}
-
-function unfocusBorder(name) {
-  $(`#${name}-container`).css("border", "none");
 }
 
 function shakeId(name) {
