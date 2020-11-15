@@ -65,7 +65,7 @@ $(function () {
     // $PAGE1$
     // ^GENDER^
 
-    if (stepOrder[currentStep] === "gender") {
+    if (currentStep === "gender") {
       if (e.keyCode === 39) {
         $("#btn-male").focus();
       } else if (e.keyCode === 37) {
@@ -87,7 +87,7 @@ $(function () {
     // $PAGE3$
     // ^GENDER^
 
-    if (stepOrder[currentStep] === "religion") {
+    if (currentStep === "religion") {
       if (e.keyCode === 40) {
         $("#btn-religion-next").focus();
       } else if (e.keyCode === 38) {
@@ -98,7 +98,7 @@ $(function () {
     // $PAGE4$
     // ^MARITAL STATUS^
 
-    if (stepOrder[currentStep] === "marital-status") {
+    if (currentStep === "marital-status") {
       if (e.keyCode === 40) {
         e.preventDefault();
         $("#input-children-number").focus();
@@ -110,7 +110,7 @@ $(function () {
     // $PAGE5$
     // ^SIBILINGS^
 
-    if (stepOrder[currentStep] === "sibilings") {
+    if (currentStep === "sibilings") {
       if (e.keyCode === 40) {
         e.preventDefault();
         $("#input-sibiling-position").focus();
@@ -613,11 +613,7 @@ let stepCounter = 0;
 function updateData(name, input) {
   // עדכון נתונים
   // פונקציית עדכון
-  stepCounter = 0;
   for (i = 0; i < theData.length; i++) {
-    if (theData[i].value === undefined) {
-      stepCounter++;
-    }
     if (theData[i].stepName === name) {
       theData[i].value = input;
     }
