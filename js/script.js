@@ -559,17 +559,17 @@ function renderResult() {
 }
 
 // Create step-nav
-
+createNavigation();
 let tempTitle = "";
-
-for (i = 0; i < stepOrder.length; i++) {
+function createNavigation() {
   for (j = 0; j < theData.length; j++) {
-    if (theData[j].stepName === stepOrder[i]) {
-      $("#step-nav").append(`<li id="step-nav-${i}">${theData[j].title}</li>`);
+    if (theData[j].newPage) {
+      $("#step-nav").append(
+        `<li id="step-nav-${theData[j].pageNumber}">${theData[j].title}</li>`
+      );
+      $(`#step-nav-${theData[j].pageNumber}`).addClass("nav-li");
     }
   }
-  $("#step-nav").append(`<li id="step-nav-${i}">${tempTitle}</li>`);
-  $(`#step-nav-${i}`).addClass("nav-li");
 }
 
 // Use step-nav
@@ -584,9 +584,7 @@ $(".nav-li").click(function () {
     if (theData[i].pageNumber === idString) {
       $("#current-title").remove();
       $("#header-title").append(
-        `<div class="title-box" id="current-title">${
-          theData[i + 1].title
-        }</div>`
+        `<div class="title-box" id="current-title">${theData[i].title}</div>`
       );
     }
   }
