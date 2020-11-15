@@ -458,8 +458,9 @@ function nextStep() {
   $("#header-title").append(
     `<div class="title-box" id="current-title">${theData[stepIndicator].title}</div>`
   );
+  currentStep = theData[stepIndicator].pageName;
+  console.log(currentStep);
   stepIndicator++;
-  currentStep = stepIndicator - 1;
 }
 
 function validateHebrew(fieldName, dataName) {
@@ -547,7 +548,6 @@ function renderResult() {
         `<div class="component" id="custom${componentIdIndicator}">${theData[i].before}${theData[i].value}${theData[i].after}
             </div>`
       );
-      console.log("appended");
       $(`#custom${componentIdIndicator}`).css(
         "background-color",
         componentBackground[componentBgIndex % 8]
@@ -620,7 +620,6 @@ function updateData(name, input) {
     }
     if (theData[i].stepName === name) {
       theData[i].value = input;
-      console.log("updated");
     }
   }
   thisPatient[name] = input;
