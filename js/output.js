@@ -72,7 +72,7 @@ const theData = [
     type: "content",
     binary: false,
     before: "",
-    after: "",
+    after: ".",
     value: "",
     newSection: false,
     page: null,

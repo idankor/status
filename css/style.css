@@ -425,16 +425,9 @@ input:disabled {
   border: 1px solid #dcdfe6;
 }
 
-.input-sm {
-  width: 15%;
-  text-align: center;
-  height: 100%;
-}
-
-.input-md {
-  width: 30%;
-  text-align: center;
-  padding: 0.5em 0.2em;
+.input-error {
+  background-color: #fde2e1;
+  border: none;
 }
 
 @keyframes shake {

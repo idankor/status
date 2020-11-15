@@ -289,12 +289,14 @@ $("#input-sibiling-number").on("input", function () {
   validateNumbersWithoutUpdate("input-sibiling-number");
   leadingZero("input-sibiling-number");
   if ($("#input-sibiling-number").val() === "0") {
-    let tempString = theData[1].value + " יחיד";
-    if (theData[1].value === "בת") {
+    clearErrors();
+    let tempString = thisPatient.gender + " יחיד";
+    if (thisPatient.gender === "בת") {
       tempString += "ה";
     }
     updateData("sibilings", `${tempString}`);
   } else if ($("#input-sibiling-number").val() === "") {
+    clearErrors();
     updateData("sibilings", "");
   } else if (
     $("#input-sibiling-number").val() != "0" &&
@@ -305,9 +307,10 @@ $("#input-sibiling-number").on("input", function () {
     parseInt($("#input-sibiling-position").val()) >
     parseInt($("#input-sibiling-number").val())
   ) {
-    showError("הערך חייב להיות גדול או שווה למיקום");
-    $("#input-sibiling-number").val("");
+    showErrorConstant("הערך חייב להיות גדול או שווה למיקום");
+    $("#input-sibiling-number").addClass("input-error");
   } else {
+    clearErrors();
     sibilings();
   }
 });
@@ -377,16 +380,24 @@ $("#input-sibiling-position").on("input", function () {
 });
 
 function sibilings() {
-  let tempPosition = hebrewfy(
-    thisPatient.gender,
-    parseInt($("#input-sibiling-position").val()),
-    "position"
-  );
-  let tempQuantity = hebrewfy(
-    "בן",
-    parseInt($("#input-sibiling-number").val()) + 1,
-    "quantity"
-  );
+  let tempQuantity = parseInt($("#input-sibiling-number").val()) + 1;
+  let tempPosition = parseInt($("#input-sibiling-position").val());
+  if (tempPosition > 0 && tempPosition <= 10) {
+    tempPosition = hebrewfy(
+      thisPatient.gender,
+      parseInt($("#input-sibiling-position").val()),
+      "position"
+    );
+  } else {
+    tempPosition = `־${$("#input-sibiling-position").val()}`;
+  }
+  if (tempQuantity > 0 && tempQuantity <= 10) {
+    tempQuantity = hebrewfy(
+      "בן",
+      parseInt($("#input-sibiling-number").val()) + 1,
+      "quantity"
+    );
+  }
   let tempString = `ה${tempPosition} מבין ${tempQuantity} אחאים`;
   updateData("sibilings", tempString);
 }
@@ -604,6 +615,23 @@ function showError(errorContent) {
   $(".error-box").hide();
   $(".error-box").fadeIn(0);
   $(".error-box").fadeOut(5000);
+}
+
+function showErrorConstant(errorContent) {
+  document.getElementById("card-footer").innerHTML = "";
+  document.getElementsByClassName("error-box").innerHTML = "";
+  let errorElement = document.createElement("div");
+  errorElement.classList.add("error-box");
+  errorElement.innerHTML = "";
+  errorElement.innerHTML = errorContent;
+  document.getElementById("card-footer").appendChild(errorElement);
+  $(".error-box").hide();
+  $(".error-box").fadeIn(0);
+}
+
+function clearErrors() {
+  $(".error-box").hide();
+  $("input").removeClass("input-error");
 }
 
 // Update data
