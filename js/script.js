@@ -211,7 +211,6 @@ $("#input-sibiling-position").on("keydown", function (e) {
 // $("#toggle-residence").hide();
 $("#input-residence-typology").on("keydown", function (e) {
   if (e.keyCode === 13) {
-    console.log("clicked!");
     $("#toggle-residence").focus();
     // $(".switch").css("border", "3px #409EFF solid");
     // $(this).blur();
@@ -329,6 +328,19 @@ $("#input-sibiling-position").on("input", function () {
 
 // $PAGE6$
 // ^RESIDENCE^
+
+let tempResidence = "";
+
+$("#input-residence-city").on("input", function () {
+  validateHebrewWithoutUpdate("input-residence-city");
+  if ($(this).val() === "") {
+    updateData("residence", "");
+  } else if (thisPatient.gender === "בן") {
+    tempResidence = "מתגורר ב";
+    tempResidence += $("#input-residence-city").val();
+    updateData("residence", tempResidence);
+  }
+});
 
 // // // // @CLICK EVENTS@ // // // //
 
