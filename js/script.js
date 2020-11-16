@@ -332,7 +332,7 @@ $("#input-sibiling-position").on("input", function () {
 let tempResidence = "";
 
 $("#input-residence-city").on("input", function () {
-  validateHebrewWithoutUpdate("input-residence-city");
+  validateHebrewWithChars("input-residence-city");
   if ($(this).val() === "") {
     updateData("residence", "");
   } else if (thisPatient.gender === "בן") {
@@ -421,9 +421,23 @@ function validateHebrew(fieldName, dataName) {
   }
 }
 
-function validateHebrewWithoutUpdate(fieldName, dataName) {
+function validateHebrewWithoutUpdate(fieldName) {
   if ($(`#${fieldName}`).val() != "") {
     var hasNumber = /^[א-ת]/;
+    let tempString = "";
+    tempString = $(`#${fieldName}`).val();
+    tempString = tempString.slice(-1);
+    if (!hasNumber.test(tempString)) {
+      let correction = $(`#${fieldName}`).val().slice(0, -1);
+      $(`#${fieldName}`).val(correction);
+      showError("נא להכניס רק אותיות בעברית");
+    }
+  }
+}
+
+function validateHebrewWithChars(fieldName) {
+  if ($(`#${fieldName}`).val() != "") {
+    var hasNumber = /^[א-ת\s\-]/;
     let tempString = "";
     tempString = $(`#${fieldName}`).val();
     tempString = tempString.slice(-1);
@@ -445,6 +459,7 @@ function validateNumbers(fieldName, dataName) {
       let correction = $(`#${fieldName}`).val().slice(0, -1);
       $(`#${fieldName}`).val(correction);
       showError("נא להכניס רק מספרים");
+      shakeId(fieldName);
     } else {
       updateData(dataName, $(`#${fieldName}`).val());
     }
