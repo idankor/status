@@ -190,6 +190,8 @@ $("#input-sibiling-number").on("keydown", function (e) {
     } else if ($("#input-sibiling-number").val() > 0) {
       $("#input-sibiling-position").prop("disabled", false);
       $("#input-sibiling-position").focus();
+    } else if ($(this).val() === "0") {
+      alert("d");
     }
   }
 });
@@ -271,6 +273,8 @@ $("#input-sibiling-number").on("input", function () {
       tempString += "ה";
     }
     updateData("sibilings", `${tempString}`);
+    $("#input-sibiling-position").val("");
+    $("#input-sibiling-position").prop("disabled", true);
   } else if ($("#input-sibiling-number").val() === "") {
     clearErrors();
     updateData("sibilings", "");
