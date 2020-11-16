@@ -44,6 +44,11 @@ h3 {
   font-size: 0.8rem;
   color: #909399;
 }
+.toggle-text {
+  margin: 0px 3%;
+  color: #909399;
+  font-size: 0.8rem;
+}
 
 .red {
   color: #f56c6c;
@@ -562,6 +567,10 @@ select option {
   border-radius: 20px;
 }
 
+.switch:focus {
+  border: 4px #409eff solid;
+}
+
 .switch::after {
   content: "";
   position: absolute;
@@ -578,7 +587,7 @@ select option {
   right: 50%;
 }
 .checkbox:checked + .switch {
-  background-color: #67c23a;
+  background-color: #c3e80c;
 }
 
 .checkbox {
