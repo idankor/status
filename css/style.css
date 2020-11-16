@@ -27,7 +27,7 @@ h2 {
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  margin: 0px 0px -5px 0px;
+  margin: 0px 0px 1% 0px;
 }
 
 h3 {
@@ -237,7 +237,7 @@ ion-icon {
 }
 
 div {
-  border: none;
+  /* border: none; */
 }
 
 .card-footer {
@@ -254,9 +254,14 @@ div {
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  align-content: center;
   border-radius: 10px;
   width: 100%;
   /* border: 1px plum solid; */
+}
+
+.row-top-margin {
+  margin: 4% 0px 3% 0px;
 }
 
 .heigth-2rem {
@@ -555,7 +560,7 @@ select option {
 /* ----- TOGGLE SWITCH ----- */
 
 .custom-size {
-  font-size: 15px;
+  font-size: 10px;
 }
 
 .switch {
@@ -565,10 +570,7 @@ select option {
   height: 2em;
   background-color: #eee;
   border-radius: 20px;
-}
-
-.switch:focus {
-  border: 4px #409eff solid;
+  /* border: #409eff 4px solid; */
 }
 
 .switch::after {
@@ -578,7 +580,6 @@ select option {
   height: 2em;
   border-radius: 50%;
   background-color: white;
-  /* top: 1px; */
   right: 0%;
   transition: all 0.3s;
 }
