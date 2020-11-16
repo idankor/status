@@ -58,7 +58,8 @@ h3 {
 
 /* ERRORS */
 
-.error-box {
+.error-box,
+.error-box-constant {
   color: #f56c6c;
   font-size: 0.8rem;
   font-weight: 400;

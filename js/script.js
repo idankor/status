@@ -431,20 +431,6 @@ function validateHebrew(fieldName) {
   }
 }
 
-function validateHebrewWithoutUpdate(fieldName) {
-  if ($(`#${fieldName}`).val() != "") {
-    var hasNumber = /^[א-ת]/;
-    let tempString = "";
-    tempString = $(`#${fieldName}`).val();
-    tempString = tempString.slice(-1);
-    if (!hasNumber.test(tempString)) {
-      let correction = $(`#${fieldName}`).val().slice(0, -1);
-      $(`#${fieldName}`).val(correction);
-      showError("נא להכניס רק אותיות בעברית");
-    }
-  }
-}
-
 function validateHebrewWithChars(fieldName) {
   if ($(`#${fieldName}`).val() != "") {
     var hasNumber = /^[א-ת\s\-]/;
@@ -455,6 +441,7 @@ function validateHebrewWithChars(fieldName) {
       let correction = $(`#${fieldName}`).val().slice(0, -1);
       $(`#${fieldName}`).val(correction);
       showError("נא להכניס רק אותיות בעברית");
+      shakeId(fieldName);
     }
   }
 }
@@ -567,7 +554,7 @@ function showErrorConstant(errorContent) {
   document.getElementById("card-footer").innerHTML = "";
   document.getElementsByClassName("error-box").innerHTML = "";
   let errorElement = document.createElement("div");
-  errorElement.classList.add("error-box");
+  errorElement.classList.add("error-box-constant");
   errorElement.innerHTML = "";
   errorElement.innerHTML = errorContent;
   document.getElementById("card-footer").appendChild(errorElement);
@@ -576,7 +563,7 @@ function showErrorConstant(errorContent) {
 }
 
 function clearErrors() {
-  $(".error-box").hide();
+  $(".error-box-constant").hide();
   $("input").removeClass("input-error");
 }
 
