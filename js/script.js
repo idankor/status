@@ -353,10 +353,10 @@ $("#btn-religion-next").click(function () {
   $("#input-marital-status").focus();
 });
 
-$("#toggle-residence").click(function () {
+$("#toggle-residence-input").click(function () {
   $("#input-residence-members").attr(
     "disabled",
-    !$("#toggle-residence").is(":checked")
+    !$("#toggle-residence-input").is(":checked")
   );
 });
 
