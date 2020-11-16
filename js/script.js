@@ -226,6 +226,12 @@ $("#input-residence-typology").on("keydown", function (e) {
   }
 });
 
+$("#toggle-residence").on("keydown", function (e) {
+  if (e.keyCode === 32) {
+    $("#toggle-residence-input").prop("checked", true);
+  }
+});
+
 // // // // @INPUT EVENTS@ // // // //
 
 // $PAGE2$
@@ -418,11 +424,17 @@ $("#btn-religion-next").click(function () {
   $("#input-marital-status").focus();
 });
 
-$("#toggle-residence-input").click(function () {
-  $("#input-residence-members").attr(
-    "disabled",
-    !$("#toggle-residence-input").is(":checked")
-  );
+$("#toggle-residence-input").change(function () {
+  // $("#input-residence-members").attr(
+  //   "disabled",
+  //   !$("#toggle-residence-input").is(":checked")
+  // );
+  if (this.checked) {
+    $("#input-residence-members").attr("disabled", false);
+  }
+  if (!this.checked) {
+    $("#input-residence-members").attr("disabled", true);
+  }
 });
 
 // @FUNCTIONS@
