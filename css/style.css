@@ -238,7 +238,7 @@ ion-icon {
 }
 
 div {
-  /* border: none; */
+  /* border: green 1px solid; */
 }
 
 .card-footer {
@@ -322,7 +322,7 @@ div {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  width: 90%;
+  width: 95%;
   height: 90%;
   flex-wrap: wrap;
   align-content: flex-start;
@@ -336,7 +336,7 @@ div {
   /* margin-bottom: 10px; */
   color: white;
   padding: 5px;
-  font-size: 1.2rem;
+  font-size: 1rem;
   background-color: #c0c4cc;
 }
 
@@ -346,6 +346,7 @@ div {
   justify-content: flex-start;
   align-items: flex-start;
   margin-bottom: 20px;
+  flex-wrap: wrap;
 }
 
 .result {
@@ -368,7 +369,7 @@ div {
   font-weight: 400;
   cursor: pointer;
   height: 65%;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .component:hover {
@@ -452,7 +453,7 @@ input {
   direction: rtl;
   min-width: 0;
   color: #303133;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   padding: 0.5rem;
   box-shadow: 0 5px 10px rgba(154, 160, 185, 0.05),
     0 15px 40px rgba(166, 173, 201, 0.2);
@@ -618,7 +619,7 @@ select option {
   text-align: right;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   padding-left: 25%;
 }

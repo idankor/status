@@ -223,8 +223,6 @@ $("#input-residence-city").on("keydown", function (e) {
 $("#input-residence-typology").on("keydown", function (e) {
   if (e.keyCode === 13) {
     $("#toggle-residence").focus();
-    // $(".switch").css("border", "3px #409EFF solid");
-    // $(this).blur();
   }
 });
 
@@ -346,12 +344,39 @@ let tempResidence = "";
 
 $("#input-residence-city").on("input", function () {
   validateHebrewWithChars("input-residence-city");
-  if ($(this).val() === "") {
+  if ($(this).val() === "" && $("#input-residence-typology").val() === "") {
     updateData("residence", "");
-  } else if (thisPatient.gender === "בן") {
-    tempResidence = "מתגורר ב";
-    tempResidence += $("#input-residence-city").val();
-    updateData("residence", tempResidence);
+  } else if (
+    $(this).val() !== "" &&
+    $("#input-residence-typology").val() === ""
+  ) {
+    updateData("residence", $(this).val());
+  } else if (
+    $(this).val() === "" &&
+    $("#input-residence-typology").val() !== ""
+  ) {
+    updateData("residence", $("#input-residence-typology").val());
+  } else {
+    updateData(
+      "residence",
+      `${$("#input-residence-typology").val()} ב${$(this).val()}`
+    );
+  }
+});
+
+$("#input-residence-typology").on("input", function () {
+  validateHebrewWithChars("input-residence-typology");
+  if ($(this).val() === "" && $("#input-residence-city").val() === "") {
+    updateData("residence", "");
+  } else if ($(this).val() !== "" && $("#input-residence-city").val() === "") {
+    updateData("residence", $(this).val());
+  } else if ($(this).val() === "" && $("#input-residence-city").val() !== "") {
+    updateData("residence", $("#input-residence-city").val());
+  } else {
+    updateData(
+      "residence",
+      `${$(this).val()} ב${$("#input-residence-city").val()}`
+    );
   }
 });
 
@@ -377,6 +402,7 @@ $("#btn-male").click(function () {
 $("#btn-female").click(function () {
   $(".error-box").remove();
   updateData("gender", "בת");
+  updateBeforeValue("residence", "מתגוררת ב");
   renderResult();
   nextStep();
   $("#input-age").focus();
@@ -580,6 +606,15 @@ function updateData(name, input) {
     }
   }
   thisPatient[name] = input;
+  renderResult();
+}
+
+function updateBeforeValue(name, input) {
+  for (i = 0; i < theData.length; i++) {
+    if (theData[i].stepName === name) {
+      theData[i].before = input;
+    }
+  }
   renderResult();
 }
 

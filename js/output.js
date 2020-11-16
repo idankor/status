@@ -87,7 +87,7 @@ const theData = [
     pageName: "residence",
     type: "content",
     binary: false,
-    before: "",
+    before: "מתגורר ב",
     after: "",
     value: "",
     newSection: false,
