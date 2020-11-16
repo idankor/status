@@ -191,7 +191,17 @@ $("#input-sibiling-number").on("keydown", function (e) {
       $("#input-sibiling-position").prop("disabled", false);
       $("#input-sibiling-position").focus();
     } else if ($(this).val() === "0") {
-      alert("d");
+      nextStep();
+      $("#input-residence-city").focus();
+    }
+  }
+});
+
+$("#input-sibiling-position").on("keydown", function (e) {
+  if (e.keyCode === 13) {
+    if ($(this).val() !== "") {
+      nextStep();
+      $("#input-residence-city").focus();
     }
   }
 });
