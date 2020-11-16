@@ -27,7 +27,7 @@ h2 {
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  margin: 0px 0px 0.25rem 0px;
+  margin: 0px 0px -5px 0px;
 }
 
 h3 {
@@ -232,6 +232,7 @@ ion-icon {
 }
 
 div {
+  border: none;
 }
 
 .card-footer {
@@ -527,6 +528,10 @@ button:focus {
   height: 10%;
 }
 
+.spacer-sm {
+  height: 5%;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   /* display: none; <- Crashes Chrome on hover */
@@ -544,67 +549,40 @@ select option {
 
 /* ----- TOGGLE SWITCH ----- */
 
-/* The switch - the box around the slider */
+.custom-size {
+  font-size: 15px;
+}
+
 .switch {
   position: relative;
   display: inline-block;
-  width: 60em;
-  height: 34em;
-  margin-bottom: 0%;
+  width: 4em;
+  height: 2em;
+  background-color: #eee;
+  border-radius: 20px;
 }
 
-/* Hide default HTML checkbox */
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-/* The slider */
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #909399;
-}
-
-/* Toggle switch size */
-.switch,
-.slider {
-  font-size: 0.75px;
-}
-
-.slider:before {
-  position: absolute;
+.switch::after {
   content: "";
-  height: 26em;
-  width: 26em;
-  left: 5em;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: white;
-  transition: 0.4s;
-}
-
-input:checked + .slider {
-  background-color: #409eff;
-}
-
-input:checked + .slider:before {
-  transform: translateY(-50%);
-  right: 5em;
-}
-
-/* Rounded sliders */
-.slider.round {
-  border-radius: 34em;
-}
-
-.slider.round:before {
+  position: absolute;
+  width: 2em;
+  height: 2em;
   border-radius: 50%;
+  background-color: white;
+  /* top: 1px; */
+  right: 0%;
+  transition: all 0.3s;
+}
+
+.checkbox:checked + .switch::after {
+  right: 50%;
+}
+.checkbox:checked + .switch {
+  background-color: #67c23a;
+}
+
+.checkbox {
+  display: none;
 }
 
 /* ----- STEPPER ----- */
