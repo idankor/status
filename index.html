@@ -145,7 +145,7 @@
                                 </div>
 
                                 <div class="card-row">
-                                    <span class="red comment">*</span> <span class="comment">לא כולל המטופל </span>
+                                    <span class="red comment">*</span><span class="remark">לא כולל המטופל</span>
                                 </div>
 
                                 <div class="spacer"></div>
@@ -175,37 +175,32 @@
                                 </div>
 
                                 <div class="card-row heigth-2rem">
-                                    <div class="element-container width-50" id="input-residence-location-container">
-                                        <input class="input-sm" type="text" id="input-residence-container"
-                                            autocomplete="off">
-                                    </div>
+                                    <input type="text" id="input-residence-container" autocomplete="off">
                                 </div>
+
+                                <div class="spacer"></div>
 
                                 <div class="card-row">
                                     <h2>טיפולוגיה</h2>
                                 </div>
 
                                 <div class="card-row heigth-2rem">
-                                    <div class="element-container width-50" id="input-residence-location-container">
-                                        <input type="text" class="input-sm" id="input-residence-container"
-                                            autocomplete="off">
-                                    </div>
+                                    <input type="text" id="input-residence-container" autocomplete="off">
                                 </div>
 
+                                <div class="spacer"></div>
+
                                 <div class="card-row">
-                                    <div class="element-container width-50" id="input-residence-location-container">
-                                        <label class="switch">
-                                            <input type="checkbox" id="switch-religion">
-                                            <span class="slider round"></span>
-                                        </label>
-                                    </div>
+                                    <div class="comment">לבד</div>
+                                    <label class="switch">
+                                        <input type="checkbox" id="switch-religion">
+                                        <span class="slider round"></span>
+                                    </label>
+                                    <div class="comment">עם</div>
                                 </div>
 
                                 <div class="card-row heigth-2rem">
-                                    <div class="element-container width-50" id="input-residence-members-container">
-                                        <input class="input-sm" type="text" id="input-residence-members"
-                                            autocomplete="off">
-                                    </div>
+                                    <input type="text" id="input-residence-members" autocomplete="off" disabled>
                                 </div>
 
                             </div>
@@ -277,6 +272,7 @@
                     </div>
 
                     <div class="bottom-row step step-religion">
+
                         <div class="instruction-box">
                             <ion-icon name="arrow-down-outline"></ion-icon>
                             <ion-icon name="arrow-up-outline"></ion-icon>
@@ -295,10 +291,52 @@
                             </div>
                         </div>
                     </div>
-                </div>
 
+
+                    <div class="bottom-row step step-marital-status">
+                        <div class="instruction-box">
+                            <ion-icon name="arrow-down-outline"></ion-icon>
+                            <ion-icon name="arrow-up-outline"></ion-icon>
+                            <div class="single-item">
+                                <p class="instruction">ניווט</p>
+
+                            </div>
+                        </div>
+
+                        <div class="instruction-box">
+                            <ion-icon name="return-down-back-outline" size="large"></ion-icon>
+                            <div class="single-item">
+                                <p class="instruction">המשך</p>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bottom-row step step-residence">
+                        <div class="instruction-box">
+                            <ion-icon name="arrow-back-outline" size="small"></ion-icon>
+                            <ion-icon name="arrow-forward-outline" size="small"></ion-icon>
+                            <div class="single-item">
+                                <p class="instruction">ניווט</p>
+
+                            </div>
+                        </div>
+
+                        <div class="instruction-box">
+                            <ion-icon name="return-down-back-outline" size="large"></ion-icon>
+                            <div class="single-item">
+                                <p class="instruction">המשך</p>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
             </div>
+
         </div>
+    </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"

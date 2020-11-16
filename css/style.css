@@ -35,14 +35,19 @@ h3 {
 }
 
 .comment {
-  margin: 0px;
+  margin: 0px 2%;
+  font-size: 1rem;
+  color: #909399;
+}
+.remark {
+  margin: 0px 0px;
   font-size: 0.8rem;
   color: #909399;
 }
 
 .red {
   color: #f56c6c;
-  margin: 0px 5px;
+  margin: 0px 0rem 0px 0.25rem;
   font-size: 0.9rem;
 }
 
@@ -227,7 +232,6 @@ ion-icon {
 }
 
 div {
-  /* border: pink 1px solid; */
 }
 
 .card-footer {
@@ -437,11 +441,10 @@ input {
   min-width: 0;
   color: #303133;
   font-size: 1.5rem;
-  padding: 1rem;
+  padding: 0.5rem;
   box-shadow: 0 5px 10px rgba(154, 160, 185, 0.05),
     0 15px 40px rgba(166, 173, 201, 0.2);
   text-align: center;
-  height: 4rem;
 }
 
 input:focus {
@@ -459,8 +462,7 @@ input:disabled {
 }
 
 .input-sm {
-  height: 60%;
-  padding: 0.5rem;
+  height: 50%;
   font-size: 1rem;
   border-radius: 15px;
 }
