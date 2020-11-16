@@ -261,7 +261,7 @@ div {
 }
 
 .row-top-margin {
-  margin: 4% 0px 3% 0px;
+  margin: 3% 0px 3% 0px;
 }
 
 .heigth-2rem {
@@ -593,6 +593,10 @@ select option {
 
 .checkbox {
   display: none;
+}
+
+#toggle-residence:focus {
+  /* border: #409eff 3px solid; */
 }
 
 /* ----- STEPPER ----- */

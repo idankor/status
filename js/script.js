@@ -200,8 +200,9 @@ $("#input-sibiling-number").on("keydown", function (e) {
 $("#input-residence-typology").on("keydown", function (e) {
   if (e.keyCode === 13) {
     console.log("clicked!");
-    $(".switch").css("border", "3px #409EFF solid");
-    $(this).blur();
+    $("#toggle-residence").focus();
+    // $(".switch").css("border", "3px #409EFF solid");
+    // $(this).blur();
   }
 });
 
