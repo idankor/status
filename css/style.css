@@ -596,7 +596,11 @@ select option {
 }
 
 #toggle-residence:focus {
-  /* border: #409eff 3px solid; */
+  border: #409eff 3px solid;
+}
+
+#toggle-residence {
+  outline: none;
 }
 
 /* ----- STEPPER ----- */
