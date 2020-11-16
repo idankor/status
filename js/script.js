@@ -208,7 +208,18 @@ $("#input-sibiling-position").on("keydown", function (e) {
 
 // $PAGE6$
 // ^RESIDENCE^
-// $("#toggle-residence").hide();
+
+$("#input-residence-city").on("keydown", function (e) {
+  if (e.keyCode === 13) {
+    if ($(this).val() === "") {
+      showError("חובה להזין יישוב");
+      shakeId("input-residence-city");
+    } else {
+      $("#input-residence-typology").focus();
+    }
+  }
+});
+
 $("#input-residence-typology").on("keydown", function (e) {
   if (e.keyCode === 13) {
     $("#toggle-residence").focus();
@@ -224,13 +235,15 @@ $("#input-residence-typology").on("keydown", function (e) {
 
 $("#input-age").on("input", function () {
   validateNumbers("input-age", "age");
+  updateData("age", $(this).val());
 });
 
 // $PAGE3$
 // ^RELIGION^
 
 $("#input-religion").on("input", function () {
-  validateHebrew("input-religion", "religion");
+  validateHebrew("input-religion");
+  updateData("religion", $(this).val());
 });
 
 // $PAGE4$
@@ -256,7 +269,7 @@ function maritalStatusGenerator() {
 // marital status
 
 $("#input-marital-status").on("input", function () {
-  validateHebrewWithoutUpdate("input-marital-status");
+  validateHebrew("input-marital-status");
   maritalStatusGenerator();
 });
 
@@ -273,7 +286,7 @@ $("#input-children-number").on("input", function () {
 // ^SIBILINGS^
 
 $("#input-sibiling-number").on("input", function () {
-  validateNumbersWithoutUpdate("input-sibiling-number");
+  validateNumbers("input-sibiling-number");
   leadingZero("input-sibiling-number");
   if ($("#input-sibiling-number").val() === "0") {
     clearErrors();
@@ -403,7 +416,7 @@ function nextStep() {
   stepIndicator++;
 }
 
-function validateHebrew(fieldName, dataName) {
+function validateHebrew(fieldName) {
   if ($(`#${fieldName}`).val() != "") {
     var hasNumber = /^[א-ת]/;
     let tempString = "";
@@ -413,11 +426,8 @@ function validateHebrew(fieldName, dataName) {
       let correction = $(`#${fieldName}`).val().slice(0, -1);
       $(`#${fieldName}`).val(correction);
       showError("נא להכניס רק אותיות בעברית");
-    } else {
-      updateData(dataName, $(`#${fieldName}`).val());
+      shakeId(fieldName);
     }
-  } else {
-    updateData(dataName, "");
   }
 }
 
@@ -449,7 +459,7 @@ function validateHebrewWithChars(fieldName) {
   }
 }
 
-function validateNumbers(fieldName, dataName) {
+function validateNumbers(fieldName) {
   if ($(`#${fieldName}`).val() != "") {
     var hasNumber = /^[0-9]/;
     let tempString = "";
@@ -460,11 +470,7 @@ function validateNumbers(fieldName, dataName) {
       $(`#${fieldName}`).val(correction);
       showError("נא להכניס רק מספרים");
       shakeId(fieldName);
-    } else {
-      updateData(dataName, $(`#${fieldName}`).val());
     }
-  } else {
-    updateData(dataName, "");
   }
 }
 
@@ -485,7 +491,6 @@ function renderResult() {
   $("#result-sub-container").html("");
   let componentIdIndicator = 0;
   let componentBgIndex = 0;
-  let sectionBgIndex = 0;
   for (i = 0; i < theData.length; i++) {
     if (theData[i].newSection) {
       $("#result-sub-container").append(
