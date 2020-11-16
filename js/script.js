@@ -226,9 +226,23 @@ $("#input-residence-typology").on("keydown", function (e) {
   }
 });
 
+$("#toggle-residence-input").change(function () {
+  $("#input-residence-members").attr(
+    "disabled",
+    !$("#toggle-residence-input").is(":checked")
+  );
+});
+
 $("#toggle-residence").on("keydown", function (e) {
   if (e.keyCode === 32) {
-    $("#toggle-residence-input").prop("checked", true);
+    $("#toggle-residence-input").attr(
+      "checked",
+      !$("#toggle-residence-input").attr("checked")
+    );
+    $("#input-residence-members").attr(
+      "disabled",
+      !$("#input-residence-members").attr("disabled")
+    );
   }
 });
 
