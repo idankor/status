@@ -244,6 +244,10 @@ $("#toggle-residence").on("keydown", function (e) {
       !$("#input-residence-members").attr("disabled")
     );
   }
+  if (e.keyCode === 13) {
+    if ($("#input-residence-members").attr("disabled", true)) {
+    }
+  }
 });
 
 // // // // @INPUT EVENTS@ // // // //
@@ -412,6 +416,7 @@ $("#input-residence-typology").on("input", function () {
 $("#btn-male").click(function () {
   $(".error-box").remove();
   updateData("gender", "בן");
+  thePatient["personal details"].gender.value = "בן";
   renderResult();
   nextStep();
   $("#input-age").focus();
@@ -422,6 +427,7 @@ $("#btn-male").click(function () {
 $("#btn-female").click(function () {
   $(".error-box").remove();
   updateData("gender", "בת");
+  thePatient["personal details"].gender.value = "בת";
   updateBeforeValue("residence", "מתגוררת ב");
   renderResult();
   nextStep();

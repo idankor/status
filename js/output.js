@@ -1,5 +1,28 @@
 // @OUTPUT@
 
+const thePatient = {
+  "personal details": {
+    title: "",
+    gender: { title: "", value: "" },
+    age: { title: "", value: "" },
+    religion: { title: "", value: "" },
+    "marital status": { title: "", value: "" },
+    "number of children": { title: "", value: "" },
+    "number of sibilings": { title: "", value: "" },
+    position: { title: "", value: "" },
+    "residence city": { title: "", value: "" },
+    "residence typology": { title: "", value: "" },
+    "residence members": { title: "", value: "" },
+  },
+  "medical history": {},
+  "psychiatric history": {},
+  reason: {},
+  "current disease": {},
+  status: {},
+  discussion: {},
+  plan: {},
+};
+
 const theData = [
   {
     stepNumber: 1,
